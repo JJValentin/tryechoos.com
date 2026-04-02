@@ -537,7 +537,7 @@
             Monthly
           </button>
           <button id="toggle-annual" class="px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 text-text-muted hover:text-text-main">
-            Annual <span id="annual-savings-badge" class="ml-1 text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">Save up to 14%</span>
+            Annual <span class="ml-1 text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">Save up to 14%</span>
           </button>
         </div>
       </div>
@@ -545,33 +545,33 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
         <!-- Card 1: EchoOS -->
-        <div class="glass-panel-elevated p-8 popular-glow relative animate-on-scroll flex flex-col">
+        <div id="echoos-card" class="glass-panel-elevated p-8 popular-glow relative animate-on-scroll flex flex-col">
           <!-- START HERE Badge — monthly only -->
-          <div id="echoos-badge-monthly" class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap">START HERE</div>
-          <!-- BEST DEAL Badge — annual only -->
-          <div id="echoos-badge-annual" class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap hidden">BEST DEAL</div>
+          <div id="echoos-badge" class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap">START HERE</div>
 
           <div class="mb-6 mt-2">
             <div class="text-primary text-sm font-semibold uppercase tracking-wider mb-2">EchoOS</div>
 
-            <!-- Monthly pricing block -->
-            <div id="echoos-price-monthly" class="mb-4">
-              <div class="flex items-baseline gap-1">
-                <span class="font-heading text-5xl font-bold text-text-main">$7</span>
-                <span class="text-text-muted text-sm">/ first week</span>
+            <!-- Single price block — content swapped by JS -->
+            <div id="echoos-price-block">
+              <!-- Monthly variant -->
+              <div data-billing="monthly">
+                <div class="flex items-baseline gap-1">
+                  <span class="font-heading text-5xl font-bold text-text-main">$7</span>
+                  <span class="text-text-muted text-sm">/ first week</span>
+                </div>
+                <p class="text-text-muted text-sm mt-1">Then $27/mo. Cancel anytime.</p>
               </div>
-              <p class="text-text-muted text-sm mt-1">Then $27/mo. Cancel anytime.</p>
-            </div>
-
-            <!-- Annual pricing block — always visible -->
-            <div id="echoos-price-annual">
-              <div class="flex items-baseline gap-1">
-                <span class="font-heading text-4xl font-bold text-text-main">$297</span>
-                <span class="text-text-muted text-sm">/ year</span>
-              </div>
-              <div class="flex items-center gap-2 mt-1">
-                <span class="text-xs text-text-muted">$24.75/mo</span>
-                <span class="text-xs font-bold text-primary bg-primary/15 px-2 py-0.5 rounded-full">Save 8%</span>
+              <!-- Annual variant -->
+              <div data-billing="annual" class="hidden">
+                <div class="flex items-baseline gap-1">
+                  <span class="font-heading text-4xl font-bold text-text-main">$297</span>
+                  <span class="text-text-muted text-sm">/ year</span>
+                </div>
+                <div class="flex items-center gap-2 mt-1">
+                  <span class="text-xs text-text-muted">$24.75/mo</span>
+                  <span class="text-xs font-bold text-primary bg-primary/15 px-2 py-0.5 rounded-full">Save 8%</span>
+                </div>
               </div>
             </div>
           </div>
@@ -603,45 +603,47 @@
             </li>
           </ul>
 
-          <!-- CTAs — both always visible, toggle controls which is prominent -->
-          <div class="flex flex-col gap-2">
-            <a id="echoos-cta-monthly" href="https://whop.com/checkout/plan_K4Iaot2EnTeqE" target="_blank" rel="noopener"
+          <!-- Single CTA per card — swapped by JS -->
+          <div id="echoos-cta-block">
+            <a data-billing="monthly" href="https://whop.com/checkout/plan_K4Iaot2EnTeqE" target="_blank" rel="noopener"
               class="bg-primary text-white px-6 py-3 w-full rounded-glass font-semibold cursor-pointer hover:bg-primary-hover transition-colors duration-200 text-center text-sm block">
               Start for $7
             </a>
-            <a id="echoos-cta-annual" href="https://whop.com/checkout/plan_CkQWyzyxh8ehO" target="_blank" rel="noopener"
-              class="bg-white/10 text-white px-6 py-3 w-full rounded-glass font-semibold cursor-pointer hover:bg-white/15 transition-colors duration-200 text-center text-sm block">
+            <a data-billing="annual" href="https://whop.com/checkout/plan_CkQWyzyxh8ehO" target="_blank" rel="noopener"
+              class="bg-primary text-white px-6 py-3 w-full rounded-glass font-semibold cursor-pointer hover:bg-primary-hover transition-colors duration-200 text-center text-sm block hidden">
               Get Annual — $297/yr
             </a>
           </div>
         </div>
 
         <!-- Card 2: BusinessOS -->
-        <div class="glass-panel p-8 animate-on-scroll flex flex-col" style="border: 1px solid rgba(134,85,246,0.2); transition-delay: 0.1s;">
+        <div id="biz-card" class="glass-panel p-8 animate-on-scroll flex flex-col" style="border: 1px solid rgba(134,85,246,0.2); transition-delay: 0.1s;">
           <!-- BEST DEAL Badge — annual only -->
-          <div id="biz-badge-annual" class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap hidden">BEST DEAL</div>
+          <div id="biz-badge" class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap hidden">BEST DEAL</div>
 
           <div class="mb-6 mt-2">
             <div class="text-primary text-xs font-semibold uppercase tracking-wider mb-2">BusinessOS</div>
 
-            <!-- Monthly pricing block -->
-            <div id="biz-price-monthly" class="mb-4">
-              <div class="flex items-baseline gap-1">
-                <span class="font-heading text-5xl font-bold text-text-main">$97</span>
-                <span class="text-text-muted text-sm">/ month</span>
+            <!-- Single price block — content swapped by JS -->
+            <div id="biz-price-block">
+              <!-- Monthly variant -->
+              <div data-billing="monthly">
+                <div class="flex items-baseline gap-1">
+                  <span class="font-heading text-5xl font-bold text-text-main">$97</span>
+                  <span class="text-text-muted text-sm">/ month</span>
+                </div>
+                <p class="text-text-muted text-sm mt-1">Full autonomous team operation.</p>
               </div>
-              <p class="text-text-muted text-sm mt-1">Full autonomous team operation.</p>
-            </div>
-
-            <!-- Annual pricing block — always visible -->
-            <div id="biz-price-annual">
-              <div class="flex items-baseline gap-1">
-                <span class="font-heading text-4xl font-bold text-text-main">$997</span>
-                <span class="text-text-muted text-sm">/ year</span>
-              </div>
-              <div class="flex items-center gap-2 mt-1">
-                <span class="text-xs text-text-muted">$83/mo</span>
-                <span class="text-xs font-bold text-primary bg-primary/15 px-2 py-0.5 rounded-full">Save 14%</span>
+              <!-- Annual variant -->
+              <div data-billing="annual" class="hidden">
+                <div class="flex items-baseline gap-1">
+                  <span class="font-heading text-4xl font-bold text-text-main">$997</span>
+                  <span class="text-text-muted text-sm">/ year</span>
+                </div>
+                <div class="flex items-center gap-2 mt-1">
+                  <span class="text-xs text-text-muted">$83/mo</span>
+                  <span class="text-xs font-bold text-primary bg-primary/15 px-2 py-0.5 rounded-full">Save 14%</span>
+                </div>
               </div>
             </div>
           </div>
@@ -677,14 +679,14 @@
             </li>
           </ul>
 
-          <!-- CTAs — both always visible -->
-          <div class="flex flex-col gap-2">
-            <a id="biz-cta-monthly" href="https://whop.com/checkout/plan_oPOjDR6s99LHG" target="_blank" rel="noopener"
+          <!-- Single CTA per card — swapped by JS -->
+          <div id="biz-cta-block">
+            <a data-billing="monthly" href="https://whop.com/checkout/plan_oPOjDR6s99LHG" target="_blank" rel="noopener"
               class="glass-panel text-primary px-6 py-3 w-full rounded-glass font-semibold cursor-pointer hover:bg-primary/10 transition-colors duration-200 text-center text-sm block" style="border: 1px solid rgba(134,85,246,0.3);">
               Get BusinessOS — $97/mo
             </a>
-            <a id="biz-cta-annual" href="https://whop.com/checkout/plan_TKQvdlcUv5fBv" target="_blank" rel="noopener"
-              class="glass-panel text-primary px-6 py-3 w-full rounded-glass font-semibold cursor-pointer hover:bg-primary/10 transition-colors duration-200 text-center text-sm block" style="border: 1px solid rgba(134,85,246,0.3);">
+            <a data-billing="annual" href="https://whop.com/checkout/plan_TKQvdlcUv5fBv" target="_blank" rel="noopener"
+              class="bg-primary text-white px-6 py-3 w-full rounded-glass font-semibold cursor-pointer hover:bg-primary-hover transition-colors duration-200 text-center text-sm block hidden">
               Get Annual — $997/yr
             </a>
           </div>
@@ -867,64 +869,41 @@
     });
 
     // 6. Pricing toggle — Monthly / Annual
-    // Both price tiers are always visible. Toggle controls badge + CTA prominence.
+    // One price block + one CTA per card. JS swaps visibility using data-billing.
     const toggleMonthly = document.getElementById('toggle-monthly');
     const toggleAnnual = document.getElementById('toggle-annual');
-    const echoosCtaMonthly = document.getElementById('echoos-cta-monthly');
-    const echoosCtaAnnual = document.getElementById('echoos-cta-annual');
-    const bizCtaMonthly = document.getElementById('biz-cta-monthly');
-    const bizCtaAnnual = document.getElementById('biz-cta-annual');
-    const echoosBadgeMonthly = document.getElementById('echoos-badge-monthly');
-    const echoosBadgeAnnual = document.getElementById('echoos-badge-annual');
-    const bizBadgeAnnual = document.getElementById('biz-badge-annual');
+    const echoosBadge = document.getElementById('echoos-badge');
+    const bizBadge = document.getElementById('biz-badge');
 
-    function setMonthly() {
-      toggleMonthly.classList.add('bg-primary', 'text-white');
-      toggleMonthly.classList.remove('text-text-muted');
-      toggleAnnual.classList.remove('bg-primary', 'text-white');
-      toggleAnnual.classList.add('text-text-muted');
-      // EchoOS CTAs
-      echoosCtaMonthly.className = 'bg-primary text-white px-6 py-3 w-full rounded-glass font-semibold cursor-pointer hover:bg-primary-hover transition-colors duration-200 text-center text-sm block';
-      echoosCtaAnnual.className = 'bg-white/10 text-white px-6 py-3 w-full rounded-glass font-semibold cursor-pointer hover:bg-white/15 transition-colors duration-200 text-center text-sm block';
-      // Biz CTAs
-      bizCtaMonthly.style.cssText = '';
-      bizCtaMonthly.className = 'glass-panel text-primary px-6 py-3 w-full rounded-glass font-semibold cursor-pointer hover:bg-primary/10 transition-colors duration-200 text-center text-sm block';
-      bizCtaMonthly.style.border = '1px solid rgba(134,85,246,0.3)';
-      bizCtaAnnual.style.cssText = '';
-      bizCtaAnnual.className = 'glass-panel text-primary px-6 py-3 w-full rounded-glass font-semibold cursor-pointer hover:bg-primary/10 transition-colors duration-200 text-center text-sm block';
-      bizCtaAnnual.style.border = '1px solid rgba(134,85,246,0.3)';
-      bizCtaAnnual.style.opacity = '0.6';
-      // Badges
-      echoosBadgeMonthly.classList.remove('hidden');
-      echoosBadgeAnnual.classList.add('hidden');
-      bizBadgeAnnual.classList.add('hidden');
-    }
+    function setPricing(billing) {
+      // Toggle pill styling
+      if (billing === 'monthly') {
+        toggleMonthly.classList.add('bg-primary', 'text-white');
+        toggleMonthly.classList.remove('text-text-muted');
+        toggleAnnual.classList.remove('bg-primary', 'text-white');
+        toggleAnnual.classList.add('text-text-muted');
+      } else {
+        toggleAnnual.classList.add('bg-primary', 'text-white');
+        toggleAnnual.classList.remove('text-text-muted');
+        toggleMonthly.classList.remove('bg-primary', 'text-white');
+        toggleMonthly.classList.add('text-text-muted');
+      }
 
-    function setAnnual() {
-      toggleAnnual.classList.add('bg-primary', 'text-white');
-      toggleAnnual.classList.remove('text-text-muted');
-      toggleMonthly.classList.remove('bg-primary', 'text-white');
-      toggleMonthly.classList.add('text-text-muted');
-      // EchoOS CTAs — swap prominence
-      echoosCtaMonthly.style.opacity = '0.6';
-      echoosCtaAnnual.style.opacity = '';
-      // Biz CTAs — annual is now primary
-      bizCtaMonthly.style.cssText = '';
-      bizCtaMonthly.className = 'glass-panel text-primary px-6 py-3 w-full rounded-glass font-semibold cursor-pointer hover:bg-primary/10 transition-colors duration-200 text-center text-sm block';
-      bizCtaMonthly.style.border = '1px solid rgba(134,85,246,0.3)';
-      bizCtaMonthly.style.opacity = '0.6';
-      bizCtaAnnual.style.cssText = '';
-      bizCtaAnnual.className = 'glass-panel text-primary px-6 py-3 w-full rounded-glass font-semibold cursor-pointer hover:bg-primary/10 transition-colors duration-200 text-center text-sm block';
-      bizCtaAnnual.style.border = '1px solid rgba(134,85,246,0.3)';
-      // Badges
-      echoosBadgeMonthly.classList.add('hidden');
-      echoosBadgeAnnual.classList.remove('hidden');
-      bizBadgeAnnual.classList.remove('hidden');
+      // Badge visibility
+      // START HERE on EchoOS: monthly only, hidden on annual
+      echoosBadge.classList.toggle('hidden', billing !== 'monthly');
+      // BEST DEAL on BusinessOS: annual only only
+      bizBadge.classList.toggle('hidden', billing !== 'annual');
+
+      // Price block + CTA swap via data-billing attribute
+      document.querySelectorAll('[data-billing]').forEach(el => {
+        el.classList.toggle('hidden', el.dataset.billing !== billing);
+      });
     }
 
     if (toggleMonthly && toggleAnnual) {
-      toggleMonthly.addEventListener('click', setMonthly);
-      toggleAnnual.addEventListener('click', setAnnual);
+      toggleMonthly.addEventListener('click', () => setPricing('monthly'));
+      toggleAnnual.addEventListener('click', () => setPricing('annual'));
     }
   </script>
 
