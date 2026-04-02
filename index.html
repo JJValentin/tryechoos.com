@@ -525,164 +525,180 @@
   <!-- SECTION 6: PRICING -->
   <!-- ============================================================ -->
   <section id="pricing" class="py-24 px-4" style="background: rgba(24,24,27,0.2);">
-    <div class="max-w-5xl mx-auto">
+    <div class="max-w-4xl mx-auto">
 
-      <!-- Section Header -->
-      <div class="text-center mb-16">
-        <span class="text-primary text-sm font-semibold uppercase tracking-wider">Simple Pricing</span>
-        <h2 class="font-heading text-4xl md:text-5xl font-bold mt-3 mb-4">Start for $7. Scale when ready.</h2>
-        <p class="text-text-muted max-w-lg mx-auto">Full access from day one. No feature walls. No surprises.</p>
+      <h2 class="font-heading text-4xl font-bold text-center mb-4">Two Plans. No Confusion.</h2>
+      <p class="text-text-muted text-center mb-8">Start for $7. Upgrade when you want more.</p>
+
+      <!-- Monthly / Annual Toggle -->
+      <div class="flex justify-center mb-12">
+        <div class="glass-panel inline-flex items-center gap-3 p-1 rounded-full">
+          <button id="toggle-monthly" class="px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 bg-primary text-white cursor-pointer">
+            Monthly
+          </button>
+          <button id="toggle-annual" class="px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 text-text-muted hover:text-text-main cursor-pointer">
+            Annual <span id="annual-savings-badge" class="ml-1 text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">Save up to 14%</span>
+          </button>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-        <!-- ===== Card 1: EchoOS (PRIMARY) ===== -->
-        <div class="relative animate-on-scroll flex flex-col rounded-glass-lg overflow-hidden"
-          style="background: linear-gradient(135deg, rgba(134,85,246,0.12) 0%, rgba(24,24,27,0.65) 50%); border: 1px solid rgba(134,85,246,0.4); box-shadow: 0 0 40px rgba(134,85,246,0.12), 0 4px 30px rgba(0,0,0,0.5);">
+        <!-- Card 1: EchoOS -->
+        <div class="glass-panel-elevated p-8 relative animate-on-scroll flex flex-col">
+          <!-- START HERE Badge — monthly only -->
+          <div id="echoos-badge-monthly" class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap">START HERE</div>
+          <!-- BEST DEAL Badge — annual only -->
+          <div id="echoos-badge-annual" class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap hidden">BEST DEAL</div>
 
-          <!-- MOST POPULAR ribbon -->
-          <div class="bg-primary text-white text-center text-xs font-bold tracking-widest uppercase py-2">
-            Most Popular
-          </div>
+          <div class="mb-6 mt-2">
+            <div class="text-primary text-sm font-semibold uppercase tracking-wider mb-2">EchoOS</div>
 
-          <div class="p-8 flex flex-col flex-grow">
-            <div class="mb-8">
-              <div class="font-heading text-lg font-semibold text-text-main mb-4">EchoOS</div>
-              <div class="flex items-baseline gap-2">
-                <span class="font-heading text-6xl font-bold text-text-main">$7</span>
-                <div class="flex flex-col">
-                  <span class="text-text-muted text-sm font-medium">for your first week</span>
-                </div>
+            <!-- Monthly pricing block -->
+            <div id="echoos-price-monthly" class="mb-4">
+              <div class="flex items-baseline gap-1">
+                <span class="font-heading text-5xl font-bold text-text-main">$7</span>
+                <span class="text-text-muted text-sm">/ first week</span>
               </div>
-              <p class="text-text-muted text-sm mt-3">Then $27/mo. Cancel anytime before it renews.</p>
+              <p class="text-text-muted text-sm mt-1">Then $27/mo. Cancel anytime.</p>
+              <p class="text-xs text-primary mt-1 cursor-pointer" onclick="setAnnual(); return false;">or save 8% annually — $297/yr</p>
             </div>
 
-            <!-- Divider -->
-            <div class="border-t border-white/10 mb-6"></div>
+            <!-- Annual pricing block -->
+            <div id="echoos-price-annual" class="hidden">
+              <div class="flex items-baseline gap-1">
+                <span class="font-heading text-4xl font-bold text-text-main">$297</span>
+                <span class="text-text-muted text-sm">/ year</span>
+              </div>
+              <div class="flex items-center gap-2 mt-1">
+                <span class="text-xs text-text-muted">$24.75/mo</span>
+                <span class="text-xs font-bold text-primary bg-primary/15 px-2 py-0.5 rounded-full">Save 8%</span>
+              </div>
+            </div>
+          </div>
 
-            <!-- What's included label -->
-            <p class="text-xs font-semibold uppercase tracking-wider text-text-muted mb-4">Everything included:</p>
+          <ul class="flex flex-col gap-3 mb-6 flex-grow">
+            <li class="flex items-start gap-2 text-sm text-text-muted">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
+              Full Chat access to Zara, Echo, and Sofi
+            </li>
+            <li class="flex items-start gap-2 text-sm text-text-muted">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
+              Daily content pipeline Mon through Fri
+            </li>
+            <li class="flex items-start gap-2 text-sm text-text-muted">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
+              14-dimension voice training
+            </li>
+            <li class="flex items-start gap-2 text-sm text-text-muted">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
+              Weekly synthesis reports
+            </li>
+            <li class="flex items-start gap-2 text-sm text-text-muted">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
+              Google Workspace integration
+            </li>
+            <li class="flex items-start gap-2 text-sm text-text-muted">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
+              Module upgrades available
+            </li>
+          </ul>
 
-            <ul class="flex flex-col gap-3.5 mb-8 flex-grow">
-              <li class="flex items-center gap-3 text-sm text-text-main">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-primary flex-shrink-0"></i>
-                Full Chat access to Zara, Echo, and Sofi
-              </li>
-              <li class="flex items-center gap-3 text-sm text-text-main">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-primary flex-shrink-0"></i>
-                Daily content pipeline, Mon through Fri
-              </li>
-              <li class="flex items-center gap-3 text-sm text-text-main">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-primary flex-shrink-0"></i>
-                14-dimension voice training
-              </li>
-              <li class="flex items-center gap-3 text-sm text-text-main">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-primary flex-shrink-0"></i>
-                Weekly synthesis reports
-              </li>
-              <li class="flex items-center gap-3 text-sm text-text-main">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-primary flex-shrink-0"></i>
-                Google Workspace integration
-              </li>
-              <li class="flex items-center gap-3 text-sm text-text-main">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-primary flex-shrink-0"></i>
-                Module upgrades available
-              </li>
-            </ul>
-
-            <!-- Primary CTA -->
-            <a href="https://whop.com/checkout/plan_K4Iaot2EnTeqE" target="_blank" rel="noopener"
-              class="bg-primary text-white px-6 py-3.5 w-full rounded-glass font-semibold cursor-pointer hover:bg-primary-hover transition-all duration-200 text-center block hover:shadow-lg hover:shadow-primary/20">
+          <!-- CTAs -->
+          <div class="flex flex-col gap-2">
+            <a id="echoos-cta-monthly" href="https://whop.com/checkout/plan_K4Iaot2EnTeqE" target="_blank" rel="noopener"
+              class="bg-primary text-white px-6 py-3 w-full rounded-glass font-semibold cursor-pointer hover:bg-primary-hover transition-colors duration-200 text-center text-sm block">
               Start for $7
             </a>
-
-            <p class="text-xs text-text-muted text-center mt-3">No commitment. Cancel in one click.</p>
+            <a id="echoos-cta-annual" href="https://whop.com/checkout/plan_CkQWyzyxh8ehO" target="_blank" rel="noopener"
+              class="bg-white/10 text-white px-6 py-3 w-full rounded-glass font-semibold cursor-pointer hover:bg-white/15 transition-colors duration-200 text-center text-sm block hidden">
+              Get Annual — $297/yr
+            </a>
           </div>
         </div>
 
-        <!-- ===== Card 2: BusinessOS ===== -->
-        <div class="relative animate-on-scroll flex flex-col rounded-glass-lg overflow-hidden glass-panel-elevated" style="transition-delay: 0.1s;">
+        <!-- Card 2: BusinessOS -->
+        <div class="glass-panel p-8 animate-on-scroll flex flex-col" style="border: 1px solid rgba(134,85,246,0.2); transition-delay: 0.1s;">
+          <!-- BEST DEAL Badge — annual only -->
+          <div id="biz-badge-annual" class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap hidden">BEST DEAL</div>
 
-          <!-- Spacer to align with ribbon height -->
-          <div class="py-2"></div>
+          <div class="mb-6 mt-2">
+            <div class="text-primary text-xs font-semibold uppercase tracking-wider mb-2">BusinessOS</div>
 
-          <div class="p-8 flex flex-col flex-grow">
-            <div class="mb-8">
-              <div class="font-heading text-lg font-semibold text-text-main mb-4">BusinessOS</div>
-              <div class="flex items-baseline gap-2">
-                <span class="font-heading text-6xl font-bold text-text-main">$97</span>
-                <div class="flex flex-col">
-                  <span class="text-text-muted text-sm font-medium">per month</span>
-                </div>
+            <!-- Monthly pricing block -->
+            <div id="biz-price-monthly" class="mb-4">
+              <div class="flex items-baseline gap-1">
+                <span class="font-heading text-5xl font-bold text-text-main">$97</span>
+                <span class="text-text-muted text-sm">/ month</span>
               </div>
-              <p class="text-text-muted text-sm mt-3">Full autonomous team. No limits.</p>
+              <p class="text-text-muted text-sm mt-1">Full autonomous team operation.</p>
+              <p class="text-xs text-primary mt-1 cursor-pointer" onclick="setAnnual(); return false;">or save 14% annually — $997/yr</p>
             </div>
 
-            <!-- Divider -->
-            <div class="border-t border-white/10 mb-6"></div>
+            <!-- Annual pricing block -->
+            <div id="biz-price-annual" class="hidden">
+              <div class="flex items-baseline gap-1">
+                <span class="font-heading text-4xl font-bold text-text-main">$997</span>
+                <span class="text-text-muted text-sm">/ year</span>
+              </div>
+              <div class="flex items-center gap-2 mt-1">
+                <span class="text-xs text-text-muted">$83/mo</span>
+                <span class="text-xs font-bold text-primary bg-primary/15 px-2 py-0.5 rounded-full">Save 14%</span>
+              </div>
+            </div>
+          </div>
 
-            <!-- What's included label -->
-            <p class="text-xs font-semibold uppercase tracking-wider text-text-muted mb-4">Everything in EchoOS, plus:</p>
+          <ul class="flex flex-col gap-3 mb-6 flex-grow">
+            <li class="flex items-start gap-2 text-sm text-text-muted">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
+              Everything in EchoOS, plus:
+            </li>
+            <li class="flex items-start gap-2 text-sm text-text-muted">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
+              Full agent team (Zara + Echo + Sofi + Rex)
+            </li>
+            <li class="flex items-start gap-2 text-sm text-text-muted">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
+              Offer publishing &amp; viral content templates
+            </li>
+            <li class="flex items-start gap-2 text-sm text-text-muted">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
+              Full workflow schema &amp; project management
+            </li>
+            <li class="flex items-start gap-2 text-sm text-text-muted">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
+              Strategic advisor (Sofi) + engineering (Rex)
+            </li>
+            <li class="flex items-start gap-2 text-sm text-text-muted">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
+              All private skills &amp; modules included
+            </li>
+            <li class="flex items-start gap-2 text-sm text-text-muted">
+              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
+              24/7 autonomous operation
+            </li>
+          </ul>
 
-            <ul class="flex flex-col gap-3.5 mb-8 flex-grow">
-              <li class="flex items-center gap-3 text-sm text-text-main">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-text-muted flex-shrink-0"></i>
-                Full agent team (Zara + Echo + Sofi + Rex)
-              </li>
-              <li class="flex items-center gap-3 text-sm text-text-main">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-text-muted flex-shrink-0"></i>
-                Offer publishing and viral content templates
-              </li>
-              <li class="flex items-center gap-3 text-sm text-text-main">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-text-muted flex-shrink-0"></i>
-                Full workflow schema and project management
-              </li>
-              <li class="flex items-center gap-3 text-sm text-text-main">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-text-muted flex-shrink-0"></i>
-                Strategic advisor (Sofi) + engineering (Rex)
-              </li>
-              <li class="flex items-center gap-3 text-sm text-text-main">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-text-muted flex-shrink-0"></i>
-                All private skills and modules included
-              </li>
-              <li class="flex items-center gap-3 text-sm text-text-main">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-text-muted flex-shrink-0"></i>
-                24/7 autonomous operation
-              </li>
-            </ul>
-
-            <!-- Secondary CTA -->
-            <a href="https://whop.com/checkout/plan_oPOjDR6s99LHG" target="_blank" rel="noopener"
-              class="px-6 py-3.5 w-full rounded-glass font-semibold cursor-pointer transition-all duration-200 text-center block text-text-main hover:text-white" style="border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05);">
+          <!-- CTAs -->
+          <div class="flex flex-col gap-2">
+            <a id="biz-cta-monthly" href="https://whop.com/checkout/plan_oPOjDR6s99LHG" target="_blank" rel="noopener"
+              class="glass-panel text-primary px-6 py-3 w-full rounded-glass font-semibold cursor-pointer hover:bg-primary/10 transition-colors duration-200 text-center text-sm block" style="border: 1px solid rgba(134,85,246,0.3);">
               Get BusinessOS
             </a>
-
-            <p class="text-xs text-text-muted text-center mt-3">For teams ready to go fully autonomous.</p>
+            <a id="biz-cta-annual" href="https://whop.com/checkout/plan_TKQvdlcUv5fBv" target="_blank" rel="noopener"
+              class="bg-white/10 text-white px-6 py-3 w-full rounded-glass font-semibold cursor-pointer hover:bg-white/15 transition-colors duration-200 text-center text-sm block hidden" style="border: 1px solid rgba(134,85,246,0.3);">
+              Get BusinessOS — $997/yr
+            </a>
           </div>
         </div>
 
-      </div>
-
-      <!-- Social proof near pricing -->
-      <div class="max-w-2xl mx-auto mt-12 glass-panel p-6 animate-on-scroll">
-        <div class="flex items-start gap-4">
-          <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-            <i data-lucide="quote" class="w-5 h-5 text-primary"></i>
-          </div>
-          <div>
-            <p class="text-text-main text-sm leading-relaxed italic">"I was skeptical about AI writing in my voice. After the first week, Echo nailed my tone better than freelancers I've worked with for months. The $7 was the easiest yes I've ever said."</p>
-            <p class="text-text-muted text-xs mt-3">Early access user</p>
-          </div>
-        </div>
       </div>
 
       <!-- Pricing footnote -->
-      <p class="text-center text-text-muted text-sm mt-8">Not sure? The $7 week gives you the full experience. If it's not right, cancel before renewal. No questions asked.</p>
+      <p class="text-center text-text-muted text-sm mt-8">Not sure where to start? The $7 week is the full Chat + Pipeline experience. If it doesn't feel right, cancel before it bills. No questions.</p>
 
     </div>
   </section>
-
-  <!-- ============================================================ -->
   <!-- SECTION 7: FAQ -->
   <!-- ============================================================ -->
   <section id="faq" class="py-24 px-4">
@@ -849,6 +865,70 @@
         navbar.style.boxShadow = 'none';
       }
     });
+
+    // 6. Pricing toggle — Monthly / Annual
+    const toggleMonthly = document.getElementById('toggle-monthly');
+    const toggleAnnual = document.getElementById('toggle-annual');
+    const echoosPriceMonthly = document.getElementById('echoos-price-monthly');
+    const echoosPriceAnnual = document.getElementById('echoos-price-annual');
+    const bizPriceMonthly = document.getElementById('biz-price-monthly');
+    const bizPriceAnnual = document.getElementById('biz-price-annual');
+    const echoosCtaMonthly = document.getElementById('echoos-cta-monthly');
+    const echoosCtaAnnual = document.getElementById('echoos-cta-annual');
+    const bizCtaMonthly = document.getElementById('biz-cta-monthly');
+    const bizCtaAnnual = document.getElementById('biz-cta-annual');
+    const echoosBadgeMonthly = document.getElementById('echoos-badge-monthly');
+    const echoosBadgeAnnual = document.getElementById('echoos-badge-annual');
+    const bizBadgeAnnual = document.getElementById('biz-badge-annual');
+
+    function setMonthly() {
+      // Toggle buttons
+      toggleMonthly.classList.add('bg-primary', 'text-white');
+      toggleMonthly.classList.remove('text-text-muted');
+      toggleAnnual.classList.remove('bg-primary', 'text-white');
+      toggleAnnual.classList.add('text-text-muted');
+      // Price blocks
+      echoosPriceMonthly.classList.remove('hidden');
+      echoosPriceAnnual.classList.add('hidden');
+      bizPriceMonthly.classList.remove('hidden');
+      bizPriceAnnual.classList.add('hidden');
+      // CTAs
+      echoosCtaMonthly.classList.remove('hidden');
+      echoosCtaAnnual.classList.add('hidden');
+      bizCtaMonthly.classList.remove('hidden');
+      bizCtaAnnual.classList.add('hidden');
+      // Badges
+      echoosBadgeMonthly.classList.remove('hidden');
+      echoosBadgeAnnual.classList.add('hidden');
+      bizBadgeAnnual.classList.add('hidden');
+    }
+
+    function setAnnual() {
+      // Toggle buttons
+      toggleAnnual.classList.add('bg-primary', 'text-white');
+      toggleAnnual.classList.remove('text-text-muted');
+      toggleMonthly.classList.remove('bg-primary', 'text-white');
+      toggleMonthly.classList.add('text-text-muted');
+      // Price blocks
+      echoosPriceMonthly.classList.add('hidden');
+      echoosPriceAnnual.classList.remove('hidden');
+      bizPriceMonthly.classList.add('hidden');
+      bizPriceAnnual.classList.remove('hidden');
+      // CTAs
+      echoosCtaMonthly.classList.add('hidden');
+      echoosCtaAnnual.classList.remove('hidden');
+      bizCtaMonthly.classList.add('hidden');
+      bizCtaAnnual.classList.remove('hidden');
+      // Badges
+      echoosBadgeMonthly.classList.add('hidden');
+      echoosBadgeAnnual.classList.remove('hidden');
+      bizBadgeAnnual.classList.remove('hidden');
+    }
+
+    if (toggleMonthly && toggleAnnual) {
+      toggleMonthly.addEventListener('click', setMonthly);
+      toggleAnnual.addEventListener('click', setAnnual);
+    }
 
 
   </script>
