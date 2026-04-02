@@ -152,10 +152,10 @@
       background-clip: text;
     }
 
-    /* Pricing card popular glow */
-    .popular-glow {
-      border: 1px solid rgba(134, 85, 246, 0.5);
-      box-shadow: 0 0 30px rgba(134, 85, 246, 0.15);
+    /* Pricing card glow — swapped by JS between featured cards */
+    .card-glow {
+      border: 1px solid rgba(134, 85, 246, 0.5) !important;
+      box-shadow: 0 0 40px rgba(134, 85, 246, 0.15), 0 4px 30px rgba(0, 0, 0, 0.5);
     }
 
     /* Chevron animation for FAQ */
@@ -545,11 +545,9 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
         <!-- Card 1: EchoOS -->
-        <div class="glass-panel-elevated p-8 relative animate-on-scroll flex flex-col">
+        <div id="echoos-card" class="glass-panel-elevated p-8 card-glow relative animate-on-scroll flex flex-col">
           <!-- START HERE Badge — monthly only -->
           <div id="echoos-badge-monthly" class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap">START HERE</div>
-          <!-- BEST DEAL Badge — annual only -->
-          <div id="echoos-badge-annual" class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap hidden">BEST DEAL</div>
 
           <div class="mb-6 mt-2">
             <div class="text-primary text-sm font-semibold uppercase tracking-wider mb-2">EchoOS</div>
@@ -618,7 +616,7 @@
         </div>
 
         <!-- Card 2: BusinessOS -->
-        <div class="glass-panel p-8 animate-on-scroll flex flex-col" style="border: 1px solid rgba(134,85,246,0.2); transition-delay: 0.1s;">
+        <div id="biz-card" class="glass-panel p-8 card-glow animate-on-scroll flex flex-col" style="border: 1px solid rgba(134,85,246,0.2); transition-delay: 0.1s;">
           <!-- BEST DEAL Badge — annual only -->
           <div id="biz-badge-annual" class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap hidden">BEST DEAL</div>
 
@@ -878,8 +876,9 @@
     const bizCtaMonthly = document.getElementById('biz-cta-monthly');
     const bizCtaAnnual = document.getElementById('biz-cta-annual');
     const echoosBadgeMonthly = document.getElementById('echoos-badge-monthly');
-    const echoosBadgeAnnual = document.getElementById('echoos-badge-annual');
     const bizBadgeAnnual = document.getElementById('biz-badge-annual');
+    const echoosCard = document.getElementById('echoos-card');
+    const bizCard = document.getElementById('biz-card');
 
     function setMonthly() {
       // Toggle buttons
@@ -899,8 +898,10 @@
       bizCtaAnnual.classList.add('hidden');
       // Badges
       echoosBadgeMonthly.classList.remove('hidden');
-      echoosBadgeAnnual.classList.add('hidden');
       bizBadgeAnnual.classList.add('hidden');
+      // Glow — EchoOS featured, BusinessOS standard
+      echoosCard.classList.add('card-glow');
+      bizCard.classList.remove('card-glow');
     }
 
     function setAnnual() {
@@ -919,16 +920,21 @@
       echoosCtaAnnual.classList.remove('hidden');
       bizCtaMonthly.classList.add('hidden');
       bizCtaAnnual.classList.remove('hidden');
-      // Badges
+      // Badges — BEST DEAL on BusinessOS only
       echoosBadgeMonthly.classList.add('hidden');
-      echoosBadgeAnnual.classList.remove('hidden');
       bizBadgeAnnual.classList.remove('hidden');
+      // Glow — BusinessOS featured, EchoOS standard
+      bizCard.classList.add('card-glow');
+      echoosCard.classList.remove('card-glow');
     }
 
     if (toggleMonthly && toggleAnnual) {
       toggleMonthly.addEventListener('click', setMonthly);
       toggleAnnual.addEventListener('click', setAnnual);
     }
+
+    // Initialize to monthly state so badges + glow are correct on load
+    setMonthly();
 
 
   </script>
