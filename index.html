@@ -555,6 +555,9 @@
         <button class="showcase-tab" data-tab="reports" onclick="switchShowcase('reports')">
           <i data-lucide="bar-chart-3" class="w-4 h-4 inline-block mr-1.5 align-middle"></i>Reports
         </button>
+        <button class="showcase-tab" data-tab="research" onclick="switchShowcase('research')">
+          <i data-lucide="search" class="w-4 h-4 inline-block mr-1.5 align-middle"></i>Deep Research
+        </button>
       </div>
 
       <!-- Panels -->
@@ -575,6 +578,12 @@
           <div class="glass-panel-elevated p-4 md:p-6 max-w-4xl mx-auto" style="border: 1px solid rgba(134,85,246,0.25);">
             <img src="./assets/echoos-mock-reports.png" alt="EchoOS reports dashboard - voice drift tracking and content performance" class="w-full rounded-lg" loading="lazy" />
             <p class="text-text-muted text-sm mt-4 text-center">Weekly reports: voice drift score, content performance, and strategy adjustments. No logging in. It comes to you.</p>
+          </div>
+        </div>
+        <div id="panel-research" class="showcase-panel">
+          <div class="glass-panel-elevated p-4 md:p-6 max-w-4xl mx-auto" style="border: 1px solid rgba(134,85,246,0.25);">
+            <img src="./assets/echoos-mock-research.png" alt="EchoOS deep research - multi-platform intelligence sweep across 5 sources" class="w-full rounded-lg" loading="lazy" />
+            <p class="text-text-muted text-sm mt-4 text-center">Deep research: Scout sweeps 5 platforms in parallel. Cross-source convergence detection finds the signals that matter.</p>
           </div>
         </div>
       </div>
@@ -1684,6 +1693,16 @@
   <script>
     // Initialize Lucide icons
     lucide.createIcons();
+
+    // Product showcase tab switching
+    function switchShowcase(tab) {
+      document.querySelectorAll('.showcase-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.showcase-tab').forEach(t => t.classList.remove('active'));
+      const panel = document.getElementById('panel-' + tab);
+      const btn = document.querySelector('.showcase-tab[data-tab="' + tab + '"]');
+      if (panel) panel.classList.add('active');
+      if (btn) btn.classList.add('active');
+    }
 
     // Mobile menu toggle
     const hamburger = document.getElementById('hamburger');
