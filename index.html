@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="EchoOS — A persistent AI team that learns your voice, compounds intelligence across sessions, and runs your content operation 24/7. Start for $7." />
-  <meta property="og:title" content="EchoOS — Your AI Content Team That Runs While You Sleep" />
-  <meta property="og:description" content="6 specialized agents. Persistent voice learning. 12 autonomous cron jobs. Daily content in your voice — whether you show up or not. Start for $7." />
+  <meta name="description" content="EchoOS - A persistent AI team that learns your voice, compounds intelligence across sessions, and runs your content operation 24/7. Start for $7." />
+  <meta property="og:title" content="EchoOS - Your AI Content Team That Runs While You Sleep" />
+  <meta property="og:description" content="6 specialized agents. Persistent voice learning. 12 autonomous cron jobs. Daily content in your voice - whether you show up or not. Start for $7." />
   <meta property="og:image" content="https://tryechoos.com/og-image.jpg" />
-  <title>EchoOS — Your AI Content Team That Runs While You Sleep</title>
+  <title>EchoOS - Your AI Content Team That Runs While You Sleep</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
@@ -188,6 +188,96 @@
       font-size: 0.875rem;
       flex-shrink: 0;
     }
+
+    /* Hero product visual */
+    .hero-device-frame {
+      perspective: 1000px;
+    }
+    .hero-device-frame img {
+      border-radius: 12px;
+      box-shadow: 0 25px 60px rgba(134, 85, 246, 0.2), 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transform: rotateX(2deg) rotateY(-1deg);
+      transition: transform 0.4s ease;
+    }
+    .hero-device-frame:hover img {
+      transform: rotateX(0) rotateY(0);
+    }
+
+    /* Product showcase tabs */
+    .showcase-tab {
+      cursor: pointer;
+      padding: 0.75rem 1.25rem;
+      border-radius: 10px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #A1A1AA;
+      border: 1px solid transparent;
+      transition: all 0.3s ease;
+    }
+    .showcase-tab:hover {
+      color: #F4F4F5;
+      background: rgba(134, 85, 246, 0.08);
+    }
+    .showcase-tab.active {
+      color: #F4F4F5;
+      background: rgba(134, 85, 246, 0.12);
+      border-color: rgba(134, 85, 246, 0.4);
+    }
+    .showcase-panel {
+      display: none;
+      animation: fadeInUp 0.4s ease;
+    }
+    .showcase-panel.active {
+      display: block;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Founder headshot */
+    .founder-photo {
+      width: 128px;
+      height: 128px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(134, 85, 246, 0.5);
+      box-shadow: 0 0 20px rgba(134, 85, 246, 0.15);
+    }
+
+    /* Timeline enhanced */
+    .timeline-step-card {
+      background: rgba(24, 24, 27, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 1.25rem;
+      transition: border-color 0.3s ease;
+    }
+    .timeline-step-card:hover {
+      border-color: rgba(134, 85, 246, 0.3);
+    }
+    .timeline-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(134, 85, 246, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Pricing grouped features */
+    .feature-group-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #8655F6;
+      margin-bottom: 0.5rem;
+    }
   </style>
 </head>
 <body class="bg-bg text-text-main font-body overflow-x-hidden">
@@ -284,6 +374,11 @@
       </div>
 
       <p class="text-sm text-text-muted mt-5">$7 for your first week. Then $27/mo. Cancel before it bills. No questions.</p>
+
+      <!-- Hero product visual -->
+      <div class="hero-device-frame mt-16 max-w-3xl mx-auto animate-on-scroll">
+        <img src="./assets/echoos-mock-pipeline.png" alt="EchoOS content pipeline - daily drafts generated autonomously in your voice" class="w-full" loading="eager" />
+      </div>
     </div>
   </section>
 
@@ -438,6 +533,56 @@
   </section>
 
   <!-- ============================================================ -->
+  <!-- SECTION 4.5: PRODUCT VISUAL SHOWCASE -->
+  <!-- ============================================================ -->
+  <section class="py-24 px-4">
+    <div class="max-w-5xl mx-auto">
+
+      <div class="text-center mb-12">
+        <span class="text-primary text-sm font-semibold uppercase tracking-wider">Inside the system</span>
+        <h2 class="font-heading text-4xl font-bold text-text-main mt-2">See What's Running for You</h2>
+        <p class="text-text-muted mt-2 text-sm max-w-lg mx-auto">Not mockups. This is the actual operating environment your team works in.</p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="flex flex-wrap justify-center gap-3 mb-10">
+        <button class="showcase-tab active" data-tab="voice" onclick="switchShowcase('voice')">
+          <i data-lucide="mic" class="w-4 h-4 inline-block mr-1.5 align-middle"></i>Voice Profile
+        </button>
+        <button class="showcase-tab" data-tab="pipeline" onclick="switchShowcase('pipeline')">
+          <i data-lucide="repeat" class="w-4 h-4 inline-block mr-1.5 align-middle"></i>Content Pipeline
+        </button>
+        <button class="showcase-tab" data-tab="reports" onclick="switchShowcase('reports')">
+          <i data-lucide="bar-chart-3" class="w-4 h-4 inline-block mr-1.5 align-middle"></i>Reports
+        </button>
+      </div>
+
+      <!-- Panels -->
+      <div class="relative">
+        <div id="panel-voice" class="showcase-panel active animate-on-scroll">
+          <div class="glass-panel-elevated p-4 md:p-6 max-w-4xl mx-auto" style="border: 1px solid rgba(134,85,246,0.25);">
+            <img src="./assets/echoos-mock-voice.png" alt="EchoOS voice profile - 14 dimensions mapped from your real content" class="w-full rounded-lg" loading="lazy" />
+            <p class="text-text-muted text-sm mt-4 text-center">Your voice profile: 14 dimensions extracted from real conversations, not a form. Gets sharper every week.</p>
+          </div>
+        </div>
+        <div id="panel-pipeline" class="showcase-panel">
+          <div class="glass-panel-elevated p-4 md:p-6 max-w-4xl mx-auto" style="border: 1px solid rgba(134,85,246,0.25);">
+            <img src="./assets/echoos-mock-pipeline.png" alt="EchoOS content pipeline - autonomous daily drafts Mon-Fri" class="w-full rounded-lg" loading="lazy" />
+            <p class="text-text-muted text-sm mt-4 text-center">The content pipeline: seeds go in, finished drafts come out. 7-sweep editing. Runs Mon-Fri without prompting.</p>
+          </div>
+        </div>
+        <div id="panel-reports" class="showcase-panel">
+          <div class="glass-panel-elevated p-4 md:p-6 max-w-4xl mx-auto" style="border: 1px solid rgba(134,85,246,0.25);">
+            <img src="./assets/echoos-mock-reports.png" alt="EchoOS reports dashboard - voice drift tracking and content performance" class="w-full rounded-lg" loading="lazy" />
+            <p class="text-text-muted text-sm mt-4 text-center">Weekly reports: voice drift score, content performance, and strategy adjustments. No logging in. It comes to you.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
   <!-- SECTION 5: YOUR FIRST WEEK (NEW) -->
   <!-- ============================================================ -->
   <section id="first-week" class="py-24 px-4">
@@ -446,41 +591,51 @@
       <h2 class="font-heading text-4xl font-bold text-center mb-4">Your First Week</h2>
       <p class="text-text-muted text-center mb-16 max-w-lg mx-auto">From zero to a running content operation in 5 days. Here's exactly what happens.</p>
 
-      <div class="relative pl-10 timeline-line space-y-0">
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
 
-        <div class="relative pb-10 animate-on-scroll">
-          <div class="absolute -left-[42px] top-1 w-4 h-4 rounded-full bg-primary flex-shrink-0"></div>
+        <div class="glass-panel p-5 animate-on-scroll text-center">
+          <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-3">
+            <i data-lucide="mic" class="w-5 h-5 text-primary"></i>
+          </div>
           <div class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Day 1</div>
-          <h4 class="font-heading font-bold text-text-main mb-1">Voice Onboarding</h4>
-          <p class="text-text-muted text-sm leading-relaxed">20-minute conversation with Zara. She maps 14 dimensions of your voice and builds your profile. You don't fill out a form. You just talk.</p>
+          <h4 class="font-heading font-bold text-text-main text-sm mb-2">Voice Onboarding</h4>
+          <p class="text-text-muted text-xs leading-relaxed">20-minute conversation with Zara. She maps 14 dimensions of your voice. You just talk.</p>
         </div>
 
-        <div class="relative pb-10 animate-on-scroll" style="transition-delay: 0.1s;">
-          <div class="absolute -left-[42px] top-1 w-4 h-4 rounded-full bg-primary flex-shrink-0"></div>
+        <div class="glass-panel p-5 animate-on-scroll text-center" style="transition-delay: 0.1s;">
+          <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-3">
+            <i data-lucide="file-text" class="w-5 h-5 text-primary"></i>
+          </div>
           <div class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Day 2</div>
-          <h4 class="font-heading font-bold text-text-main mb-1">First Draft Arrives</h4>
-          <p class="text-text-muted text-sm leading-relaxed">Echo writes your first content piece overnight. It lands in your folder before you wake up. That's the audition.</p>
+          <h4 class="font-heading font-bold text-text-main text-sm mb-2">First Draft Arrives</h4>
+          <p class="text-text-muted text-xs leading-relaxed">Echo writes your first piece overnight. It lands before you wake up. That's the audition.</p>
         </div>
 
-        <div class="relative pb-10 animate-on-scroll" style="transition-delay: 0.2s;">
-          <div class="absolute -left-[42px] top-1 w-4 h-4 rounded-full bg-primary flex-shrink-0"></div>
-          <div class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Days 3–5</div>
-          <h4 class="font-heading font-bold text-text-main mb-1">Corrections Compound</h4>
-          <p class="text-text-muted text-sm leading-relaxed">You mark what sounds off. Echo logs every correction. The system gets sharper with each one. By Day 5, the second draft is noticeably better than the first.</p>
+        <div class="glass-panel p-5 animate-on-scroll text-center" style="transition-delay: 0.2s;">
+          <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-3">
+            <i data-lucide="trending-up" class="w-5 h-5 text-primary"></i>
+          </div>
+          <div class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Days 3-5</div>
+          <h4 class="font-heading font-bold text-text-main text-sm mb-2">Corrections Compound</h4>
+          <p class="text-text-muted text-xs leading-relaxed">Mark what sounds off. Echo logs every correction. By Day 5, noticeably sharper.</p>
         </div>
 
-        <div class="relative pb-10 animate-on-scroll" style="transition-delay: 0.3s;">
-          <div class="absolute -left-[42px] top-1 w-4 h-4 rounded-full bg-primary flex-shrink-0"></div>
+        <div class="glass-panel p-5 animate-on-scroll text-center" style="transition-delay: 0.3s;">
+          <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-3">
+            <i data-lucide="layers" class="w-5 h-5 text-primary"></i>
+          </div>
           <div class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Day 6</div>
-          <h4 class="font-heading font-bold text-text-main mb-1">Weekly Synthesis</h4>
-          <p class="text-text-muted text-sm leading-relaxed">Echo combines the week's themes into one longer piece. Sofi delivers a strategy note. Here's what I see you building. Here's what patterns I'm noticing.</p>
+          <h4 class="font-heading font-bold text-text-main text-sm mb-2">Weekly Synthesis</h4>
+          <p class="text-text-muted text-xs leading-relaxed">Echo combines themes into a longer piece. Sofi delivers a strategy note on patterns.</p>
         </div>
 
-        <div class="relative animate-on-scroll" style="transition-delay: 0.4s;">
-          <div class="absolute -left-[42px] top-1 w-4 h-4 rounded-full bg-primary flex-shrink-0"></div>
+        <div class="glass-panel p-5 animate-on-scroll text-center" style="transition-delay: 0.4s;">
+          <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-3">
+            <i data-lucide="check-circle" class="w-5 h-5 text-primary"></i>
+          </div>
           <div class="text-xs font-bold text-primary uppercase tracking-wider mb-1">Day 7</div>
-          <h4 class="font-heading font-bold text-text-main mb-1">Your Call</h4>
-          <p class="text-text-muted text-sm leading-relaxed">Stay or cancel. No exit interview. No guilt trip. The drafts you approved are yours to keep. Week 4 is waiting if you stay.</p>
+          <h4 class="font-heading font-bold text-text-main text-sm mb-2">Your Call</h4>
+          <p class="text-text-muted text-xs leading-relaxed">Stay or cancel. No exit interview. The drafts you approved are yours to keep.</p>
         </div>
 
       </div>
@@ -655,7 +810,7 @@
                 <p class="text-text-muted text-xs">Inconsistent. Doesn't know your business.</p>
               </div>
             </div>
-            <span class="text-red-400 font-heading font-bold text-sm whitespace-nowrap ml-4">$1,000–3,000/mo</span>
+            <span class="text-red-400 font-heading font-bold text-sm whitespace-nowrap ml-4">$1,000-3,000/mo</span>
           </div>
 
           <div class="compare-row flex items-center justify-between py-4 px-2 rounded-lg">
@@ -666,7 +821,7 @@
                 <p class="text-text-muted text-xs">Doesn't know your voice. Slow turnaround.</p>
               </div>
             </div>
-            <span class="text-red-400 font-heading font-bold text-sm whitespace-nowrap ml-4">$3,000–8,000/mo</span>
+            <span class="text-red-400 font-heading font-bold text-sm whitespace-nowrap ml-4">$3,000-8,000/mo</span>
           </div>
 
           <div class="compare-row flex items-center justify-between py-4 px-2 rounded-lg">
@@ -677,7 +832,7 @@
                 <p class="text-text-muted text-xs">Six tools you still manage manually.</p>
               </div>
             </div>
-            <span class="text-red-400 font-heading font-bold text-sm whitespace-nowrap ml-4">$300–600/mo</span>
+            <span class="text-red-400 font-heading font-bold text-sm whitespace-nowrap ml-4">$300-600/mo</span>
           </div>
 
           <div class="compare-row flex items-center justify-between py-4 px-2 rounded-lg">
@@ -688,7 +843,7 @@
                 <p class="text-text-muted text-xs">10 hours/week. You still manage both.</p>
               </div>
             </div>
-            <span class="text-red-400 font-heading font-bold text-sm whitespace-nowrap ml-4">$4,000–10,000/mo</span>
+            <span class="text-red-400 font-heading font-bold text-sm whitespace-nowrap ml-4">$4,000-10,000/mo</span>
           </div>
 
         </div>
@@ -697,7 +852,7 @@
 
         <div class="stack-highlight p-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
-            <p class="text-text-main font-heading font-bold text-lg">EchoOS — Content Engine</p>
+            <p class="text-text-main font-heading font-bold text-lg">EchoOS - Content Engine</p>
             <p class="text-text-muted text-sm">Zara + Echo + Sofi. Daily drafts. Voice that compounds. Same output. No management overhead.</p>
           </div>
           <div class="text-right flex-shrink-0">
@@ -707,7 +862,7 @@
 
         <div class="stack-highlight p-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4 mt-3">
           <div>
-            <p class="text-text-main font-heading font-bold text-lg">BusinessOS — Full Agent Team</p>
+            <p class="text-text-main font-heading font-bold text-lg">BusinessOS - Full Agent Team</p>
             <p class="text-text-muted text-sm">All 6 agents. 12 cron jobs. Google Workspace automation. Market intelligence.</p>
           </div>
           <div class="text-right flex-shrink-0">
@@ -778,7 +933,7 @@
               <span class="text-primary font-heading font-bold text-sm">5</span>
             </div>
             <div>
-              <h4 class="font-heading font-semibold text-text-main text-sm mb-1">Edit Gate — 7 Mandatory Sweeps</h4>
+              <h4 class="font-heading font-semibold text-text-main text-sm mb-1">Edit Gate - 7 Mandatory Sweeps</h4>
               <p class="text-text-muted text-xs leading-relaxed">Em dash scan. Scene-first check. Receipt count. Read-aloud test. Paragraph density. Guru language. Close quality. Mechanical. Non-negotiable.</p>
             </div>
           </div>
@@ -787,7 +942,7 @@
               <span class="text-primary font-heading font-bold text-sm">6</span>
             </div>
             <div>
-              <h4 class="font-heading font-semibold text-text-main text-sm mb-1">Continuous Learning — CAIS</h4>
+              <h4 class="font-heading font-semibold text-text-main text-sm mb-1">Continuous Learning - CAIS</h4>
               <p class="text-text-muted text-xs leading-relaxed">Every correction logged. Patterns appearing 3+ times trigger a proposed permanent update. You approve. That mistake does not happen again.</p>
             </div>
           </div>
@@ -1034,7 +1189,7 @@
                 <span class="text-text-muted text-sm">/ first week</span>
               </div>
               <p class="text-text-muted text-sm mt-1">Then $27/mo. Cancel anytime.</p>
-              <p class="text-xs text-primary mt-1 cursor-pointer" onclick="setAnnual(); return false;">or lock in founders rate — $270/yr</p>
+              <p class="text-xs text-primary mt-1 cursor-pointer" onclick="setAnnual(); return false;">or lock in founders rate - $270/yr</p>
             </div>
 
             <div id="echoos-price-annual" class="hidden mb-4">
@@ -1053,40 +1208,24 @@
             </p>
           </div>
 
-          <ul class="flex flex-col gap-3 mb-6 flex-grow">
-            <li class="flex items-start gap-2 text-sm text-text-muted">
-              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-              3 agents: Zara (coordinator) + Echo (writer) + Sofi (strategy, limited)
-            </li>
-            <li class="flex items-start gap-2 text-sm text-text-muted">
-              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-              Daily content drafts Mon-Fri in your voice
-            </li>
-            <li class="flex items-start gap-2 text-sm text-text-muted">
-              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-              14-dimension voice profiling from your actual content
-            </li>
-            <li class="flex items-start gap-2 text-sm text-text-muted">
-              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-              Seed system: 5-dimension scoring, 3x daily enrichment
-            </li>
-            <li class="flex items-start gap-2 text-sm text-text-muted">
-              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-              6 autonomous cron jobs
-            </li>
-            <li class="flex items-start gap-2 text-sm text-text-muted">
-              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-              Google Workspace integration (Gmail, Drive, Docs, Calendar)
-            </li>
-            <li class="flex items-start gap-2 text-sm text-text-muted">
-              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-              CAIS voice learning: corrections compound permanently
-            </li>
-            <li class="flex items-start gap-2 text-sm text-text-muted">
-              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-              Free Whop community: templates + founder access
-            </li>
-          </ul>
+          <div class="flex flex-col gap-5 mb-6 flex-grow">
+            <div>
+              <div class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Your Team</div>
+              <p class="text-sm text-text-muted">3 agents: Zara (coordinator) + Echo (writer) + Sofi (strategy, limited)</p>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Content Engine</div>
+              <p class="text-sm text-text-muted">Daily drafts Mon-Fri in your voice. 14-dimension voice profiling. Seed system with 5-dimension scoring.</p>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Automation</div>
+              <p class="text-sm text-text-muted">6 autonomous cron jobs. Google Workspace integration. CAIS voice learning that compounds permanently.</p>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Community</div>
+              <p class="text-sm text-text-muted">Free Whop community with templates + founder access.</p>
+            </div>
+          </div>
 
           <div class="flex flex-col gap-2">
             <a id="echoos-cta-monthly" href="https://whop.com/checkout/plan_K4Iaot2EnTeqE" target="_blank" rel="noopener"
@@ -1095,7 +1234,7 @@
             </a>
             <a id="echoos-cta-annual" href="https://whop.com/checkout/plan_CkQWyzyxh8ehO" target="_blank" rel="noopener"
               class="bg-white/10 text-white px-6 py-3 w-full rounded-glass font-semibold cursor-pointer hover:bg-white/15 transition-colors duration-200 text-center text-sm block hidden">
-              Lock In Founders Rate — $270/yr
+              Lock In Founders Rate - $270/yr
             </a>
           </div>
         </div>
@@ -1116,7 +1255,7 @@
                 <span class="text-text-muted text-sm">/ month</span>
               </div>
               <p class="text-text-muted text-sm mt-1">Full autonomous team. Founders pricing.</p>
-              <p class="text-xs text-primary mt-1 cursor-pointer" onclick="setAnnual(); return false;">or save 17% annually — $970/yr</p>
+              <p class="text-xs text-primary mt-1 cursor-pointer" onclick="setAnnual(); return false;">or save 17% annually - $970/yr</p>
             </div>
 
             <div id="biz-price-annual" class="hidden mb-4">
@@ -1135,49 +1274,34 @@
             </p>
           </div>
 
-          <ul class="flex flex-col gap-3 mb-6 flex-grow">
-            <li class="flex items-start gap-2 text-sm text-text-muted">
-              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-              Everything in EchoOS, plus:
-            </li>
-            <li class="flex items-start gap-2 text-sm text-text-muted">
-              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-              Full team of 6 agents: + Rex + Scout + Worker
-            </li>
-            <li class="flex items-start gap-2 text-sm text-text-muted">
-              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-              12 autonomous cron jobs (double the coverage)
-            </li>
-            <li class="flex items-start gap-2 text-sm text-text-muted">
-              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-              Weekly constraint check + Friday strategy brief (Sofi)
-            </li>
-            <li class="flex items-start gap-2 text-sm text-text-muted">
-              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-              Self-improvement loop: Rex upgrades the system from your feedback
-            </li>
-            <li class="flex items-start gap-2 text-sm text-text-muted">
-              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-              Market intelligence: social listening, competitor analysis
-            </li>
-            <li class="flex items-start gap-2 text-sm text-text-muted">
-              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-              Full Google Workspace automation (28 skills)
-            </li>
-            <li class="flex items-start gap-2 text-sm text-text-muted">
-              <i data-lucide="check" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-              Sofi (full): monthly content-strategy alignment, business model review
-            </li>
-          </ul>
+          <div class="flex flex-col gap-5 mb-6 flex-grow">
+            <p class="text-sm text-primary font-semibold">Everything in EchoOS, plus:</p>
+            <div>
+              <div class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Full Team</div>
+              <p class="text-sm text-text-muted">6 agents: + Rex (engineering) + Scout (research) + Worker (execution). 12 autonomous cron jobs.</p>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Strategy Layer</div>
+              <p class="text-sm text-text-muted">Weekly constraint checks. Friday strategy briefs from Sofi. Monthly content-strategy alignment + business model review.</p>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Intelligence</div>
+              <p class="text-sm text-text-muted">Market intel: social listening, competitor analysis. Self-improvement loop: Rex upgrades the system from your feedback.</p>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Full Automation</div>
+              <p class="text-sm text-text-muted">28 Google Workspace skills. Complete business operations automation.</p>
+            </div>
+          </div>
 
           <div class="flex flex-col gap-2">
             <a id="biz-cta-monthly" href="https://whop.com/checkout/plan_oPOjDR6s99LHG" target="_blank" rel="noopener"
               class="glass-panel text-primary px-6 py-3 w-full rounded-glass font-semibold cursor-pointer hover:bg-primary/10 transition-colors duration-200 text-center text-sm block" style="border: 1px solid rgba(134,85,246,0.3);">
-              Get BusinessOS — $97/mo
+              Get BusinessOS - $97/mo
             </a>
             <a id="biz-cta-annual" href="https://whop.com/checkout/plan_TKQvdlcUv5fBv" target="_blank" rel="noopener"
               class="bg-primary text-white px-6 py-3 w-full rounded-glass font-semibold cursor-pointer hover:bg-primary-hover transition-colors duration-200 text-center text-sm block hidden">
-              Get BusinessOS — $970/yr
+              Get BusinessOS - $970/yr
             </a>
           </div>
         </div>
@@ -1282,7 +1406,7 @@
         <p class="text-text-muted mt-2 text-sm max-w-lg mx-auto">After working with Joshua directly, here's what stuck.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-fr">
 
         <!-- Card 1: Tom Mitchell -->
         <div class="glass-panel p-5 animate-on-scroll flex flex-col gap-3">
@@ -1293,7 +1417,7 @@
               <div class="text-xs text-text-muted">Founder</div>
             </div>
           </div>
-          <p class="text-text-muted text-sm leading-relaxed">"Just wanted to give Joshua a quick shoutout! I recently had the opportunity to work closely with him on some copy and offer structuring and it was incredibly valuable! If anyone here is looking for a gangster who knows how to communicate your message and produce virality on demand I couldn't recommend Joshua enough!"</p>
+          <p class="text-text-muted text-sm leading-relaxed flex-grow">“Just wanted to give Joshua a quick shoutout! I recently had the opportunity to work closely with him on some copy and offer structuring and it was incredibly valuable! If anyone here is looking for a gangster who knows how to communicate your message and produce virality on demand I couldn’t recommend Joshua enough!”</p>
         </div>
 
         <!-- Card 2: Kris Olivo -->
@@ -1305,7 +1429,7 @@
               <div class="text-xs text-text-muted">Marketing Lead</div>
             </div>
           </div>
-          <p class="text-text-muted text-sm leading-relaxed">"Joshua is truly a rockstar at viral content strategy, user acquisition, and marketing. We had a 30 minute call and he was able to offer us tremendous insight in what's currently working and how we can implement it with his frameworks. I highly recommend him for any brand that wants to grow!"</p>
+          <p class="text-text-muted text-sm leading-relaxed flex-grow">“Joshua is truly a rockstar at viral content strategy, user acquisition, and marketing. We had a 30 minute call and he was able to offer us tremendous insight in what’s currently working and how we can implement it with his frameworks. I highly recommend him for any brand that wants to grow!”</p>
         </div>
 
         <!-- Card 3: Jared Saavedra -->
@@ -1317,7 +1441,7 @@
               <div class="text-xs text-text-muted">Athlete Ready Global</div>
             </div>
           </div>
-          <p class="text-text-muted text-sm leading-relaxed">"I've been working with Joshua for the last 4-5 months and he has completely changed my outlook on digital marketing. He's helped me implement strategies that are practical and has held me accountable. If you are like me and not very tech savvy, hire a pro."</p>
+          <p class="text-text-muted text-sm leading-relaxed flex-grow">“I’ve been working with Joshua for the last 4-5 months and he has completely changed my outlook on digital marketing. He’s helped me implement strategies that are practical and has held me accountable. If you are like me and not very tech savvy, hire a pro.”</p>
         </div>
 
         <!-- Card 4: Josh Gavin (social-style) -->
@@ -1332,11 +1456,11 @@
           <div class="flex items-center gap-1.5 text-sm">
             <span class="text-green-400 font-semibold">Fresh AI Offer funnel starting strong 👀</span>
           </div>
-          <p class="text-text-muted text-xs leading-relaxed italic">Results screenshot shared via DM — the funnel is live and converting.</p>
+          <p class="text-text-muted text-xs leading-relaxed italic flex-grow">Results screenshot shared via DM — the funnel is live and converting.</p>
         </div>
 
         <!-- Card 5: Adi Campuzano (short punchy) -->
-        <div class="glass-panel p-5 animate-on-scroll flex flex-col gap-3 lg:col-span-2" style="transition-delay: 0.25s;">
+        <div class="glass-panel p-5 animate-on-scroll flex flex-col gap-3" style="transition-delay: 0.25s;">
           <div class="flex items-center gap-3">
             <div class="initials-circle bg-pink-500/20 text-pink-300">AC</div>
             <div>
@@ -1344,8 +1468,8 @@
               <div class="text-xs text-text-muted">Torus Marketing</div>
             </div>
           </div>
-          <p class="text-text-muted text-sm leading-relaxed">"THAT IS SOME NEXT LEVEL SH*T"</p>
-          <p class="text-text-muted text-xs italic">Short. Punchy. The best feedback is the one that doesn't need explanation.</p>
+          <p class="text-text-muted text-sm leading-relaxed">“THAT IS SOME NEXT LEVEL SH*T”</p>
+          <p class="text-text-muted text-xs italic flex-grow">Short. Punchy. The best feedback is the one that doesn’t need explanation.</p>
         </div>
 
         <!-- Card 6: Heather Cutler -->
@@ -1357,7 +1481,7 @@
               <div class="text-xs text-text-muted">Founder</div>
             </div>
           </div>
-          <p class="text-text-muted text-sm leading-relaxed">"In the first few minutes of meeting Joshua, you can tell not only that he has a ton of value to provide, but that he is a kind person eager to help. The 30-minute call I had with him was super insightful."</p>
+          <p class="text-text-muted text-sm leading-relaxed flex-grow">“In the first few minutes of meeting Joshua, you can tell not only that he has a ton of value to provide, but that he is a kind person eager to help. The 30-minute call I had with him was super insightful.”</p>
         </div>
 
       </div>
@@ -1373,12 +1497,9 @@
 
       <div class="glass-panel-elevated p-8 md:p-10 flex flex-col md:flex-row gap-8 items-start animate-on-scroll" style="border-left: 3px solid rgba(134,85,246,0.5);">
 
-        <!-- Avatar placeholder -->
+        <!-- Founder headshot -->
         <div class="flex-shrink-0">
-          <div id="joshua-headshot" class="w-32 h-32 rounded-full bg-gradient-to-br from-purple-600 to-purple-900 flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity duration-200" title="Joshua Valentin — click to swap photo">
-            <span class="font-heading font-bold text-4xl text-white/80">JV</span>
-          </div>
-          <!-- TODO (Joshua): Replace this placeholder with your actual headshot. CSS class .founder-photo is ready for your image. -->
+          <img src="./assets/joshua-headshot.jpg" alt="Joshua Valentin, Founder of EchoOS" class="founder-photo" />
         </div>
 
         <!-- Credentials -->
@@ -1408,7 +1529,7 @@
             </div>
             <div class="flex items-start gap-3">
               <i data-lucide="check-circle" class="w-4 h-4 text-primary flex-shrink-0 mt-0.5"></i>
-              <p class="text-text-muted text-sm">Strategy work on Hallow — went #1 in App Store</p>
+              <p class="text-text-muted text-sm">Strategy work on Hallow - went #1 in App Store</p>
             </div>
           </div>
 
