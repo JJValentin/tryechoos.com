@@ -1,0 +1,6 @@
+- [x] Rewrite Section 1: Hero (Headline, Subheadline, Button labels if needed)
+- [x] Rewrite Section 3: The Moat (Bento Grid) to emphasize Business Operations and GTM.
+- [x] Rewrite Section 4: The Pipeline Visualization (shift from formatting a draft to the 5-step GTM Intelligence Loop).
+- [x] Update Section 6: Agent Team Showcase (Update Zara, Echo, Sofi, Rex, Scout to reflect full-funnel capabilities).
+- [x] Insert New Section: "The Operations Layer" (Highlighting Google Workspace 28 skills, SearXNG, Social Listening).
+- [x] Update Section 14: FAQ (Incorporate Poppy AI, Manus AI, Relevance AI comparisons and the wrapper argument).
