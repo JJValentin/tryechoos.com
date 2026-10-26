@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="EchoOS is a desktop app that turns your videos into transcripts, clips and post drafts in your voice, with your own AI. Take 3 questions to see what's stalling your content." />
-  <meta property="og:title" content="Turn one video into clips and posts in your voice" />
-  <meta property="og:description" content="A desktop app for people who sell a service and make their own content. Transcripts, clips and drafts in your voice, with your own AI." />
+  <meta name="description" content="A desktop app that takes one video to a transcript, post drafts in your voice and clips, using your own AI. Book a 15-minute demo." />
+  <meta property="og:title" content="Write posts, cut clips and keep it all in one app" />
+  <meta property="og:description" content="A desktop app for people who sell a service and make their own content. Transcripts, post drafts in your voice and clips." />
   <meta property="og:image" content="https://tryechoos.com/og-image.jpg" />
-  <title>EchoOS | Turn your videos into clips and posts in your voice</title>
+  <title>EchoOS | Write posts, cut clips and keep it all in one app</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
@@ -417,6 +417,77 @@
       box-shadow: 0 25px 60px rgba(0,0,0,0.6), 0 0 40px rgba(134,85,246,0.15);
     }
     .shot-frame img { display: block; border: 1px solid rgba(255,255,255,0.06); }
+
+    /* Designed product mocks M1 to M4 (copy-deck-r6): simplified illustrations of built features,
+       real UI words only. The real app captures stay in assets/app/ as the reference. */
+    .mock { margin: 0; }
+    .mock-screen {
+      background-color: #0c0c0f;
+      background-image: radial-gradient(rgba(255,255,255,0.055) 1px, transparent 1px);
+      background-size: 18px 18px;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      overflow: hidden;
+      text-align: left;
+    }
+    .mock-card {
+      background: rgba(24,24,27,0.88);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 12px;
+      min-width: 0;
+    }
+    .mock-head { display: flex; align-items: center; gap: 6px; font: 600 11px/1.2 Manrope, sans-serif; color: #F4F4F5; margin-bottom: 10px; white-space: nowrap; }
+    .mock-head svg { width: 13px; height: 13px; color: #C084FC; flex-shrink: 0; }
+    .mock-bar { height: 6px; border-radius: 9999px; background: rgba(255,255,255,0.10); }
+    .mock-bar.strong { height: 8px; background: rgba(255,255,255,0.22); }
+    .mock-line { display: flex; align-items: center; gap: 8px; }
+    .mock-line + .mock-line { margin-top: 9px; }
+    .mock-line .mock-bar { flex: 1; }
+    .mock-ts { font: 500 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace; color: #A1A1AA; flex-shrink: 0; }
+    .mock-chip { display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: 9999px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); font: 600 10px/1.3 Manrope, sans-serif; color: #F4F4F5; white-space: nowrap; }
+    .mock-chip svg { width: 11px; height: 11px; color: #C084FC; flex-shrink: 0; }
+    .mock-btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.10); background: rgba(255,255,255,0.04); font: 600 11px/1.2 Manrope, sans-serif; color: #F4F4F5; white-space: nowrap; }
+    .mock-btn svg { width: 12px; height: 12px; flex-shrink: 0; }
+    .mock-btn.is-primary { background: #8655F6; border-color: #8655F6; color: #fff; box-shadow: 0 0 18px rgba(134,85,246,0.35); }
+    .mock-field { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: 10px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); font: 500 11px/1.2 Manrope, sans-serif; color: #A1A1AA; white-space: nowrap; min-width: 0; }
+    .mock-field svg { width: 13px; height: 13px; color: #A1A1AA; flex-shrink: 0; }
+    .mock-thumb { aspect-ratio: 9 / 16; border-radius: 8px; border: 1px solid rgba(255,255,255,0.10); background: linear-gradient(165deg, rgba(134,85,246,0.40), rgba(24,24,27,0.95) 55%, rgba(192,132,252,0.22)); position: relative; }
+    .mock-wide { aspect-ratio: 16 / 9; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); background: linear-gradient(135deg, rgba(134,85,246,0.30), rgba(24,24,27,0.95) 60%, rgba(192,132,252,0.15)); }
+    .mock-link { height: 1px; background: linear-gradient(90deg, rgba(134,85,246,0.25), rgba(134,85,246,0.7)); position: relative; }
+    .mock-link::after { content: ""; position: absolute; right: -2px; top: -2px; width: 5px; height: 5px; border-radius: 9999px; background: #8655F6; }
+    .mock-btn.is-quiet { background: transparent; border-color: transparent; color: #A1A1AA; }
+    .mock-check-row { display: flex; align-items: center; gap: 6px; font: 600 11px/1.2 Manrope, sans-serif; color: #F4F4F5; white-space: nowrap; }
+    .mock-check { width: 13px; height: 13px; border-radius: 3px; background: #8655F6; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .mock-check svg { width: 10px; height: 10px; color: #fff; stroke-width: 3; }
+    .mock-input { height: 26px; border-radius: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.10); }
+
+    /* M1: the pieces of one workflow as five cards side by side (no connectors: the app has no card-to-card pipeline). Phones and tablets: two columns; lg: one row. */
+    .m1-board { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 14px; }
+    .m1-library { grid-column: 1 / -1; }
+    .m1-lib-rows { display: flex; gap: 8px; }
+    .m1-lib-rows > div { flex: 1; display: flex; align-items: center; gap: 6px; }
+    .m1-lib-rows > div:nth-child(n+4) { display: none; }
+    .m1-lib-dot { width: 14px; height: 10px; border-radius: 3px; background: rgba(134,85,246,0.30); flex-shrink: 0; }
+    @media (min-width: 1024px) {
+      .m1-board { grid-template-columns: 1.3fr 1.2fr 1.1fr 0.85fr 0.62fr; gap: 16px; padding: 36px 28px; align-items: center; }
+      .m1-library { grid-column: auto; align-self: stretch; }
+      .m1-lib-rows { flex-direction: column; gap: 10px; }
+      .m1-lib-rows > div:nth-child(n+4) { display: flex; }
+    }
+    /* Light motion: a slow highlight passes card to card. Off under reduced motion. */
+    @keyframes mockGlow {
+      0%, 20%, 100% { border-color: rgba(255,255,255,0.08); box-shadow: none; }
+      8% { border-color: rgba(134,85,246,0.65); box-shadow: 0 0 26px rgba(134,85,246,0.28); }
+    }
+    .m1-board .m1-card { animation: mockGlow 12.5s ease-in-out infinite; }
+    .m1-board .m1-d1 { animation-delay: 2.5s; }
+    .m1-board .m1-d2 { animation-delay: 5s; }
+    .m1-board .m1-d3 { animation-delay: 7.5s; }
+    .m1-board .m1-d4 { animation-delay: 10s; }
+    @media (prefers-reduced-motion: reduce) {
+      .m1-board .m1-card { animation: none; }
+    }
   </style>
 </head>
 <body class="bg-bg text-text-main font-body overflow-x-hidden">
@@ -438,7 +509,7 @@
       <div class="hidden lg:flex items-center gap-4">
         <a href="#quiz" data-open-quiz
           class="bg-primary text-white px-5 py-2 rounded-glass font-medium hover:bg-primary-hover transition-colors duration-200 cursor-pointer text-sm">
-          <span data-cta-label>See what's stalling your content</span>
+          <span data-cta-label>Book a 15-minute demo</span>
         </a>
       </div>
 
@@ -454,7 +525,7 @@
         <a href="#faq" class="text-text-muted hover:text-text-main text-sm font-medium transition-colors duration-200 py-2 border-b border-white/5">FAQ</a>
          <a href="#quiz" data-open-quiz
            class="bg-primary text-white px-5 py-2.5 rounded-glass font-medium hover:bg-primary-hover transition-colors duration-200 text-sm text-center mt-2">
-           <span data-cta-label>See what's stalling your content</span>
+           <span data-cta-label>Book a 15-minute demo</span>
          </a>
       </div>
     </div>
@@ -482,24 +553,24 @@
       </a>
 
       <h1 class="font-heading text-4xl sm:text-6xl md:text-[3.25rem] lg:text-[4.5rem] font-extrabold text-text-main leading-[1.1] sm:leading-[1.05] tracking-tight mb-6">
-        <span data-copy="hero-line1">Turn one video into</span><br class="hidden sm:block" />
-        <span data-copy="hero-line2" class="text-transparent bg-clip-text bg-gradient-to-r from-[#8655F6] via-[#C084FC] to-[#8655F6] bg-[length:200%_auto] drop-shadow-[0_0_20px_rgba(134,85,246,0.3)]">clips and posts in your voice.</span>
+        <span data-copy="hero-line1">Write posts, cut clips,</span><br class="hidden sm:block" />
+        <span data-copy="hero-line2" class="text-transparent bg-clip-text bg-gradient-to-r from-[#8655F6] via-[#C084FC] to-[#8655F6] bg-[length:200%_auto] drop-shadow-[0_0_20px_rgba(134,85,246,0.3)]">and keep it all in one app.</span>
       </h1>
 
       <p class="text-base sm:text-lg md:text-xl text-text-muted max-w-2xl mx-auto leading-relaxed mb-10 md:mb-12 px-2">
-        EchoOS is a desktop app that turns your videos into transcripts, clips and post drafts in your voice, using your own AI.
+        EchoOS is a desktop app. Bring a video and get the transcript, post drafts in your voice and clips, using your own AI.
       </p>
 
       <!-- One CTA -->
       <div class="flex flex-col sm:flex-row items-center w-full sm:w-auto gap-4 justify-center mb-6 z-20 px-4 sm:px-0">
         <a href="#quiz" data-open-quiz
           class="btn-magnetic w-full sm:w-auto text-center bg-primary text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-primary-hover shadow-[0_0_30px_rgba(134,85,246,0.4)] transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 group">
-          <span data-cta-label>See what's stalling your content</span>
+          <span data-cta-label>Book a 15-minute demo</span>
           <i data-lucide="arrow-right" class="w-4 h-4 sm:group-hover:translate-x-1 transition-transform"></i>
         </a>
       </div>
 
-      <p class="text-[11px] sm:text-xs text-text-muted/60 mb-16 md:mb-20">Three questions, then your result and a time with Joshua. No payment, nothing to download.</p>
+      <p class="text-[11px] sm:text-xs text-text-muted/60 mb-16 md:mb-20 max-w-md mx-auto px-2 leading-relaxed">Three questions, then pick a time. Worst case, you leave with a transcript, a post draft in your voice and clips from your video.</p>
 
       <!-- Integrations Logo Cloud -->
       <div class="w-full flex flex-col items-center animate-on-scroll" style="transition-delay: 0.1s;">
@@ -519,19 +590,57 @@
         </div>
       </div>
 
-      <!-- Hero product visual: real app capture (EchoOS desktop, clean demo profile) -->
+      <!-- Hero product visual: designed mock M1 (copy-deck-r6), the whole path in one app. Replaces hero.mp4 / hero.png. -->
       <div class="hero-device-frame mt-12 sm:mt-20 max-w-5xl mx-auto animate-on-scroll relative w-full px-2 sm:px-0 z-30 perspective-[2000px]">
         <div class="absolute inset-0 bg-gradient-to-b from-primary/30 via-purple-600/10 to-transparent rounded-[32px] blur-2xl sm:blur-3xl opacity-50 scale-105"></div>
         <div class="relative rounded-2xl sm:rounded-[32px] p-1.5 sm:p-2 bg-gradient-to-br from-white/10 via-white/5 to-white/0 border border-white/10 shadow-[0_30px_100px_rgba(0,0,0,0.8),0_0_40px_rgba(134,85,246,0.2)]" style="transform: rotateX(2deg) scale(0.98); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
-          <div class="rounded-xl sm:rounded-[24px] overflow-hidden bg-[#09090b] relative w-full aspect-video flex items-center justify-center">
-            <!--HERO_MEDIA: real screen recording of the current app; hero.png is the poster and fallback-->
-            <video autoplay loop muted playsinline poster="./assets/app/hero.png" aria-label="EchoOS desktop app: drop a video, get a timestamped transcript on a board, ask for clips, see suggestions" class="w-full h-full object-cover object-top relative z-10">
-              <source src="./assets/app/hero.mp4" type="video/mp4" />
-              <img src="./assets/app/hero.png" alt="EchoOS desktop app: a timestamped transcript on a board, with clip suggestions in the chat" class="w-full h-full object-cover object-top" />
-            </video>
-            <!--/HERO_MEDIA-->
+          <figure id="mock-m1" class="mock rounded-xl sm:rounded-[24px] overflow-hidden bg-[#09090b] relative w-full" role="img" aria-label="Illustration: the pieces of one workflow in EchoOS, side by side: a transcript, the chat, a post draft, a 9:16 clip and the library">
+            <div class="mock-screen rounded-none border-0" aria-hidden="true">
+              <div class="flex items-center gap-1.5 px-4 py-3 border-b border-white/5 bg-[#09090b]/80">
+                <span class="w-2.5 h-2.5 rounded-full bg-white/15"></span><span class="w-2.5 h-2.5 rounded-full bg-white/15"></span><span class="w-2.5 h-2.5 rounded-full bg-white/15"></span>
+              </div>
+              <div class="m1-board">
+                <div class="mock-card m1-card">
+                  <div class="mock-head"><i data-lucide="file-text"></i>Transcript</div>
+                  <div class="mock-line"><span class="mock-ts">0:12</span><span class="mock-bar"></span></div>
+                  <div class="mock-line"><span class="mock-ts">0:47</span><span class="mock-bar" style="max-width: 82%;"></span></div>
+                  <div class="mock-line"><span class="mock-ts">1:05</span><span class="mock-bar" style="max-width: 64%;"></span></div>
+                </div>
+                <div class="mock-card m1-card m1-d1">
+                  <div class="mock-head"><i data-lucide="message-square"></i>Chat</div>
+                  <div class="rounded-lg bg-white/[0.05] border border-white/5 p-2.5 w-[85%]">
+                    <div class="mock-bar"></div>
+                    <div class="mock-bar mt-2" style="width: 64%;"></div>
+                  </div>
+                  <div class="mt-2.5"><span class="mock-chip">1 source · 2,400 chars</span></div>
+                  <div class="mock-input mt-2"></div>
+                </div>
+                <div class="mock-card m1-card m1-d2">
+                  <div class="mock-head"><i data-lucide="pen-line"></i>Draft</div>
+                  <div class="mock-bar"></div>
+                  <div class="mock-bar mt-2" style="width: 90%;"></div>
+                  <div class="mock-bar mt-2" style="width: 58%;"></div>
+                  <div class="mt-3"><span class="mock-btn is-primary">Approve</span></div>
+                </div>
+                <div class="mock-card m1-card m1-d3">
+                  <div class="mock-head"><i data-lucide="scissors"></i>Clip</div>
+                  <div class="mock-thumb mx-auto" style="width: 52%; max-width: 64px;"></div>
+                  <div class="mock-check-row mt-2.5"><span class="mock-check"><i data-lucide="check"></i></span>Vertical 9:16</div>
+                </div>
+                <div class="mock-card m1-card m1-d4 m1-library">
+                  <div class="mock-head"><i data-lucide="folder"></i>Library</div>
+                  <div class="m1-lib-rows">
+                    <div><span class="m1-lib-dot"></span><span class="mock-bar flex-1"></span></div>
+                    <div><span class="m1-lib-dot"></span><span class="mock-bar flex-1"></span></div>
+                    <div><span class="m1-lib-dot"></span><span class="mock-bar flex-1"></span></div>
+                    <div><span class="m1-lib-dot"></span><span class="mock-bar flex-1"></span></div>
+                    <div><span class="m1-lib-dot"></span><span class="mock-bar flex-1"></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent z-20 pointer-events-none mix-blend-overlay"></div>
-          </div>
+          </figure>
         </div>
       </div>
     </div>
@@ -578,14 +687,14 @@
       <h2 class="font-heading text-4xl md:text-5xl font-bold text-text-main mt-4 mb-10">Recording it was <span class="text-purple-gradient">the easy part.</span></h2>
       <div class="flex flex-col gap-6 text-text-muted text-lg leading-relaxed max-w-2xl mx-auto animate-on-scroll">
         <p>You serve clients all week and make content with whatever time is left. <strong class="text-text-main font-semibold">So the videos sit in a folder.</strong></p>
-        <p>Finding the good minute, getting it transcribed, cutting it vertical, writing the post. Each one is its own job, and together they wait for a free afternoon that never comes.</p>
-        <p>EchoOS does that middle part for you. <strong class="text-text-main font-semibold">You stay the source and the last edit.</strong></p>
+        <p>Getting it transcribed, writing the post, cutting the clip, finding it again later. Each one is its own job, and together they wait for a free afternoon that never comes.</p>
+        <p>EchoOS puts all of it in one app. <strong class="text-text-main font-semibold">You stay the source and the last edit.</strong></p>
       </div>
     </div>
   </section>
 
   <!-- ============================================================ -->
-  <!-- S4: WHAT IT DOES (3 feature blocks, real app screenshots lead) -->
+  <!-- S4: WHAT IT DOES (3 stages of one workflow; designed mocks M2 to M4 lead) -->
   <!-- ============================================================ -->
   <section id="features" class="py-24 px-4 relative overflow-hidden">
     <div class="absolute top-1/4 left-0 w-96 h-96 bg-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
@@ -594,64 +703,146 @@
     <div class="max-w-6xl mx-auto relative z-10">
       <div class="text-center mb-16 md:mb-20">
         <span class="text-primary text-sm font-semibold uppercase tracking-wider">What it does</span>
-        <h2 class="font-heading text-4xl md:text-5xl font-bold text-text-main mt-4">From one video to <span class="text-purple-gradient">posts you approve.</span></h2>
+        <h2 class="font-heading text-4xl md:text-5xl font-bold text-text-main mt-4">One video, <span class="text-purple-gradient">start to finish.</span></h2>
       </div>
 
       <div class="flex flex-col gap-20 md:gap-28">
 
-        <!-- Block 1: Transcripts -->
+        <!-- Block 1: Bring a video (MOCK M2: board and transcript) -->
         <div class="feature-row grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center animate-on-scroll">
           <div class="md:col-span-7">
-            <div class="shot-frame"><img src="./assets/app/feature-transcript.png" alt="EchoOS board with a timestamped transcript" class="w-full rounded-xl" loading="lazy" /></div>
+            <figure id="mock-m2" class="mock shot-frame" role="img" aria-label="Illustration: a video link pasted into EchoOS, its timestamped transcript on a board, and the chat with that source attached">
+              <div class="mock-screen p-4 sm:p-6" aria-hidden="true">
+                <div class="mock-field"><i data-lucide="link"></i><span class="truncate">YouTube, Instagram, or TikTok URL</span></div>
+                <div class="grid grid-cols-[0.8fr_18px_1.2fr] items-center mt-5">
+                  <div class="mock-card">
+                    <div class="mock-wide mb-3"></div>
+                    <div class="flex items-center justify-between gap-2">
+                      <span class="font-body text-[11px] font-semibold text-text-main truncate">Your video</span>
+                      <span class="w-4 h-4 rounded-full bg-green-500/20 border border-green-400/40 flex items-center justify-center shrink-0"><i data-lucide="check" class="w-2.5 h-2.5 text-green-400"></i></span>
+                    </div>
+                  </div>
+                  <div class="mock-link"></div>
+                  <div class="mock-card">
+                    <div class="mock-head"><i data-lucide="file-text"></i>Transcript</div>
+                    <div class="mock-line"><span class="mock-ts">0:12</span><span class="mock-bar"></span></div>
+                    <div class="mock-line"><span class="mock-ts">0:47</span><span class="mock-bar" style="max-width: 86%;"></span></div>
+                    <div class="mock-line"><span class="mock-ts">1:05</span><span class="mock-bar" style="max-width: 66%;"></span></div>
+                  </div>
+                </div>
+                <div class="mock-card mt-4 ml-auto w-[86%] sm:w-[66%]">
+                  <div class="flex items-center gap-2.5">
+                    <i data-lucide="message-square" class="w-3.5 h-3.5 text-[#C084FC] shrink-0"></i>
+                    <span class="mock-chip">1 source · 2,400 chars</span>
+                  </div>
+                  <div class="mock-input mt-2.5"></div>
+                </div>
+              </div>
+            </figure>
           </div>
           <div class="md:col-span-5">
             <div class="flex items-center gap-3 mb-4">
-              <div class="w-8 h-8 rounded-lg bg-purple-500 flex items-center justify-center text-white shrink-0"><i data-lucide="file-text" class="w-4 h-4"></i></div>
-              <span class="text-sm text-purple-400 font-semibold tracking-wide uppercase">Transcripts</span>
+              <div class="w-8 h-8 rounded-lg bg-purple-500 flex items-center justify-center text-white shrink-0"><i data-lucide="link" class="w-4 h-4"></i></div>
+              <span class="text-sm text-purple-400 font-semibold tracking-wide uppercase">Bring a video</span>
             </div>
             <h3 class="font-heading text-3xl md:text-4xl font-bold text-text-main mb-4">Paste a link. Get the transcript.</h3>
             <p class="text-text-muted text-base md:text-lg leading-relaxed mb-6">Paste a YouTube, TikTok or Instagram link, or drop in a video file. A timestamped transcript lands on a board.</p>
             <div class="inline-flex px-4 py-3 bg-white/5 rounded-lg border border-white/10 items-center gap-3">
-              <i data-lucide="search" class="w-4 h-4 text-primary"></i>
-              <span class="text-sm font-semibold text-text-main">Search your library by what was said.</span>
+              <i data-lucide="message-square" class="w-4 h-4 text-primary"></i>
+              <span class="text-sm font-semibold text-text-main">The chat works from what you said.</span>
             </div>
           </div>
         </div>
 
-        <!-- Block 2: Clips -->
+        <!-- Block 2: Write (MOCK M3: Drafts page) -->
         <div class="feature-row grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center animate-on-scroll">
           <div class="md:col-span-7 md:order-2">
-            <div class="shot-frame"><img src="./assets/app/feature-clips.png" alt="EchoOS clip suggestions, with a cut 9:16 vertical clip playing" class="w-full rounded-xl" loading="lazy" /></div>
+            <figure id="mock-m3" class="mock shot-frame" role="img" aria-label="Illustration: the Drafts page in EchoOS with an open post draft, its Copy text and Approve controls, and an Ask for a change box">
+              <div class="mock-screen p-4 sm:p-6" aria-hidden="true">
+                <div class="font-heading text-base font-bold text-text-main mb-4">Drafts</div>
+                <div class="glass-panel-elevated p-5 sm:p-6">
+                  <div class="mock-bar"></div>
+                  <div class="mock-bar mt-2.5" style="width: 93%;"></div>
+                  <div class="mock-bar mt-2.5" style="width: 97%;"></div>
+                  <div class="mock-bar mt-2.5" style="width: 61%;"></div>
+                  <div class="flex flex-wrap items-center gap-2 mt-5">
+                    <span class="mock-btn is-primary"><i data-lucide="copy"></i>Copy text</span>
+                    <span class="mock-btn is-quiet"><i data-lucide="check"></i>Approve</span>
+                  </div>
+                  <div class="mt-5 pt-4 border-t border-white/5">
+                    <div class="text-[11px] font-semibold text-text-main mb-2">Ask for a change</div>
+                    <div class="mock-field"><span class="truncate">Shorter, with a question at the end</span></div>
+                    <div class="flex justify-end mt-2.5"><span class="mock-btn is-quiet"><i data-lucide="pen-line"></i>Rewrite</span></div>
+                  </div>
+                </div>
+              </div>
+            </figure>
           </div>
           <div class="md:col-span-5 md:order-1">
             <div class="flex items-center gap-3 mb-4">
-              <div class="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center text-white shrink-0"><i data-lucide="scissors" class="w-4 h-4"></i></div>
-              <span class="text-sm text-blue-400 font-semibold tracking-wide uppercase">Clips</span>
+              <div class="w-8 h-8 rounded-lg bg-orange-500 flex items-center justify-center text-white shrink-0"><i data-lucide="pen-line" class="w-4 h-4"></i></div>
+              <span class="text-sm text-orange-400 font-semibold tracking-wide uppercase">Write</span>
             </div>
-            <h3 class="font-heading text-3xl md:text-4xl font-bold text-text-main mb-4">Ask for clips. Pick one.</h3>
-            <p class="text-text-muted text-base md:text-lg leading-relaxed mb-6">Ask in the chat and get up to five clip suggestions. Pick one and EchoOS cuts it into a playable MP4. For anything past a clean cut, keep the editor you use now.</p>
+            <h3 class="font-heading text-3xl md:text-4xl font-bold text-text-main mb-4">Posts in your voice.</h3>
+            <p class="text-text-muted text-base md:text-lg leading-relaxed mb-6">Build a voice profile, and keep more than one. Ask for a post and it drafts one from what you said. Revise it until it's right, then approve it.</p>
             <div class="inline-flex px-4 py-3 bg-white/5 rounded-lg border border-white/10 items-center gap-3">
-              <i data-lucide="smartphone" class="w-4 h-4 text-blue-400"></i>
-              <span class="text-sm font-semibold text-text-main">Vertical 9:16 included.</span>
+              <i data-lucide="copy" class="w-4 h-4 text-orange-400"></i>
+              <span class="text-sm font-semibold text-text-main">Copy it, then post it yourself.</span>
             </div>
           </div>
         </div>
 
-        <!-- Block 3: Drafts -->
+        <!-- Block 3: Cut and organize (MOCK M4: a cut clip and the Library) -->
         <div class="feature-row grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center animate-on-scroll">
           <div class="md:col-span-7">
-            <div class="shot-frame"><img src="./assets/app/feature-drafts.png" alt="EchoOS Drafts page with a post draft" class="w-full rounded-xl" loading="lazy" /></div>
+            <figure id="mock-m4" class="mock shot-frame" role="img" aria-label="Illustration: a cut vertical 9:16 clip in EchoOS, then the library with a project, a topic tag and transcript search">
+              <div class="mock-screen p-4 sm:p-6 grid grid-cols-1 sm:grid-cols-[0.78fr_1.22fr] gap-4" aria-hidden="true">
+                <div class="mock-card flex sm:flex-col items-center sm:items-stretch gap-4 sm:gap-0">
+                  <div class="rounded-xl p-1 bg-gradient-to-br from-white/15 via-white/5 to-white/0 border border-white/10 w-20 sm:w-[62%] sm:mx-auto shrink-0">
+                    <div class="mock-thumb flex items-center justify-center">
+                      <span class="absolute top-1.5 left-1.5 w-5 h-5 rounded-md bg-black/40 flex items-center justify-center"><i data-lucide="scissors" class="w-3 h-3 text-white/80"></i></span>
+                      <span class="w-8 h-8 rounded-full bg-white/15 border border-white/25 flex items-center justify-center"><i data-lucide="play" class="w-3.5 h-3.5 text-white fill-white"></i></span>
+                    </div>
+                  </div>
+                  <div class="flex-1 min-w-0 sm:mt-4">
+                    <div class="flex items-center gap-2">
+                      <i data-lucide="smartphone" class="w-3.5 h-3.5 text-text-muted shrink-0"></i>
+                      <span class="mock-check-row"><span class="mock-check"><i data-lucide="check"></i></span>Vertical 9:16</span>
+                    </div>
+                    <div class="mt-3 text-[11px] font-semibold text-[#C084FC] whitespace-nowrap">Save to folder</div>
+                  </div>
+                </div>
+                <div class="mock-card">
+                  <div class="mock-head"><i data-lucide="folder"></i>Library</div>
+                  <div class="mock-field"><i data-lucide="search"></i><span class="truncate">Search every transcript</span></div>
+                  <div class="flex items-center gap-2 mt-4 px-1">
+                    <i data-lucide="folder" class="w-3.5 h-3.5 text-[#C084FC] shrink-0"></i>
+                    <span class="text-[11px] font-semibold text-text-main">Personal</span>
+                  </div>
+                  <div class="mt-3 flex flex-col gap-2.5">
+                    <div class="flex items-center gap-2.5 rounded-lg bg-white/[0.03] border border-white/5 p-2">
+                      <span class="mock-wide w-10 shrink-0"></span>
+                      <div class="flex-1 min-w-0"><div class="mock-bar" style="width: 80%;"></div><div class="mt-2"><span class="mock-chip">onboarding</span></div></div>
+                    </div>
+                    <div class="flex items-center gap-2.5 rounded-lg bg-white/[0.03] border border-white/5 p-2">
+                      <span class="mock-wide w-10 shrink-0"></span>
+                      <div class="flex-1 min-w-0"><div class="mock-bar" style="width: 65%;"></div><div class="mock-bar mt-2" style="width: 40%;"></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </figure>
           </div>
           <div class="md:col-span-5">
             <div class="flex items-center gap-3 mb-4">
-              <div class="w-8 h-8 rounded-lg bg-orange-500 flex items-center justify-center text-white shrink-0"><i data-lucide="pen-line" class="w-4 h-4"></i></div>
-              <span class="text-sm text-orange-400 font-semibold tracking-wide uppercase">Drafts</span>
+              <div class="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center text-white shrink-0"><i data-lucide="scissors" class="w-4 h-4"></i></div>
+              <span class="text-sm text-blue-400 font-semibold tracking-wide uppercase">Cut and organize</span>
             </div>
-            <h3 class="font-heading text-3xl md:text-4xl font-bold text-text-main mb-4">Posts in your voice.</h3>
-            <p class="text-text-muted text-base md:text-lg leading-relaxed mb-6">Build a voice profile in setup, and keep more than one. Ask for a post and it drafts one from what you said. Revise it until it's right, then approve it.</p>
+            <h3 class="font-heading text-3xl md:text-4xl font-bold text-text-main mb-4">Cut it, then find it later.</h3>
+            <p class="text-text-muted text-base md:text-lg leading-relaxed mb-6">Ask in the chat for clips and pick one of up to five suggestions. EchoOS cuts it into a playable MP4, vertical 9:16 included, and files it in your library. For anything past a clean cut, keep the editor you use now.</p>
             <div class="inline-flex px-4 py-3 bg-white/5 rounded-lg border border-white/10 items-center gap-3">
-              <i data-lucide="copy" class="w-4 h-4 text-orange-400"></i>
-              <span class="text-sm font-semibold text-text-main">Copy it, then post it yourself.</span>
+              <i data-lucide="search" class="w-4 h-4 text-blue-400"></i>
+              <span class="text-sm font-semibold text-text-main">Search your library by what was said.</span>
             </div>
           </div>
         </div>
@@ -704,7 +895,7 @@
           <div class="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-16 w-full group">
             <div class="md:w-5/12 text-left md:text-right order-2 md:order-1 ml-16 md:ml-0">
               <h3 class="font-heading text-2xl font-bold text-text-main mb-2">3. Ask, then approve</h3>
-              <p class="text-text-muted text-base leading-relaxed">Ask for clips and a post in the same chat. Approve what you'll use.</p>
+              <p class="text-text-muted text-base leading-relaxed">Ask for a post and clips in the same chat. Approve what you'll use.</p>
             </div>
             <div class="w-12 h-12 rounded-full bg-surface border-4 border-bg flex items-center justify-center shrink-0 order-1 md:order-2 shadow-[0_0_15px_rgba(134,85,246,0.6)] relative z-20">
               <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
@@ -718,7 +909,7 @@
       <div class="flex justify-center mt-16 px-4 sm:px-0">
         <a href="#quiz" data-open-quiz
           class="btn-magnetic w-full sm:w-auto text-center bg-primary text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-primary-hover shadow-[0_0_30px_rgba(134,85,246,0.4)] transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 group">
-          <span data-cta-label>See what's stalling your content</span>
+          <span data-cta-label>Book a 15-minute demo</span>
           <i data-lucide="arrow-right" class="w-4 h-4 sm:group-hover:translate-x-1 transition-transform"></i>
         </a>
       </div>
@@ -835,7 +1026,7 @@
 
             <div class="bg-gradient-to-r from-primary/10 to-transparent border-l-2 border-primary p-6 mt-auto rounded-r-xl">
               <p class="italic font-serif text-lg text-text-main leading-relaxed mb-4 text-white/90">
-                "I build around one rule: each piece of content has one job, to start a conversation with the right person. EchoOS is the software side of that work."
+                "I build around one rule: each piece of content has one job, to start a conversation with the right person. EchoOS is built on the content frameworks behind my own viral work."
               </p>
               <span class="text-sm text-text-muted">Joshua</span>
             </div>
@@ -894,7 +1085,7 @@
             <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron"></i>
           </button>
           <div id="faq-a1" role="region" aria-labelledby="faq-q1" class="faq-answer px-6 text-text-muted leading-relaxed text-sm">
-            Partly, yes. EchoOS runs on the AI you bring. What it adds is the work around the chat: a video library, timestamped transcripts, clip cutting, voice profiles and a drafts page.
+            Partly, yes. EchoOS runs on the AI you bring. What it adds is the work around the chat: timestamped transcripts, voice profiles, a drafts page, clip cutting and a video library.
           </div>
         </div>
 
@@ -904,7 +1095,7 @@
             <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron"></i>
           </button>
           <div id="faq-a2" role="region" aria-labelledby="faq-q2" class="faq-answer px-6 text-text-muted leading-relaxed text-sm">
-            A Windows or Linux computer and your own AI: an OpenRouter key, your ChatGPT plan through Codex sign-in, or your own signed-in Claude Code. Setup walks you through it, and you can skip the AI step and come back later. If you like the terminal, there's a command line for clips too.
+            A Windows or Linux computer and your own AI: an OpenRouter key, your ChatGPT plan through Codex sign-in, or your own signed-in Claude Code. Setup walks you through it. If you like the terminal, there's a command line for clips too.
           </div>
         </div>
 
@@ -920,11 +1111,11 @@
 
         <div class="glass-panel overflow-hidden animate-on-scroll" style="transition-delay: 0.15s;">
           <button type="button" id="faq-q4" aria-expanded="false" aria-controls="faq-a4" class="faq-question w-full text-left flex items-center justify-between p-6 cursor-pointer hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary transition-colors duration-200">
-            <span class="font-heading font-semibold text-text-main pr-4">What does early access mean?</span>
+            <span class="font-heading font-semibold text-text-main pr-4">What happens on the demo?</span>
             <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron"></i>
           </button>
           <div id="faq-a4" role="region" aria-labelledby="faq-q4" class="faq-answer px-6 text-text-muted leading-relaxed text-sm">
-            You talk to me before EchoOS is out in public. On the call, we look at how you make content now, and you see EchoOS work on a real video. Pricing and the public release aren't decided yet, so there's no price here and nothing to download.
+            I run EchoOS live on one of your videos for 15 minutes. Worst case, you leave with its transcript, a post draft in your voice and clips. There's no price yet and nothing to download.
           </div>
         </div>
 
@@ -950,12 +1141,12 @@
 
     <div class="relative z-10 max-w-2xl mx-auto">
       <h2 class="font-heading text-4xl sm:text-5xl font-bold text-text-main mb-4" data-copy="final-h2">Your next posts are<br class="hidden sm:block" /> <span class="text-purple-gradient">already recorded.</span></h2>
-      <p class="text-text-muted text-lg mb-10 max-w-lg mx-auto leading-relaxed" data-copy="final-sub">Take three questions, see what's stalling your content, then pick a time with Joshua.</p>
+      <p class="text-text-muted text-lg mb-10 max-w-lg mx-auto leading-relaxed" data-copy="final-sub">Fifteen minutes with me, live on your video. Worst case, you leave with its transcript, a post draft in your voice and clips.</p>
 
       <div class="flex flex-wrap gap-4 justify-center">
         <a href="#quiz" data-open-quiz
           class="bg-primary text-white px-10 py-4 rounded-glass font-semibold text-lg hover:bg-primary-hover transition-colors duration-200 cursor-pointer">
-          <span data-cta-label>See what's stalling your content</span>
+          <span data-cta-label>Book a 15-minute demo</span>
         </a>
       </div>
 
@@ -970,7 +1161,7 @@
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="text-center md:text-left">
         <p class="font-heading font-bold text-lg text-text-main">EchoOS</p>
-        <p class="text-text-muted text-sm mt-1">Turn your videos into clips and posts in your voice.</p>
+        <p class="text-text-muted text-sm mt-1">Transcripts, posts in your voice and clips, in one app.</p>
       </div>
       <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
         <a href="#features" class="text-text-muted hover:text-text-main text-sm transition-colors duration-200">What It Does</a>
@@ -1016,7 +1207,7 @@
             <section class="quiz-step active" data-step="entry">
               <span class="text-primary text-sm font-semibold uppercase tracking-wider">Early Access</span>
               <h2 class="font-heading text-3xl sm:text-4xl font-bold text-text-main mt-3 mb-4">Find out what's stalling your content.</h2>
-              <p class="text-text-muted text-base leading-relaxed mb-8">Three questions. Then your result, and a time with Joshua if you want one.</p>
+              <p class="text-text-muted text-base leading-relaxed mb-8">Three questions. Then your result, and a time for your demo if you want one.</p>
               <button type="button" data-quiz-next="q1" class="btn-magnetic w-full sm:w-auto bg-primary text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-primary-hover shadow-[0_0_30px_rgba(134,85,246,0.4)] transition-all duration-300 cursor-pointer inline-flex items-center justify-center gap-2">
                 Start <i data-lucide="arrow-right" class="w-4 h-4"></i>
               </button>
@@ -1052,7 +1243,7 @@
               <h2 class="font-heading text-2xl sm:text-3xl font-bold text-text-main mb-2">What I'd like instead is...</h2>
               <p class="text-text-muted text-sm mb-6">This picks your result.</p>
               <div class="flex flex-col gap-3">
-                <button type="button" class="quiz-option" data-q="q3" data-result="A">Every video turning into clips and posts, without the hours<span class="quiz-dot"></span></button>
+                <button type="button" class="quiz-option" data-q="q3" data-result="A">One place to take a video all the way to the post<span class="quiz-dot"></span></button>
                 <button type="button" class="quiz-option" data-q="q3" data-result="B">Posts that sound like me, built from what I said<span class="quiz-dot"></span></button>
                 <button type="button" class="quiz-option" data-q="q3" data-result="C">Content that starts conversations with people who could hire me<span class="quiz-dot"></span></button>
                 <button type="button" class="quiz-option" data-q="q3" data-result="D">A routine I can keep in a busy client week<span class="quiz-dot"></span></button>
@@ -1115,8 +1306,8 @@
               </div>
 
               <div data-result-variant="A" class="hidden">
-                <div class="mb-10"><span class="result-label">The bad news</span><p class="text-text-muted text-base leading-relaxed">The slow part starts after you hit stop. Find the minute, transcribe it, cut it vertical, write the post. Each step waits for a free afternoon, and in a client week the video stays in the folder.</p></div>
-                <div class="mb-10"><span class="result-label">The good news</span><p class="text-text-main text-base leading-relaxed">EchoOS does that middle part. Paste a link or drop in a file, and you get a timestamped transcript. Ask for clips and get up to five suggestions. Pick one and it's cut to an MP4, vertical included. Ask for a post and it drafts one in your voice.</p></div>
+                <div class="mb-10"><span class="result-label">The bad news</span><p class="text-text-muted text-base leading-relaxed">The slow part starts after you hit stop. Transcribe it, write the post, cut the clip, file it. Each step waits for a free afternoon, and in a client week the video stays in the folder.</p></div>
+                <div class="mb-10"><span class="result-label">The good news</span><p class="text-text-main text-base leading-relaxed">EchoOS keeps that whole path in one app. Paste a link or drop in a file, and you get a timestamped transcript. Ask for a post and it drafts one in your voice. Ask for clips, pick one of up to five, and it's cut to an MP4, vertical included.</p></div>
               </div>
               <div data-result-variant="B" class="hidden">
                 <div class="mb-10"><span class="result-label">The bad news</span><p class="text-text-muted text-base leading-relaxed">AI writing from a blank prompt has nothing of yours to go on, so it reaches for the most common way to say it. Editing that back into your voice can take as long as writing it yourself.</p></div>
@@ -1134,8 +1325,8 @@
               <!-- Shared booking block -->
               <div class="stack-highlight p-6 sm:p-8">
                 <span class="result-label">Your next step</span>
-                <h3 class="font-heading text-2xl sm:text-3xl font-bold text-text-main mb-3">Book your early access call.</h3>
-                <p class="text-text-muted text-base leading-relaxed mb-6">On the call, we look at how you make content now, and you see EchoOS work on a real video. There's no price yet and nothing to download. Bring a video link if you have one.</p>
+                <h3 class="font-heading text-2xl sm:text-3xl font-bold text-text-main mb-3">Book your 15-minute demo.</h3>
+                <p class="text-text-muted text-base leading-relaxed mb-6">I run EchoOS live on one of your videos. Worst case, you leave with its transcript, a post draft in your voice and clips. There's no price yet and nothing to download.</p>
                 <button type="button" data-quiz-next="booking" class="btn-magnetic w-full sm:w-auto bg-primary text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-primary-hover shadow-[0_0_30px_rgba(134,85,246,0.4)] transition-all duration-300 cursor-pointer inline-flex items-center justify-center gap-2">
                   Pick a time with Joshua <i data-lucide="arrow-right" class="w-4 h-4"></i>
                 </button>
@@ -1145,7 +1336,7 @@
             <!-- Book-a-call step -->
             <section class="quiz-step" data-step="booking">
               <h2 class="font-heading text-3xl sm:text-4xl font-bold text-text-main mb-3">Pick a time with Joshua</h2>
-              <p class="text-text-muted text-base leading-relaxed mb-6">Your EchoOS early access call. Bring a video link if you have one.</p>
+              <p class="text-text-muted text-base leading-relaxed mb-6">Your 15-minute EchoOS demo. Bring a link to one of your videos.</p>
               <!-- INTEGRATION POINT (calendar): replace this box with the booking embed once Joshua provides the link.
                    On a confirmed booking, call window.EchoQuiz.showBooked({ when: "<day, date, time and time zone>" }). -->
               <div id="calendar-slot" class="rounded-xl border-2 border-dashed border-white/15 bg-white/[0.02] min-h-[320px] flex flex-col items-center justify-center gap-3 text-center p-6">
@@ -1162,7 +1353,7 @@
                 <i data-lucide="check" class="w-6 h-6 text-primary"></i>
               </div>
               <h2 class="font-heading text-3xl sm:text-4xl font-bold text-text-main mb-4">You're booked.</h2>
-              <p class="text-text-main text-base leading-relaxed mb-2">Your early access call with Joshua is on <span id="booked-when" class="font-semibold">[day, date, time and time zone from the calendar]</span>.</p>
+              <p class="text-text-main text-base leading-relaxed mb-2">Your 15-minute EchoOS demo with Joshua is on <span id="booked-when" class="font-semibold">[day, date, time and time zone from the calendar]</span>.</p>
               <!-- Shown only when the booking integration confirms the calendar tool sent an invite (showBooked({ inviteSent: true })). -->
               <p id="booked-invite" class="hidden text-text-muted text-base leading-relaxed mb-2">Check your email for the calendar invite.</p>
               <p class="text-text-muted text-base leading-relaxed mb-8">Keep your video link handy.</p>
