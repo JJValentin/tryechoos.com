@@ -1,7 +1,7 @@
 // PREVIEW ONLY. Not referenced by index.html; preview/build-preview.sh injects it into the
 // preview copy. Delete the preview/ folder before or after publishing; nothing depends on it.
 //
-// Lets Joshua flip the two open picks from copy-deck-r3 section 0 (hero headline A/B/C,
+// Lets Joshua flip the two open picks from copy-deck-r5 section 0 (hero headline A/B/C,
 // CTA button 1/2/3), jump straight to each result variant, and simulate a booking
 // (there is no calendar link yet).
 (function () {
@@ -16,19 +16,20 @@
     3: 'Take the 3-question quiz',
   };
   // Final CTA: if H1 B is picked, the deck swaps the final H2/sub so the page doesn't repeat itself.
+  // h2 is HTML: the emphasized phrase keeps the page's purple gradient span.
   const FINAL_DEFAULT = {
-    h2: 'Your next posts are already recorded.',
-    sub: "They're sitting in a folder on your computer. Take three questions, see what's stalling your content, then pick a time with Joshua.",
+    h2: 'Your next posts are<br class="hidden sm:block" /> <span class="text-purple-gradient">already recorded.</span>',
+    sub: "Take three questions, see what's stalling your content, then pick a time with Joshua.",
   };
   const FINAL_FOR_B = {
-    h2: 'Got a video sitting in a folder?',
-    sub: 'Bring it to the call. Three questions first, then your result, then a time with Joshua.',
+    h2: 'Bring one video<br class="hidden sm:block" /> <span class="text-purple-gradient">to the call.</span>',
+    sub: 'Three questions first, then your result, then a time with Joshua.',
   };
   const SAMPLE = {
-    A: { q1: 'get more out of the videos you already make', q2: "you're sitting on videos you never turned into anything" },
-    B: { q1: 'post things that actually sound like you', q2: "you're posting, but it doesn't sound like you" },
-    C: { q1: 'have the right people reach out about working with you', q2: "you're posting, and no matter what you do, it doesn't turn into conversations" },
-    D: { q1: 'show up every week without it eating your client hours', q2: "you're spending hours turning one video into a couple of posts" },
+    A: { q1: 'get more out of the videos you already make', q2: "you're sitting on videos you never used" },
+    B: { q1: 'post things that sound like you', q2: "you're posting, but it doesn't sound like you" },
+    C: { q1: 'have the right people reach out to work with you', q2: "you're posting, but it never turns into conversations" },
+    D: { q1: 'show up every week without losing client hours', q2: "you're spending hours turning one video into a post or two" },
   };
   const META_BASE = "EchoOS is a desktop app that turns your videos into transcripts, clips and post drafts in your voice, with your own AI. ";
   const META_LAST = { 1: "Take 3 questions to see what's stalling your content.", 2: 'Request early access.', 3: 'Take the 3-question quiz.' };
@@ -45,7 +46,7 @@
     const final = pick === 'B' ? FINAL_FOR_B : FINAL_DEFAULT;
     const h2 = document.querySelector('[data-copy="final-h2"]');
     const sub = document.querySelector('[data-copy="final-sub"]');
-    if (h2) h2.textContent = final.h2;
+    if (h2) h2.innerHTML = final.h2;
     if (sub) sub.textContent = final.sub;
     const og = document.querySelector('meta[property="og:title"]');
     if (og) og.setAttribute('content', pick === 'A' ? 'Turn one video into clips and posts in your voice' : l1 + ' ' + l2.replace(/\.$/, ''));
@@ -114,6 +115,14 @@
     body.appendChild(row('Hero', heroBtns));
     body.appendChild(row('CTA', ctaBtns));
     body.appendChild(row('Result', resBtns));
+    // Side by side: preview/build-compare.sh serves preview 1 at ./p1/ (absent there, so no link inside p1).
+    if (!/\/p1\/?/.test(location.pathname)) {
+      const cmp = document.createElement('a');
+      cmp.href = 'p1/';
+      cmp.textContent = 'Open preview 1';
+      cmp.style.cssText = 'color:#C084FC;font:600 12px Manrope,sans-serif;text-decoration:underline';
+      body.appendChild(row('Compare', [cmp]));
+    }
     panel.appendChild(head);
     panel.appendChild(body);
     document.body.appendChild(panel);
