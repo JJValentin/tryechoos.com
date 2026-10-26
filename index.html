@@ -420,21 +420,21 @@
 
       <a href="#" class="font-heading font-bold text-xl text-text-main tracking-tight">EchoOS</a>
 
-      <div class="hidden md:flex items-center gap-8">
+      <div class="hidden lg:flex items-center gap-8">
         <a href="#how-it-works" class="text-text-muted hover:text-text-main text-sm font-medium transition-colors duration-200">How It Works</a>
         <a href="#agents" class="text-text-muted hover:text-text-main text-sm font-medium transition-colors duration-200">What It Does</a>
         <a href="#pricing" class="text-text-muted hover:text-text-main text-sm font-medium transition-colors duration-200">Early Access</a>
         <a href="#faq" class="text-text-muted hover:text-text-main text-sm font-medium transition-colors duration-200">FAQ</a>
       </div>
 
-      <div class="hidden md:flex items-center gap-4">
+      <div class="hidden lg:flex items-center gap-4">
         <a href="#quiz" data-open-quiz
           class="bg-primary text-white px-5 py-2 rounded-glass font-medium hover:bg-primary-hover transition-colors duration-200 cursor-pointer text-sm">
           <span data-cta-label>See what's stalling your content</span>
         </a>
       </div>
 
-      <button id="hamburger" class="md:hidden text-text-muted hover:text-text-main transition-colors duration-200 p-1" aria-label="Open menu">
+      <button id="hamburger" class="lg:hidden text-text-muted hover:text-text-main transition-colors duration-200 p-1" aria-label="Open menu">
         <i data-lucide="menu" class="w-6 h-6"></i>
       </button>
     </div>
@@ -474,7 +474,7 @@
         <i data-lucide="chevron-right" class="w-3 h-3 relative sm:group-hover:translate-x-1 transition-transform shrink-0"></i>
       </a>
 
-      <h1 class="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-[4.5rem] font-extrabold text-text-main leading-[1.1] sm:leading-[1.05] tracking-tight mb-6">
+      <h1 class="font-heading text-4xl sm:text-6xl md:text-[3.25rem] lg:text-[4.5rem] font-extrabold text-text-main leading-[1.1] sm:leading-[1.05] tracking-tight mb-6">
         <span data-copy="hero-line1">Turn one video into</span><br class="hidden sm:block" />
         <span data-copy="hero-line2" class="text-transparent bg-clip-text bg-gradient-to-r from-[#8655F6] via-[#C084FC] to-[#8655F6] bg-[length:200%_auto] drop-shadow-[0_0_20px_rgba(134,85,246,0.3)]">clips and posts in your voice.</span>
       </h1>
@@ -1567,7 +1567,7 @@ Transcripts from a link or a file. Up to five clip suggestions; pick one and get
   <!-- QUIZ FUNNEL: 3 questions -> contact gate -> personalized result -> book a call -> booked -->
   <!-- Every CTA with [data-open-quiz] opens this. Every answer leads to the result and the calendar (no scoring, no "not a fit" route). -->
   <!-- ============================================================ -->
-  <div id="quiz" class="quiz-overlay" role="dialog" aria-modal="true" aria-label="EchoOS early access quiz" aria-hidden="true">
+  <div id="quiz" class="quiz-overlay" role="dialog" aria-modal="true" aria-label="EchoOS early access quiz" aria-hidden="true" inert>
     <div class="quiz-scroll">
       <div class="min-h-full flex items-start sm:items-center justify-center px-4 py-20 sm:py-16">
         <div id="quiz-shell" class="w-full max-w-xl transition-[max-width] duration-300">
@@ -1738,8 +1738,8 @@ Transcripts from a link or a file. Up to five clip suggestions; pick one and get
               </div>
               <h2 class="font-heading text-3xl sm:text-4xl font-bold text-text-main mb-4">You're booked.</h2>
               <p class="text-text-main text-base leading-relaxed mb-2">Your early access call with Joshua is on <span id="booked-when" class="font-semibold">[day, date, time and time zone from the calendar]</span>.</p>
-              <!-- [Keep the next line only if the calendar tool sends an invite.] -->
-              <p class="text-text-muted text-base leading-relaxed mb-2">Check your email for the calendar invite.</p>
+              <!-- Shown only when the booking integration confirms the calendar tool sent an invite (showBooked({ inviteSent: true })). -->
+              <p id="booked-invite" class="hidden text-text-muted text-base leading-relaxed mb-2">Check your email for the calendar invite.</p>
               <p class="text-text-muted text-base leading-relaxed mb-8">If there's a video you'd like to use on the call, keep the link handy.</p>
               <div class="border-t border-white/5 pt-6">
                 <span class="result-label">While you wait</span>
@@ -1861,13 +1861,14 @@ Transcripts from a link or a file. Up to five clip suggestions; pick one and get
         shell.classList.toggle('max-w-3xl', WIDE_STEPS.includes(step));
         overlay.querySelector('.quiz-scroll').scrollTop = 0;
         const active = overlay.querySelector('.quiz-step.active');
-        const focusTarget = active && active.querySelector('h2, input, button');
+        const focusTarget = active && [...active.querySelectorAll('h2, input, button')].find(el => el.getClientRects().length > 0);
         if (focusTarget) { if (!focusTarget.hasAttribute('tabindex') && focusTarget.tagName === 'H2') focusTarget.setAttribute('tabindex', '-1'); focusTarget.focus({ preventScroll: true }); }
         overlay.dataset.current = step;
       }
 
       function open() {
         lastFocus = document.activeElement;
+        overlay.removeAttribute('inert');
         overlay.classList.add('open');
         overlay.setAttribute('aria-hidden', 'false');
         document.body.classList.add('quiz-locked');
@@ -1877,6 +1878,7 @@ Transcripts from a link or a file. Up to five clip suggestions; pick one and get
       function close() {
         overlay.classList.remove('open');
         overlay.setAttribute('aria-hidden', 'true');
+        overlay.setAttribute('inert', '');
         document.body.classList.remove('quiz-locked');
         if (lastFocus && lastFocus.focus) lastFocus.focus();
       }
@@ -1892,12 +1894,15 @@ Transcripts from a link or a file. Up to five clip suggestions; pick one and get
         if (variant) state.result = variant;
         if (answers) Object.assign(state.answers, answers);
         renderResult();
-        if (!overlay.classList.contains('open')) { lastFocus = document.activeElement; overlay.classList.add('open'); overlay.setAttribute('aria-hidden', 'false'); document.body.classList.add('quiz-locked'); }
+        if (!overlay.classList.contains('open')) { lastFocus = document.activeElement; overlay.removeAttribute('inert'); overlay.classList.add('open'); overlay.setAttribute('aria-hidden', 'false'); document.body.classList.add('quiz-locked'); }
         showStep('result');
       }
 
+      // INTEGRATION POINT (calendar): call on a confirmed booking with the slot text, and inviteSent: true
+      // only if the calendar tool really emails an invite.
       function showBooked(details) {
         if (details && details.when) document.getElementById('booked-when').textContent = details.when;
+        document.getElementById('booked-invite').classList.toggle('hidden', !(details && details.inviteSent));
         showStep('booked');
       }
 
@@ -1909,7 +1914,18 @@ Transcripts from a link or a file. Up to five clip suggestions; pick one and get
       }));
       overlay.querySelectorAll('[data-quiz-close]').forEach(el => el.addEventListener('click', close));
       overlay.addEventListener('click', e => { if (e.target.classList.contains('quiz-scroll') || e.target === overlay) close(); });
-      document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('open')) close(); });
+      document.addEventListener('keydown', e => {
+        if (!overlay.classList.contains('open')) return;
+        if (e.key === 'Escape') { close(); return; }
+        if (e.key !== 'Tab') return;
+        // Keep focus inside the open dialog.
+        const focusables = [...overlay.querySelectorAll('button, a[href], input, [tabindex]:not([tabindex="-1"])')].filter(el => !el.disabled && el.getClientRects().length > 0);
+        if (!focusables.length) return;
+        const first = focusables[0], last = focusables[focusables.length - 1];
+        if (!overlay.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+        else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      });
       overlay.querySelectorAll('[data-quiz-next]').forEach(el => el.addEventListener('click', () => showStep(el.dataset.quizNext)));
       overlay.querySelectorAll('[data-quiz-back]').forEach(el => el.addEventListener('click', () => showStep(el.dataset.quizBack)));
 

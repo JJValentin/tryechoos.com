@@ -123,7 +123,7 @@
     // Simulated booking: there is no calendar link yet.
     const slot = document.getElementById('calendar-slot');
     if (slot) {
-      const sim = button('Simulate a booking (preview only)', () => window.EchoQuiz && window.EchoQuiz.showBooked({ when: '[day, date, time and time zone from the calendar]' }));
+      const sim = button('Simulate a booking (preview only)', () => window.EchoQuiz && window.EchoQuiz.showBooked({ when: '[day, date, time and time zone from the calendar]', inviteSent: true }));
       sim.setAttribute('data-preview-only', '');
       sim.style.marginTop = '8px';
       slot.appendChild(sim);
