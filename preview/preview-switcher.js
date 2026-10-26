@@ -1,29 +1,28 @@
 // PREVIEW ONLY. Not referenced by index.html; preview/build-preview.sh injects it into the
 // preview copy. Delete the preview/ folder before or after publishing; nothing depends on it.
 //
-// Lets Joshua flip the two open picks from copy-deck-r5 section 0 (hero headline A/B/C,
-// CTA button 1/2/3), jump straight to each result variant, and simulate a booking
+// Lets Joshua flip the two open picks from copy-deck-r6 section 0 (hero headline A/B/C,
+// CTA button 1/2), jump straight to each result variant, and simulate a booking
 // (there is no calendar link yet).
 (function () {
   const HERO = {
-    A: ['Turn one video into', 'clips and posts in your voice.'],
+    A: ['Write posts, cut clips,', 'and keep it all in one app.'],
     B: ['Your best posts are', 'already on camera.'],
-    C: ['Stop starting every post', 'from a blank page.'],
+    C: ['One app for the work', 'between video and post.'],
   };
   const CTA = {
-    1: "See what's stalling your content",
-    2: 'Request early access',
-    3: 'Take the 3-question quiz',
+    1: 'Book a 15-minute demo',
+    2: 'Book a demo on your video',
   };
-  // Final CTA: if H1 B is picked, the deck swaps the final H2/sub so the page doesn't repeat itself.
+  // Head copy per pick (deck r6 head note): A keeps the deck's title; B and C use the picked H1 on one line.
+  const HEAD_A = 'Write posts, cut clips and keep it all in one app';
+  // Final CTA: if H1 B is picked, the deck swaps the final H2 so the page doesn't say "already" twice (sub unchanged).
   // h2 is HTML: the emphasized phrase keeps the page's purple gradient span.
   const FINAL_DEFAULT = {
     h2: 'Your next posts are<br class="hidden sm:block" /> <span class="text-purple-gradient">already recorded.</span>',
-    sub: "Take three questions, see what's stalling your content, then pick a time with Joshua.",
   };
   const FINAL_FOR_B = {
-    h2: 'Bring one video<br class="hidden sm:block" /> <span class="text-purple-gradient">to the call.</span>',
-    sub: 'Three questions first, then your result, then a time with Joshua.',
+    h2: 'Bring one video<br class="hidden sm:block" /> <span class="text-purple-gradient">to the demo.</span>',
   };
   const SAMPLE = {
     A: { q1: 'get more out of the videos you already make', q2: "you're sitting on videos you never used" },
@@ -31,25 +30,24 @@
     C: { q1: 'have the right people reach out to work with you', q2: "you're posting, but it never turns into conversations" },
     D: { q1: 'show up every week without losing client hours', q2: "you're spending hours turning one video into a post or two" },
   };
-  const META_BASE = "EchoOS is a desktop app that turns your videos into transcripts, clips and post drafts in your voice, with your own AI. ";
-  const META_LAST = { 1: "Take 3 questions to see what's stalling your content.", 2: 'Request early access.', 3: 'Take the 3-question quiz.' };
+  const META_BASE = 'A desktop app that takes one video to a transcript, post drafts in your voice and clips, using your own AI. ';
+  const META_LAST = { 1: 'Book a 15-minute demo.', 2: 'Book a demo on your video.' };
 
   const store = {
-    get: (k, d) => { try { return localStorage.getItem('echoos_preview_' + k) || d; } catch (e) { return d; } },
-    set: (k, v) => { try { localStorage.setItem('echoos_preview_' + k, v); } catch (e) { /* ignore */ } },
+    get: (k, d) => { try { return localStorage.getItem('echoos_preview3_' + k) || d; } catch (e) { return d; } },
+    set: (k, v) => { try { localStorage.setItem('echoos_preview3_' + k, v); } catch (e) { /* ignore */ } },
   };
 
   function applyHero(pick) {
     const [l1, l2] = HERO[pick];
     document.querySelectorAll('[data-copy="hero-line1"]').forEach(el => { el.textContent = l1; });
     document.querySelectorAll('[data-copy="hero-line2"]').forEach(el => { el.textContent = l2; });
-    const final = pick === 'B' ? FINAL_FOR_B : FINAL_DEFAULT;
     const h2 = document.querySelector('[data-copy="final-h2"]');
-    const sub = document.querySelector('[data-copy="final-sub"]');
-    if (h2) h2.innerHTML = final.h2;
-    if (sub) sub.textContent = final.sub;
+    if (h2) h2.innerHTML = (pick === 'B' ? FINAL_FOR_B : FINAL_DEFAULT).h2;
+    const head = pick === 'A' ? HEAD_A : l1 + ' ' + l2.replace(/\.$/, '');
     const og = document.querySelector('meta[property="og:title"]');
-    if (og) og.setAttribute('content', pick === 'A' ? 'Turn one video into clips and posts in your voice' : l1 + ' ' + l2.replace(/\.$/, ''));
+    if (og) og.setAttribute('content', head);
+    document.title = 'EchoOS | ' + head;
     store.set('hero', pick);
   }
 
@@ -110,19 +108,20 @@
     const body = document.createElement('div');
 
     const heroBtns = ['A', 'B', 'C'].map(k => button(k, () => { applyHero(k); mark(panel, 'hero', k); }, 'hero', k));
-    const ctaBtns = ['1', '2', '3'].map(k => button(k, () => { applyCta(k); mark(panel, 'cta', k); }, 'cta', k));
+    const ctaBtns = ['1', '2'].map(k => button(k, () => { applyCta(k); mark(panel, 'cta', k); }, 'cta', k));
     const resBtns = ['A', 'B', 'C', 'D'].map(k => button(k, () => window.EchoQuiz && window.EchoQuiz.showResult(k, SAMPLE[k])));
     body.appendChild(row('Hero', heroBtns));
     body.appendChild(row('CTA', ctaBtns));
     body.appendChild(row('Result', resBtns));
-    // Side by side: preview/build-compare.sh serves preview 1 at ./p1/ (absent there, so no link inside p1).
-    if (!/\/p1\/?/.test(location.pathname)) {
-      const cmp = document.createElement('a');
-      cmp.href = 'p1/';
-      cmp.textContent = 'Open preview 1';
-      cmp.style.cssText = 'color:#C084FC;font:600 12px Manrope,sans-serif;text-decoration:underline';
-      body.appendChild(row('Compare', [cmp]));
-    }
+    // Side by side: preview/build-compare.sh serves preview 2 at ./p2/ and preview 1 at ./p1/.
+    const links = [['p2/', 'Open preview 2'], ['p1/', 'Open preview 1']].map(([href, text]) => {
+      const a = document.createElement('a');
+      a.href = href;
+      a.textContent = text;
+      a.style.cssText = 'color:#C084FC;font:600 12px Manrope,sans-serif;text-decoration:underline';
+      return a;
+    });
+    body.appendChild(row('Compare', links));
     panel.appendChild(head);
     panel.appendChild(body);
     document.body.appendChild(panel);
