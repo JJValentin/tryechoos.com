@@ -1,9 +1,10 @@
 // PREVIEW ONLY. Not referenced by index.html; preview/build-preview.sh injects it into the
 // preview copy. Delete the preview/ folder before or after publishing; nothing depends on it.
 //
-// Lets Joshua flip the two open picks from copy-deck-r6 section 0 (hero headline A/B/C,
-// CTA button 1/2), jump straight to each result variant, and simulate a booking
-// (there is no calendar link yet).
+// Lets Joshua flip the two open picks from copy-deck-r7 section 0 (hero headline A/B/C,
+// CTA button 1/2; FAQ 4's question follows the CTA), jump straight to each result variant,
+// and simulate a failed save to see the save-failed close (the preview's stand-in for
+// submitLead() resolves saved; preview/build-preview.sh wires it to this toggle).
 (function () {
   const HERO = {
     A: ['Write posts, cut clips,', 'and keep it all in one app.'],
@@ -11,8 +12,8 @@
     C: ['One app for the work', 'between video and post.'],
   };
   const CTA = {
-    1: 'Book a 15-minute demo',
-    2: 'Book a demo on your video',
+    1: 'Join the waitlist',
+    2: 'Apply to the waitlist',
   };
   // Head copy per pick (deck r6 head note): A keeps the deck's title; B and C use the picked H1 on one line.
   const HEAD_A = 'Write posts, cut clips and keep it all in one app';
@@ -22,8 +23,10 @@
     h2: 'Your next posts are<br class="hidden sm:block" /> <span class="text-purple-gradient">already recorded.</span>',
   };
   const FINAL_FOR_B = {
-    h2: 'Bring one video<br class="hidden sm:block" /> <span class="text-purple-gradient">to the demo.</span>',
+    h2: 'Your next posts are<br class="hidden sm:block" /> <span class="text-purple-gradient">in that folder.</span>',
   };
+  // FAQ 4 follows the CTA pick (deck r7 S8 note; answer unchanged).
+  const FAQ4 = { 1: 'What happens after I join?', 2: 'What happens after I apply?' };
   const SAMPLE = {
     A: { q1: 'get more out of the videos you already make', q2: "you're sitting on videos you never used" },
     B: { q1: 'post things that sound like you', q2: "you're posting, but it doesn't sound like you" },
@@ -31,11 +34,11 @@
     D: { q1: 'show up every week without losing client hours', q2: "you're spending hours turning one video into a post or two" },
   };
   const META_BASE = 'A desktop app that takes one video to a transcript, post drafts in your voice and clips, using your own AI. ';
-  const META_LAST = { 1: 'Book a 15-minute demo.', 2: 'Book a demo on your video.' };
+  const META_LAST = { 1: 'Join the waitlist.', 2: 'Apply to the waitlist.' };
 
   const store = {
-    get: (k, d) => { try { return localStorage.getItem('echoos_preview3_' + k) || d; } catch (e) { return d; } },
-    set: (k, v) => { try { localStorage.setItem('echoos_preview3_' + k, v); } catch (e) { /* ignore */ } },
+    get: (k, d) => { try { return localStorage.getItem('echoos_preview4_' + k) || d; } catch (e) { return d; } },
+    set: (k, v) => { try { localStorage.setItem('echoos_preview4_' + k, v); } catch (e) { /* ignore */ } },
   };
 
   function applyHero(pick) {
@@ -55,6 +58,8 @@
     document.querySelectorAll('[data-cta-label]').forEach(el => { el.textContent = CTA[pick]; });
     const meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute('content', META_BASE + META_LAST[pick]);
+    const faq4 = document.querySelector('[data-copy="faq4-q"]');
+    if (faq4) faq4.textContent = FAQ4[pick];
     store.set('cta', pick);
   }
 
@@ -109,12 +114,32 @@
 
     const heroBtns = ['A', 'B', 'C'].map(k => button(k, () => { applyHero(k); mark(panel, 'hero', k); }, 'hero', k));
     const ctaBtns = ['1', '2'].map(k => button(k, () => { applyCta(k); mark(panel, 'cta', k); }, 'cta', k));
-    const resBtns = ['A', 'B', 'C', 'D'].map(k => button(k, () => window.EchoQuiz && window.EchoQuiz.showResult(k, SAMPLE[k])));
+    // Jumping straight to a result shows the close for the current save state (saved unless the failure toggle is on).
+    const resBtns = ['A', 'B', 'C', 'D'].map(k => button(k, () => {
+      if (!window.EchoQuiz) return;
+      window.EchoQuiz.state.lead = { saved: !window.__echoPreviewSaveFails };
+      window.EchoQuiz.showResult(k, SAMPLE[k]);
+    }));
+    // Not persisted: every load starts with saves succeeding.
+    window.__echoPreviewSaveFails = false;
+    const failBtn = button('Simulate save failure: off', () => {
+      window.__echoPreviewSaveFails = !window.__echoPreviewSaveFails;
+      failBtn.textContent = 'Simulate save failure: ' + (window.__echoPreviewSaveFails ? 'on' : 'off');
+      failBtn.style.background = window.__echoPreviewSaveFails ? '#8655F6' : 'rgba(255,255,255,.05)';
+      failBtn.style.borderColor = window.__echoPreviewSaveFails ? '#8655F6' : 'rgba(255,255,255,.15)';
+      failBtn.setAttribute('aria-pressed', String(window.__echoPreviewSaveFails));
+      // If a result is open, redraw its close for the new state.
+      const q = window.EchoQuiz;
+      if (q && document.getElementById('quiz').dataset.current === 'result') { q.state.lead = { saved: !window.__echoPreviewSaveFails }; q.showResult(); }
+    }, 'savefail', '');
+    failBtn.id = 'preview-save-fail';
+    failBtn.setAttribute('aria-pressed', 'false');
     body.appendChild(row('Hero', heroBtns));
     body.appendChild(row('CTA', ctaBtns));
     body.appendChild(row('Result', resBtns));
-    // Side by side: preview/build-compare.sh serves preview 2 at ./p2/ and preview 1 at ./p1/.
-    const links = [['p2/', 'Open preview 2'], ['p1/', 'Open preview 1']].map(([href, text]) => {
+    body.appendChild(row('Save', [failBtn]));
+    // Side by side: preview/build-compare.sh serves preview 3 at ./p3/, preview 2 at ./p2/ and preview 1 at ./p1/.
+    const links = [['p3/', 'Open preview 3'], ['p2/', 'Open preview 2'], ['p1/', 'Open preview 1']].map(([href, text]) => {
       const a = document.createElement('a');
       a.href = href;
       a.textContent = text;
@@ -127,15 +152,6 @@
     document.body.appendChild(panel);
     // Phones: start collapsed so the panel never covers quiz buttons.
     if (window.innerWidth < 640) { body.style.display = 'none'; toggle.textContent = 'show'; }
-
-    // Simulated booking: there is no calendar link yet.
-    const slot = document.getElementById('calendar-slot');
-    if (slot) {
-      const sim = button('Simulate a booking (preview only)', () => window.EchoQuiz && window.EchoQuiz.showBooked({ when: '[day, date, time and time zone from the calendar]', inviteSent: true }));
-      sim.setAttribute('data-preview-only', '');
-      sim.style.marginTop = '8px';
-      slot.appendChild(sim);
-    }
 
     const hero = store.get('hero', 'A');
     const cta = store.get('cta', '1');
