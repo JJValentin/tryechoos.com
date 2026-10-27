@@ -418,82 +418,27 @@
     }
     .shot-frame img { display: block; border: 1px solid rgba(255,255,255,0.06); }
 
-    /* Designed product mocks M1 to M4 (copy-deck-r6): simplified illustrations of built features,
-       real UI words only. The real app captures stay in assets/app/ as the reference. */
-    .mock { margin: 0; }
-    .mock-screen {
-      background-color: #0c0c0f;
-      background-image: radial-gradient(rgba(255,255,255,0.055) 1px, transparent 1px);
-      background-size: 18px 18px;
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 12px;
-      overflow: hidden;
-      text-align: left;
+    /* Product grabs (Amendment 6): tight crops of the real app (desktop/v1, clean demo profile).
+       Nothing inside a grab is drawn or edited; the layers are separate real crops. */
+    .grab { display: block; width: 100%; height: auto; }
+    .shot-frame .grab { border: 0; }
+    .grab-screen { position: relative; overflow: hidden; border-radius: 12px; background: #111113; border: 1px solid rgba(255,255,255,0.06); }
+    .grab-screen.is-padded { padding: 5%; }
+    @media (min-width: 768px) { .grab-screen.is-padded { padding: 7%; } }
+    .grab-layer { position: absolute; filter: drop-shadow(0 18px 36px rgba(0,0,0,0.65)) drop-shadow(0 0 22px rgba(134,85,246,0.18)); }
+    /* Hero: the board in the device frame, one post card from the Drafts page layered at its lower left. */
+    .hero-grab { position: relative; margin: 0 0 9%; }
+    .hero-grab .grab-layer { left: 3%; bottom: -9%; width: 50%; }
+    @media (min-width: 640px) {
+      .hero-grab { margin-bottom: 0; }
+      .hero-grab .grab-layer { left: 4%; bottom: 7%; width: 34%; }
     }
-    .mock-card {
-      background: rgba(24,24,27,0.88);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      padding: 12px;
-      min-width: 0;
+    @media (min-width: 1100px) {
+      .hero-grab .grab-layer { left: -3.5%; }
     }
-    .mock-head { display: flex; align-items: center; gap: 6px; font: 600 11px/1.2 Manrope, sans-serif; color: #F4F4F5; margin-bottom: 10px; white-space: nowrap; }
-    .mock-head svg { width: 13px; height: 13px; color: #C084FC; flex-shrink: 0; }
-    .mock-bar { height: 6px; border-radius: 9999px; background: rgba(255,255,255,0.10); }
-    .mock-bar.strong { height: 8px; background: rgba(255,255,255,0.22); }
-    .mock-line { display: flex; align-items: center; gap: 8px; }
-    .mock-line + .mock-line { margin-top: 9px; }
-    .mock-line .mock-bar { flex: 1; }
-    .mock-ts { font: 500 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace; color: #A1A1AA; flex-shrink: 0; }
-    .mock-chip { display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: 9999px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); font: 600 10px/1.3 Manrope, sans-serif; color: #F4F4F5; white-space: nowrap; }
-    .mock-chip svg { width: 11px; height: 11px; color: #C084FC; flex-shrink: 0; }
-    .mock-btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.10); background: rgba(255,255,255,0.04); font: 600 11px/1.2 Manrope, sans-serif; color: #F4F4F5; white-space: nowrap; }
-    .mock-btn svg { width: 12px; height: 12px; flex-shrink: 0; }
-    .mock-btn.is-primary { background: #8655F6; border-color: #8655F6; color: #fff; box-shadow: 0 0 18px rgba(134,85,246,0.35); }
-    .mock-field { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: 10px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); font: 500 11px/1.2 Manrope, sans-serif; color: #A1A1AA; white-space: nowrap; min-width: 0; }
-    .mock-field svg { width: 13px; height: 13px; color: #A1A1AA; flex-shrink: 0; }
-    .mock-thumb { aspect-ratio: 9 / 16; border-radius: 8px; border: 1px solid rgba(255,255,255,0.10); background: linear-gradient(165deg, rgba(134,85,246,0.40), rgba(24,24,27,0.95) 55%, rgba(192,132,252,0.22)); position: relative; }
-    .mock-wide { aspect-ratio: 16 / 9; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); background: linear-gradient(135deg, rgba(134,85,246,0.30), rgba(24,24,27,0.95) 60%, rgba(192,132,252,0.15)); }
-    .mock-link { height: 1px; background: linear-gradient(90deg, rgba(134,85,246,0.25), rgba(134,85,246,0.7)); position: relative; }
-    .mock-link::after { content: ""; position: absolute; right: -2px; top: -2px; width: 5px; height: 5px; border-radius: 9999px; background: #8655F6; }
-    .mock-btn.is-quiet { background: transparent; border-color: transparent; color: #A1A1AA; }
-    .mock-check-row { display: flex; align-items: center; gap: 6px; font: 600 11px/1.2 Manrope, sans-serif; color: #F4F4F5; white-space: nowrap; }
-    .mock-check { width: 13px; height: 13px; border-radius: 3px; background: #8655F6; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .mock-check svg { width: 10px; height: 10px; color: #fff; stroke-width: 3; }
-    .mock-input { height: 26px; border-radius: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.10); }
-
-    /* M1: the pieces of one workflow as five cards side by side (no connectors: the app has no card-to-card pipeline). Phones and tablets: two columns; lg: one row. */
-    .m1-board { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 14px; }
-    .m1-library { grid-column: 1 / -1; }
-    .m1-lib-rows { display: flex; gap: 8px; }
-    .m1-lib-rows > div { flex: 1; display: flex; align-items: center; gap: 6px; }
-    .m1-lib-rows > div:nth-child(n+4) { display: none; }
-    .m1-lib-dot { width: 14px; height: 10px; border-radius: 3px; background: rgba(134,85,246,0.30); flex-shrink: 0; }
-    @media (min-width: 1024px) {
-      .m1-board { grid-template-columns: 1.3fr 1.2fr 1.1fr 0.85fr 0.62fr; gap: 16px; padding: 36px 28px; align-items: center; }
-      .m1-library { grid-column: auto; align-self: stretch; }
-      .m1-lib-rows { flex-direction: column; gap: 10px; }
-      .m1-lib-rows > div:nth-child(n+4) { display: flex; }
-    }
-    /* Light motion: a slow highlight passes card to card. Off under reduced motion. */
-    @keyframes mockGlow {
-      0%, 20%, 100% { border-color: rgba(255,255,255,0.08); box-shadow: none; }
-      8% { border-color: rgba(134,85,246,0.65); box-shadow: 0 0 26px rgba(134,85,246,0.28); }
-    }
-    .m1-board .m1-card { animation: mockGlow 12.5s ease-in-out infinite; }
-    .m1-board .m1-d1 { animation-delay: 2.5s; }
-    .m1-board .m1-d2 { animation-delay: 5s; }
-    .m1-board .m1-d3 { animation-delay: 7.5s; }
-    .m1-board .m1-d4 { animation-delay: 10s; }
-    /* #6 (Amendment 5): phones show four cards in a 2x2 grid; the Library card returns at 640px and up.
-       The highlight cycle shortens to 10s so the four visible cards keep an even beat. */
-    @media (max-width: 639.98px) {
-      .m1-board .m1-library { display: none; }
-      .m1-board .m1-card { animation-duration: 10s; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .m1-board .m1-card { animation: none; }
-    }
+    /* M4: the cut vertical clip beside the Library searched by what was said. */
+    .m4-pair { display: grid; grid-template-columns: 34fr 62fr; gap: 4%; align-items: center; }
+    .m4-pair .m4-lib { border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); }
   </style>
 </head>
 <body class="bg-bg text-text-main font-body overflow-x-hidden">
@@ -564,7 +509,7 @@
       </h1>
 
       <p class="text-base sm:text-lg md:text-xl text-text-muted max-w-2xl mx-auto leading-relaxed mb-10 md:mb-12 px-2">
-        A desktop app. Bring one video, get the transcript, then ask for post drafts in your voice and clips.
+        A desktop app, with your own AI. Bring one video, get the transcript, then ask for post drafts in your voice and clips.
       </p>
 
       <!-- One CTA -->
@@ -596,58 +541,25 @@
         </div>
       </div>
 
-      <!-- Hero product visual: designed mock M1 (copy-deck-r6), the whole path in one app. Replaces hero.mp4 / hero.png. -->
+      <!-- Hero product visual (Amendment 6): real app grabs. The board (transcript connected to a cut 9:16 clip) and one post card from the Drafts page. -->
       <div class="hero-device-frame mt-12 sm:mt-20 max-w-5xl mx-auto animate-on-scroll relative w-full px-2 sm:px-0 z-30 perspective-[2000px]">
         <div class="absolute inset-0 bg-gradient-to-b from-primary/30 via-purple-600/10 to-transparent rounded-[32px] blur-2xl sm:blur-3xl opacity-50 scale-105"></div>
-        <div class="relative rounded-2xl sm:rounded-[32px] p-1.5 sm:p-2 bg-gradient-to-br from-white/10 via-white/5 to-white/0 border border-white/10 shadow-[0_30px_100px_rgba(0,0,0,0.8),0_0_40px_rgba(134,85,246,0.2)]" style="transform: rotateX(2deg) scale(0.98); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
-          <figure id="mock-m1" class="mock rounded-xl sm:rounded-[24px] overflow-hidden bg-[#09090b] relative w-full" role="img" aria-label="Illustration: the pieces of one workflow in EchoOS, side by side: a transcript, the chat, a post draft, a 9:16 clip and the library">
-            <div class="mock-screen rounded-none border-0" aria-hidden="true">
-              <div class="flex items-center gap-1.5 px-4 py-3 border-b border-white/5 bg-[#09090b]/80">
-                <span class="w-2.5 h-2.5 rounded-full bg-white/15"></span><span class="w-2.5 h-2.5 rounded-full bg-white/15"></span><span class="w-2.5 h-2.5 rounded-full bg-white/15"></span>
-              </div>
-              <div class="m1-board">
-                <div class="mock-card m1-card">
-                  <div class="mock-head"><i data-lucide="file-text"></i>Transcript</div>
-                  <div class="mock-line"><span class="mock-ts">0:12</span><span class="mock-bar"></span></div>
-                  <div class="mock-line"><span class="mock-ts">0:47</span><span class="mock-bar" style="max-width: 82%;"></span></div>
-                  <div class="mock-line"><span class="mock-ts">1:05</span><span class="mock-bar" style="max-width: 64%;"></span></div>
-                </div>
-                <div class="mock-card m1-card m1-d1">
-                  <div class="mock-head"><i data-lucide="message-square"></i>Chat</div>
-                  <div class="rounded-lg bg-white/[0.05] border border-white/5 p-2.5 w-[85%]">
-                    <div class="mock-bar"></div>
-                    <div class="mock-bar mt-2" style="width: 64%;"></div>
-                  </div>
-                  <div class="mt-2.5"><span class="mock-chip">1 source · 2,400 chars</span></div>
-                  <div class="mock-input mt-2"></div>
-                </div>
-                <div class="mock-card m1-card m1-d2">
-                  <div class="mock-head"><i data-lucide="pen-line"></i>Draft</div>
-                  <div class="mock-bar"></div>
-                  <div class="mock-bar mt-2" style="width: 90%;"></div>
-                  <div class="mock-bar mt-2" style="width: 58%;"></div>
-                  <div class="mt-3"><span class="mock-btn is-primary">Approve</span></div>
-                </div>
-                <div class="mock-card m1-card m1-d3">
-                  <div class="mock-head"><i data-lucide="scissors"></i>Clip</div>
-                  <div class="mock-thumb mx-auto" style="width: 52%; max-width: 64px;"></div>
-                  <div class="mock-check-row mt-2.5"><span class="mock-check"><i data-lucide="check"></i></span>Vertical 9:16</div>
-                </div>
-                <div class="mock-card m1-card m1-d4 m1-library">
-                  <div class="mock-head"><i data-lucide="folder"></i>Library</div>
-                  <div class="m1-lib-rows">
-                    <div><span class="m1-lib-dot"></span><span class="mock-bar flex-1"></span></div>
-                    <div><span class="m1-lib-dot"></span><span class="mock-bar flex-1"></span></div>
-                    <div><span class="m1-lib-dot"></span><span class="mock-bar flex-1"></span></div>
-                    <div><span class="m1-lib-dot"></span><span class="mock-bar flex-1"></span></div>
-                    <div><span class="m1-lib-dot"></span><span class="mock-bar flex-1"></span></div>
-                  </div>
-                </div>
-              </div>
+        <figure id="shot-hero" class="hero-grab">
+          <div class="relative rounded-2xl sm:rounded-[32px] p-1.5 sm:p-2 bg-gradient-to-br from-white/10 via-white/5 to-white/0 border border-white/10 shadow-[0_30px_100px_rgba(0,0,0,0.8),0_0_40px_rgba(134,85,246,0.2)]" style="transform: rotateX(2deg) scale(0.98); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
+            <div class="rounded-xl sm:rounded-[24px] overflow-hidden bg-[#1b1b1b] relative">
+              <picture>
+                <source type="image/avif" srcset="./assets/product/hero-board-720.avif 720w, ./assets/product/hero-board-1080.avif 1080w, ./assets/product/hero-board-1600.avif 1600w, ./assets/product/hero-board-2160.avif 2160w" sizes="(min-width: 1056px) 1008px, calc(100vw - 28px)" />
+                <source type="image/webp" srcset="./assets/product/hero-board-720.webp 720w, ./assets/product/hero-board-1080.webp 1080w, ./assets/product/hero-board-1600.webp 1600w, ./assets/product/hero-board-2160.webp 2160w" sizes="(min-width: 1056px) 1008px, calc(100vw - 28px)" />
+                <img src="./assets/product/hero-board-1080.jpg" srcset="./assets/product/hero-board-720.jpg 720w, ./assets/product/hero-board-1080.jpg 1080w, ./assets/product/hero-board-1600.jpg 1600w, ./assets/product/hero-board-2160.jpg 2160w" sizes="(min-width: 1056px) 1008px, calc(100vw - 28px)" width="2680" height="1800" alt="EchoOS screenshot: a board with a video&#39;s timestamped transcript connected to a clip cut to vertical 9:16, and the app&#39;s screens in the left rail" class="grab" decoding="async" />
+              </picture>
             </div>
-            <div class="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent z-20 pointer-events-none mix-blend-overlay"></div>
-          </figure>
-        </div>
+          </div>
+          <picture class="grab-layer">
+            <source type="image/avif" srcset="./assets/product/hero-draft-360.avif 360w, ./assets/product/hero-draft-704.avif 704w" sizes="(min-width: 1056px) 344px, (min-width: 640px) 34vw, 50vw" />
+            <source type="image/webp" srcset="./assets/product/hero-draft-360.webp 360w, ./assets/product/hero-draft-704.webp 704w" sizes="(min-width: 1056px) 344px, (min-width: 640px) 34vw, 50vw" />
+            <img src="./assets/product/hero-draft-360.png" srcset="./assets/product/hero-draft-360.png 360w, ./assets/product/hero-draft-704.png 704w" sizes="(min-width: 1056px) 344px, (min-width: 640px) 34vw, 50vw" width="704" height="240" alt="EchoOS screenshot: a LinkedIn post draft from that clip, on the Drafts page" class="grab" decoding="async" />
+          </picture>
+        </figure>
       </div>
     </div>
   </section>
@@ -700,7 +612,7 @@
   </section>
 
   <!-- ============================================================ -->
-  <!-- S4: WHAT IT DOES (3 stages of one workflow; designed mocks M2 to M4 lead) -->
+  <!-- S4: WHAT IT DOES (3 stages of one workflow; real app grabs lead, Amendment 6) -->
   <!-- ============================================================ -->
   <section id="features" class="py-24 px-4 relative overflow-hidden">
     <div class="absolute top-1/4 left-0 w-96 h-96 bg-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
@@ -714,35 +626,16 @@
 
       <div class="flex flex-col gap-20 md:gap-28">
 
-        <!-- Block 1: Bring a video (MOCK M2: board and transcript) -->
+        <!-- Block 1: Bring a video (grab: a source and its transcript on a board) -->
         <div class="feature-row grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center animate-on-scroll">
           <div class="md:col-span-7">
-            <figure id="mock-m2" class="mock shot-frame" role="img" aria-label="Illustration: a video link pasted into EchoOS, its timestamped transcript on a board, and the chat with that source attached">
-              <div class="mock-screen p-4 sm:p-6" aria-hidden="true">
-                <div class="mock-field"><i data-lucide="link"></i><span class="truncate">YouTube, Instagram, or TikTok URL</span></div>
-                <div class="grid grid-cols-[0.8fr_18px_1.2fr] items-center mt-5">
-                  <div class="mock-card">
-                    <div class="mock-wide mb-3"></div>
-                    <div class="flex items-center justify-between gap-2">
-                      <span class="font-body text-[11px] font-semibold text-text-main truncate">Your video</span>
-                      <span class="w-4 h-4 rounded-full bg-green-500/20 border border-green-400/40 flex items-center justify-center shrink-0"><i data-lucide="check" class="w-2.5 h-2.5 text-green-400"></i></span>
-                    </div>
-                  </div>
-                  <div class="mock-link"></div>
-                  <div class="mock-card">
-                    <div class="mock-head"><i data-lucide="file-text"></i>Transcript</div>
-                    <div class="mock-line"><span class="mock-ts">0:12</span><span class="mock-bar"></span></div>
-                    <div class="mock-line"><span class="mock-ts">0:47</span><span class="mock-bar" style="max-width: 86%;"></span></div>
-                    <div class="mock-line"><span class="mock-ts">1:05</span><span class="mock-bar" style="max-width: 66%;"></span></div>
-                  </div>
-                </div>
-                <div class="mock-card mt-4 ml-auto w-[86%] sm:w-[66%]">
-                  <div class="flex items-center gap-2.5">
-                    <i data-lucide="message-square" class="w-3.5 h-3.5 text-[#C084FC] shrink-0"></i>
-                    <span class="mock-chip">1 source · 2,400 chars</span>
-                  </div>
-                  <div class="mock-input mt-2.5"></div>
-                </div>
+            <figure id="shot-m2" class="shot-frame m-0">
+              <div class="grab-screen">
+                <picture>
+                  <source type="image/avif" srcset="./assets/product/m2-board-560.avif 560w, ./assets/product/m2-board-1096.avif 1096w" sizes="(min-width: 1184px) 640px, (min-width: 768px) 55vw, calc(100vw - 44px)" />
+                  <source type="image/webp" srcset="./assets/product/m2-board-560.webp 560w, ./assets/product/m2-board-1096.webp 1096w" sizes="(min-width: 1184px) 640px, (min-width: 768px) 55vw, calc(100vw - 44px)" />
+                  <img src="./assets/product/m2-board-560.jpg" srcset="./assets/product/m2-board-560.jpg 560w, ./assets/product/m2-board-1096.jpg 1096w" sizes="(min-width: 1184px) 640px, (min-width: 768px) 55vw, calc(100vw - 44px)" width="1096" height="972" alt="EchoOS screenshot: a board with an empty source (choose a video, or drop one or paste a YouTube, TikTok or Instagram link) above a video&#39;s timestamped transcript" class="grab" loading="lazy" decoding="async" />
+                </picture>
               </div>
             </figure>
           </div>
@@ -760,27 +653,16 @@
           </div>
         </div>
 
-        <!-- Block 2: Write (MOCK M3: Drafts page) -->
+        <!-- Block 2: Write (grab: the open draft on the Drafts page) -->
         <div class="feature-row grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center animate-on-scroll">
           <div class="md:col-span-7 md:order-2">
-            <figure id="mock-m3" class="mock shot-frame" role="img" aria-label="Illustration: the Drafts page in EchoOS with an open post draft, its Copy text and Approve controls, and an Ask for a change box">
-              <div class="mock-screen p-4 sm:p-6" aria-hidden="true">
-                <div class="font-heading text-base font-bold text-text-main mb-4">Drafts</div>
-                <div class="glass-panel-elevated p-5 sm:p-6">
-                  <div class="mock-bar"></div>
-                  <div class="mock-bar mt-2.5" style="width: 93%;"></div>
-                  <div class="mock-bar mt-2.5" style="width: 97%;"></div>
-                  <div class="mock-bar mt-2.5" style="width: 61%;"></div>
-                  <div class="flex flex-wrap items-center gap-2 mt-5">
-                    <span class="mock-btn is-primary"><i data-lucide="copy"></i>Copy text</span>
-                    <span class="mock-btn is-quiet"><i data-lucide="check"></i>Approve</span>
-                  </div>
-                  <div class="mt-5 pt-4 border-t border-white/5">
-                    <div class="text-[11px] font-semibold text-text-main mb-2">Ask for a change</div>
-                    <div class="mock-field"><span class="truncate">Shorter, with a question at the end</span></div>
-                    <div class="flex justify-end mt-2.5"><span class="mock-btn is-quiet"><i data-lucide="pen-line"></i>Rewrite</span></div>
-                  </div>
-                </div>
+            <figure id="shot-m3" class="shot-frame m-0">
+              <div class="grab-screen is-padded">
+                <picture>
+                  <source type="image/avif" srcset="./assets/product/m3-draft-640.avif 640w, ./assets/product/m3-draft-1280.avif 1280w" sizes="(min-width: 1184px) 640px, (min-width: 768px) 55vw, calc(100vw - 44px)" />
+                  <source type="image/webp" srcset="./assets/product/m3-draft-640.webp 640w, ./assets/product/m3-draft-1280.webp 1280w" sizes="(min-width: 1184px) 640px, (min-width: 768px) 55vw, calc(100vw - 44px)" />
+                  <img src="./assets/product/m3-draft-640.png" srcset="./assets/product/m3-draft-640.png 640w, ./assets/product/m3-draft-1280.png 1280w" sizes="(min-width: 1184px) 640px, (min-width: 768px) 55vw, calc(100vw - 44px)" width="1488" height="1064" alt="EchoOS screenshot: an open post draft with Copy text, Approve, an Ask for a change box and Rewrite" class="grab" loading="lazy" decoding="async" />
+                </picture>
               </div>
             </figure>
           </div>
@@ -798,42 +680,23 @@
           </div>
         </div>
 
-        <!-- Block 3: Cut and organize (MOCK M4: a cut clip and the Library) -->
+        <!-- Block 3: Cut and organize (grab: Library search and the cut 9:16 clip) -->
         <div class="feature-row grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center animate-on-scroll">
           <div class="md:col-span-7">
-            <figure id="mock-m4" class="mock shot-frame" role="img" aria-label="Illustration: a cut vertical 9:16 clip in EchoOS, then the library with a project, a topic tag and transcript search">
-              <div class="mock-screen p-4 sm:p-6 grid grid-cols-1 sm:grid-cols-[0.78fr_1.22fr] gap-4" aria-hidden="true">
-                <div class="mock-card flex sm:flex-col items-center sm:items-stretch gap-4 sm:gap-0">
-                  <div class="rounded-xl p-1 bg-gradient-to-br from-white/15 via-white/5 to-white/0 border border-white/10 w-20 sm:w-[62%] sm:mx-auto shrink-0">
-                    <div class="mock-thumb flex items-center justify-center">
-                      <span class="absolute top-1.5 left-1.5 w-5 h-5 rounded-md bg-black/40 flex items-center justify-center"><i data-lucide="scissors" class="w-3 h-3 text-white/80"></i></span>
-                      <span class="w-8 h-8 rounded-full bg-white/15 border border-white/25 flex items-center justify-center"><i data-lucide="play" class="w-3.5 h-3.5 text-white fill-white"></i></span>
-                    </div>
-                  </div>
-                  <div class="flex-1 min-w-0 sm:mt-4">
-                    <div class="flex items-center gap-2">
-                      <i data-lucide="smartphone" class="w-3.5 h-3.5 text-text-muted shrink-0"></i>
-                      <span class="mock-check-row"><span class="mock-check"><i data-lucide="check"></i></span>Vertical 9:16</span>
-                    </div>
-                    <div class="mt-3 text-[11px] font-semibold text-[#C084FC] whitespace-nowrap">Save to folder</div>
-                  </div>
-                </div>
-                <div class="mock-card">
-                  <div class="mock-head"><i data-lucide="folder"></i>Library</div>
-                  <div class="mock-field"><i data-lucide="search"></i><span class="truncate">Search every transcript</span></div>
-                  <div class="flex items-center gap-2 mt-4 px-1">
-                    <i data-lucide="folder" class="w-3.5 h-3.5 text-[#C084FC] shrink-0"></i>
-                    <span class="text-[11px] font-semibold text-text-main">Personal</span>
-                  </div>
-                  <div class="mt-3 flex flex-col gap-2.5">
-                    <div class="flex items-center gap-2.5 rounded-lg bg-white/[0.03] border border-white/5 p-2">
-                      <span class="mock-wide w-10 shrink-0"></span>
-                      <div class="flex-1 min-w-0"><div class="mock-bar" style="width: 80%;"></div><div class="mt-2"><span class="mock-chip">onboarding</span></div></div>
-                    </div>
-                    <div class="flex items-center gap-2.5 rounded-lg bg-white/[0.03] border border-white/5 p-2">
-                      <span class="mock-wide w-10 shrink-0"></span>
-                      <div class="flex-1 min-w-0"><div class="mock-bar" style="width: 65%;"></div><div class="mock-bar mt-2" style="width: 40%;"></div></div>
-                    </div>
+            <figure id="shot-m4" class="shot-frame m-0">
+              <div class="grab-screen is-padded">
+                <div class="m4-pair">
+                  <picture>
+                    <source type="image/avif" srcset="./assets/product/m4-clip-300.avif 300w, ./assets/product/m4-clip-600.avif 600w" sizes="(min-width: 1184px) 190px, (min-width: 768px) 16vw, 28vw" />
+                    <source type="image/webp" srcset="./assets/product/m4-clip-300.webp 300w, ./assets/product/m4-clip-600.webp 600w" sizes="(min-width: 1184px) 190px, (min-width: 768px) 16vw, 28vw" />
+                    <img src="./assets/product/m4-clip-300.png" srcset="./assets/product/m4-clip-300.png 300w, ./assets/product/m4-clip-600.png 600w" sizes="(min-width: 1184px) 190px, (min-width: 768px) 16vw, 28vw" width="1036" height="1640" alt="EchoOS screenshot: a clip cut to vertical 9:16, with Save to folder" class="grab" loading="lazy" decoding="async" />
+                  </picture>
+                  <div class="m4-lib">
+                    <picture>
+                      <source type="image/avif" srcset="./assets/product/m4-library-640.avif 640w, ./assets/product/m4-library-1280.avif 1280w" sizes="(min-width: 1184px) 360px, (min-width: 768px) 32vw, 56vw" />
+                      <source type="image/webp" srcset="./assets/product/m4-library-640.webp 640w, ./assets/product/m4-library-1280.webp 1280w" sizes="(min-width: 1184px) 360px, (min-width: 768px) 32vw, 56vw" />
+                      <img src="./assets/product/m4-library-640.jpg" srcset="./assets/product/m4-library-640.jpg 640w, ./assets/product/m4-library-1280.jpg 1280w" sizes="(min-width: 1184px) 360px, (min-width: 768px) 32vw, 56vw" width="1556" height="848" alt="EchoOS screenshot: the Library searched for the word recap, with the matching line from each video and its project" class="grab" loading="lazy" decoding="async" />
+                    </picture>
                   </div>
                 </div>
               </div>
@@ -1320,7 +1183,7 @@
                 <div class="mb-10"><span class="result-label">The good news</span><p class="text-text-main text-base leading-relaxed">EchoOS starts from you. Drafts come from your voice profile and what you said on camera. You're the last edit.</p></div>
               </div>
               <div data-result-variant="C" class="hidden">
-                <div class="mb-10"><span class="result-label">The bad news</span><p class="text-text-muted text-base leading-relaxed">I build around one rule: each piece of content has one job, to start a conversation with the right person. When each post takes hours, there's no time left to give it one.</p></div>
+                <div class="mb-10"><span class="result-label">The bad news</span><p class="text-text-muted text-base leading-relaxed">I build around one rule: each piece of content has one job, to start a conversation with the right person. When each post takes hours, there's no time left to give it a job.</p></div>
                 <div class="mb-10"><span class="result-label">The good news</span><p class="text-text-main text-base leading-relaxed">EchoOS can't pick the job, and no tool can promise clients. It takes on the slow part, so your time goes to the job.</p></div>
               </div>
               <div data-result-variant="D" class="hidden">
