@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="A desktop app that takes one video to a transcript, post drafts in your voice and clips, using your own AI. Join the waitlist." />
+  <meta name="description" content="A desktop app that turns one video into a transcript, then post drafts in your voice and clips when you ask, using your own AI. Join the waitlist." />
   <meta property="og:title" content="Write posts, cut clips and keep it all in one app" />
   <meta property="og:description" content="A desktop app for people who sell a service and make their own content. Transcripts, post drafts in your voice and clips." />
   <meta property="og:image" content="https://tryechoos.com/og-image.jpg" />
@@ -485,6 +485,12 @@
     .m1-board .m1-d2 { animation-delay: 5s; }
     .m1-board .m1-d3 { animation-delay: 7.5s; }
     .m1-board .m1-d4 { animation-delay: 10s; }
+    /* #6 (Amendment 5): phones show four cards in a 2x2 grid; the Library card returns at 640px and up.
+       The highlight cycle shortens to 10s so the four visible cards keep an even beat. */
+    @media (max-width: 639.98px) {
+      .m1-board .m1-library { display: none; }
+      .m1-board .m1-card { animation-duration: 10s; }
+    }
     @media (prefers-reduced-motion: reduce) {
       .m1-board .m1-card { animation: none; }
     }
@@ -509,7 +515,7 @@
       <div class="hidden lg:flex items-center gap-4">
         <a href="#quiz" data-open-quiz
           class="bg-primary text-white px-5 py-2 rounded-glass font-medium hover:bg-primary-hover transition-colors duration-200 cursor-pointer text-sm">
-          <span data-cta-label>Join the waitlist</span>
+          <span>Join the waitlist</span>
         </a>
       </div>
 
@@ -525,7 +531,7 @@
         <a href="#faq" class="text-text-muted hover:text-text-main text-sm font-medium transition-colors duration-200 py-2 border-b border-white/5">FAQ</a>
          <a href="#quiz" data-open-quiz
            class="bg-primary text-white px-5 py-2.5 rounded-glass font-medium hover:bg-primary-hover transition-colors duration-200 text-sm text-center mt-2">
-           <span data-cta-label>Join the waitlist</span>
+           <span>Join the waitlist</span>
          </a>
       </div>
     </div>
@@ -548,34 +554,34 @@
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-primary shadow-[0_0_8px_rgba(134,85,246,0.9)]"></span>
         </span>
-        <span class="relative text-left leading-snug">Early access. For people who sell a service and make their own content.</span>
+        <span class="relative text-left leading-snug">Early access for people who sell a service.</span>
         <i data-lucide="chevron-right" class="w-3 h-3 relative sm:group-hover:translate-x-1 transition-transform shrink-0"></i>
       </a>
 
       <h1 class="font-heading text-4xl sm:text-6xl md:text-[3.25rem] lg:text-[4.5rem] font-extrabold text-text-main leading-[1.1] sm:leading-[1.05] tracking-tight mb-6">
-        <span data-copy="hero-line1">Write posts, cut clips,</span><br class="hidden sm:block" />
-        <span data-copy="hero-line2" class="text-transparent bg-clip-text bg-gradient-to-r from-[#8655F6] via-[#C084FC] to-[#8655F6] bg-[length:200%_auto] drop-shadow-[0_0_20px_rgba(134,85,246,0.3)]">and keep it all in one app.</span>
+        <span>Write posts, cut clips,</span><br class="hidden sm:block" />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#8655F6] via-[#C084FC] to-[#8655F6] bg-[length:200%_auto] drop-shadow-[0_0_20px_rgba(134,85,246,0.3)]">and keep it all in one app.</span>
       </h1>
 
       <p class="text-base sm:text-lg md:text-xl text-text-muted max-w-2xl mx-auto leading-relaxed mb-10 md:mb-12 px-2">
-        EchoOS is a desktop app. Bring a video and get the transcript, post drafts in your voice and clips, using your own AI.
+        A desktop app. Bring one video, get the transcript, then ask for post drafts in your voice and clips.
       </p>
 
       <!-- One CTA -->
       <div class="flex flex-col sm:flex-row items-center w-full sm:w-auto gap-4 justify-center mb-6 z-20 px-4 sm:px-0">
         <a href="#quiz" data-open-quiz
           class="btn-magnetic w-full sm:w-auto text-center bg-primary text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-primary-hover shadow-[0_0_30px_rgba(134,85,246,0.4)] transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 group">
-          <span data-cta-label>Join the waitlist</span>
+          <span>Join the waitlist</span>
           <i data-lucide="arrow-right" class="w-4 h-4 sm:group-hover:translate-x-1 transition-transform"></i>
         </a>
       </div>
 
-      <p class="text-[11px] sm:text-xs text-text-muted/60 mb-16 md:mb-20 max-w-md mx-auto px-2 leading-relaxed">Three questions, then your result. No payment, nothing to download.</p>
+      <p class="text-[11px] sm:text-xs text-text-muted/60 mb-16 md:mb-20 max-w-md mx-auto px-2 leading-relaxed">Three questions, then your result. No payment.</p>
 
       <!-- Integrations Logo Cloud -->
       <div class="w-full flex flex-col items-center animate-on-scroll" style="transition-delay: 0.1s;">
         <div class="w-32 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent mb-8"></div>
-        <p class="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] font-bold text-text-muted/60 mb-6 text-center">Works with the links, files and AI you already use</p>
+        <p class="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] font-bold text-text-muted/60 mb-6 text-center">Works with</p>
 
         <div class="w-full overflow-hidden relative max-w-5xl [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
           <div class="flex w-full overflow-x-auto sm:flex-wrap justify-start sm:justify-center items-center gap-x-8 sm:gap-x-10 gap-y-6 pb-6 pt-2 px-8 sm:pb-0 hide-scrollbar snap-x snap-mandatory">
@@ -685,9 +691,9 @@
     <div class="max-w-4xl mx-auto text-center">
       <span class="text-primary text-sm font-semibold uppercase tracking-wider">Why it stalls</span>
       <h2 class="font-heading text-4xl md:text-5xl font-bold text-text-main mt-4 mb-10">Recording it was <span class="text-purple-gradient">the easy part.</span></h2>
-      <div class="flex flex-col gap-6 text-text-muted text-lg leading-relaxed max-w-2xl mx-auto animate-on-scroll">
-        <p>You serve clients all week and make content with whatever time is left. <strong class="text-text-main font-semibold">So the videos sit in a folder.</strong></p>
-        <p>Getting it transcribed, writing the post, cutting the clip, finding it again later. Each one is its own job, and together they wait for a free afternoon that never comes.</p>
+      <div class="flex flex-col gap-6 text-text-muted text-lg leading-relaxed max-w-2xl mx-auto animate-on-scroll [text-wrap:pretty]">
+        <p>You serve clients all week. <strong class="text-text-main font-semibold">So the videos sit in a folder.</strong></p>
+        <p>Transcribe it, write the post, cut the clip, find it later. None of it fits in a client week.</p>
         <p>EchoOS puts all of it in one app. <strong class="text-text-main font-semibold">You stay the source and the last edit.</strong></p>
       </div>
     </div>
@@ -746,7 +752,7 @@
               <span class="text-sm text-purple-400 font-semibold tracking-wide uppercase">Bring a video</span>
             </div>
             <h3 class="font-heading text-3xl md:text-4xl font-bold text-text-main mb-4">Paste a link. Get the transcript.</h3>
-            <p class="text-text-muted text-base md:text-lg leading-relaxed mb-6">Paste a YouTube, TikTok or Instagram link, or drop in a video file. A timestamped transcript lands on a board.</p>
+            <p class="text-text-muted text-base md:text-lg leading-relaxed mb-6">Or drop in a video file. Every line comes back timestamped.</p>
             <div class="inline-flex px-4 py-3 bg-white/5 rounded-lg border border-white/10 items-center gap-3">
               <i data-lucide="message-square" class="w-4 h-4 text-primary"></i>
               <span class="text-sm font-semibold text-text-main">The chat works from what you said.</span>
@@ -784,7 +790,7 @@
               <span class="text-sm text-orange-400 font-semibold tracking-wide uppercase">Write</span>
             </div>
             <h3 class="font-heading text-3xl md:text-4xl font-bold text-text-main mb-4">Posts in your voice.</h3>
-            <p class="text-text-muted text-base md:text-lg leading-relaxed mb-6">Build a voice profile, and keep more than one. Ask for a post and it drafts one from what you said. Revise it until it's right, then approve it.</p>
+            <p class="text-text-muted text-base md:text-lg leading-relaxed mb-6">Set up your voice once. Ask for a post and revise it until it's right.</p>
             <div class="inline-flex px-4 py-3 bg-white/5 rounded-lg border border-white/10 items-center gap-3">
               <i data-lucide="copy" class="w-4 h-4 text-orange-400"></i>
               <span class="text-sm font-semibold text-text-main">Copy it, then post it yourself.</span>
@@ -839,7 +845,7 @@
               <span class="text-sm text-blue-400 font-semibold tracking-wide uppercase">Cut and organize</span>
             </div>
             <h3 class="font-heading text-3xl md:text-4xl font-bold text-text-main mb-4">Cut it, then find it later.</h3>
-            <p class="text-text-muted text-base md:text-lg leading-relaxed mb-6">Ask in the chat for clips and pick one of up to five suggestions. EchoOS cuts it into a playable MP4, vertical 9:16 included, and files it in your library. For anything past a clean cut, keep the editor you use now.</p>
+            <p class="text-text-muted text-base md:text-lg leading-relaxed mb-6">Ask the chat for clips and pick one of up to five. You get an MP4, vertical 9:16 included. For more than a clean cut, keep your editor.</p>
             <div class="inline-flex px-4 py-3 bg-white/5 rounded-lg border border-white/10 items-center gap-3">
               <i data-lucide="search" class="w-4 h-4 text-blue-400"></i>
               <span class="text-sm font-semibold text-text-main">Search your library by what was said.</span>
@@ -871,7 +877,7 @@
           <div class="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-16 w-full group">
             <div class="md:w-5/12 text-left md:text-right order-2 md:order-1 ml-16 md:ml-0">
               <h3 class="font-heading text-2xl font-bold text-text-main mb-2">1. Set up once</h3>
-              <p class="text-text-muted text-base leading-relaxed">Connect your own AI, set up your voice, then take the tour. Skip any step and come back later.</p>
+              <p class="text-text-muted text-base leading-relaxed">Connect your own AI and set up your voice. Skip either and come back later.</p>
             </div>
             <div class="w-12 h-12 rounded-full bg-surface border-4 border-bg flex items-center justify-center shrink-0 order-1 md:order-2 shadow-[0_0_15px_rgba(134,85,246,0.6)] relative z-20">
               <i data-lucide="settings" class="w-5 h-5 text-primary"></i>
@@ -887,7 +893,7 @@
             </div>
             <div class="md:w-5/12 text-left order-2 md:order-3 ml-16 md:ml-0">
               <h3 class="font-heading text-2xl font-bold text-text-main mb-2">2. Bring a video</h3>
-              <p class="text-text-muted text-base leading-relaxed">Paste a link, drop in a file, or add a folder so new videos show up on their own.</p>
+              <p class="text-text-muted text-base leading-relaxed">Paste a YouTube, TikTok or Instagram link, or drop in a file.</p>
             </div>
           </div>
 
@@ -895,7 +901,7 @@
           <div class="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-16 w-full group">
             <div class="md:w-5/12 text-left md:text-right order-2 md:order-1 ml-16 md:ml-0">
               <h3 class="font-heading text-2xl font-bold text-text-main mb-2">3. Ask, then approve</h3>
-              <p class="text-text-muted text-base leading-relaxed">Ask for a post and clips in the same chat. Approve what you'll use.</p>
+              <p class="text-text-muted text-base leading-relaxed">Ask for posts and clips in one chat. Approve what you'll use.</p>
             </div>
             <div class="w-12 h-12 rounded-full bg-surface border-4 border-bg flex items-center justify-center shrink-0 order-1 md:order-2 shadow-[0_0_15px_rgba(134,85,246,0.6)] relative z-20">
               <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
@@ -909,7 +915,7 @@
       <div class="flex justify-center mt-16 px-4 sm:px-0">
         <a href="#quiz" data-open-quiz
           class="btn-magnetic w-full sm:w-auto text-center bg-primary text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-primary-hover shadow-[0_0_30px_rgba(134,85,246,0.4)] transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 group">
-          <span data-cta-label>Join the waitlist</span>
+          <span>Join the waitlist</span>
           <i data-lucide="arrow-right" class="w-4 h-4 sm:group-hover:translate-x-1 transition-transform"></i>
         </a>
       </div>
@@ -926,8 +932,8 @@
       <div class="text-center mb-16 relative">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[120px] md:text-[200px] font-black text-white/5 blur-sm pointer-events-none whitespace-nowrap" aria-hidden="true">PROOF</div>
         <span class="text-primary text-sm font-semibold uppercase tracking-wider relative z-10">Client work</span>
-        <h2 class="font-heading text-4xl md:text-5xl font-bold text-text-main mt-4 relative z-10">What people say after working with Joshua</h2>
-        <p class="text-text-muted mt-3 text-sm max-w-xl mx-auto relative z-10">EchoOS is new, so there are no user reviews yet. These are about his client work.</p>
+        <h2 class="font-heading text-4xl md:text-5xl font-bold text-text-main mt-4 relative z-10">In their <span class="text-purple-gradient">own words.</span></h2>
+        <p class="text-text-muted mt-3 text-sm max-w-xl mx-auto relative z-10">No EchoOS user reviews yet. These are from Joshua's client work.</p>
       </div>
 
       <div class="flex flex-col gap-8 relative z-10 max-w-5xl mx-auto">
@@ -979,7 +985,7 @@
 
       <div class="text-center mb-12">
         <span class="text-primary text-sm font-semibold uppercase tracking-wider">The builder</span>
-        <h2 class="font-heading text-4xl md:text-5xl font-bold text-text-main mt-4">The person building it spent<br class="hidden md:block" /> <span class="text-purple-gradient">two years inside TikTok.</span></h2>
+        <h2 class="font-heading text-4xl md:text-5xl font-bold text-text-main mt-4">Joshua spent<br class="hidden md:block" /> <span class="text-purple-gradient">two years inside TikTok.</span></h2>
       </div>
 
       <div class="glass-panel-elevated p-8 md:p-12 relative overflow-hidden animate-on-scroll group" style="box-shadow: inset 0 0 0 1px rgba(134,85,246,0.1), 0 20px 40px -10px rgba(0,0,0,0.5);">
@@ -1081,11 +1087,11 @@
 
         <div class="glass-panel overflow-hidden animate-on-scroll">
           <button type="button" id="faq-q1" aria-expanded="false" aria-controls="faq-a1" class="faq-question w-full text-left flex items-center justify-between p-6 cursor-pointer hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary transition-colors duration-200">
-            <span class="font-heading font-semibold text-text-main pr-4">Isn't this just a wrapper for ChatGPT or Claude?</span>
+            <span class="font-heading font-semibold text-text-main pr-4">Is this just a ChatGPT wrapper?</span>
             <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron"></i>
           </button>
           <div id="faq-a1" role="region" aria-labelledby="faq-q1" class="faq-answer px-6 text-text-muted leading-relaxed text-sm">
-            Partly, yes. EchoOS runs on the AI you bring. What it adds is the work around the chat: timestamped transcripts, voice profiles, a drafts page, clip cutting and a video library.
+            Partly. It runs on your AI and adds the work around the chat: transcripts, voice profiles, drafts, clips and a library.
           </div>
         </div>
 
@@ -1095,7 +1101,7 @@
             <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron"></i>
           </button>
           <div id="faq-a2" role="region" aria-labelledby="faq-q2" class="faq-answer px-6 text-text-muted leading-relaxed text-sm">
-            A Windows or Linux computer and your own AI: an OpenRouter key, your ChatGPT plan through Codex sign-in, or your own signed-in Claude Code. Setup walks you through it. If you like the terminal, there's a command line for clips too.
+            A Windows or Linux computer and your own AI: an OpenRouter key, your ChatGPT plan or your Claude Code.
           </div>
         </div>
 
@@ -1105,17 +1111,17 @@
             <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron"></i>
           </button>
           <div id="faq-a3" role="region" aria-labelledby="faq-q3" class="faq-answer px-6 text-text-muted leading-relaxed text-sm">
-            The videos you drop in stay where they are. EchoOS doesn't copy them. Videos from a link are saved to EchoOS's own folder. Transcription can run on your computer, or through OpenAI if you pick it, and then the audio goes to OpenAI. Your chats, drafts and the transcripts you work with go to the AI you connect.
+            Files you drop in stay put. EchoOS doesn't copy them. Videos from a link save to its own folder. Transcription runs on your computer, or on OpenAI if you pick it, which then gets the audio. Your chats, drafts and the transcripts you use go to your AI.
           </div>
         </div>
 
         <div class="glass-panel overflow-hidden animate-on-scroll" style="transition-delay: 0.15s;">
           <button type="button" id="faq-q4" aria-expanded="false" aria-controls="faq-a4" class="faq-question w-full text-left flex items-center justify-between p-6 cursor-pointer hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary transition-colors duration-200">
-            <span class="font-heading font-semibold text-text-main pr-4" data-copy="faq4-q">What happens after I join?</span>
+            <span class="font-heading font-semibold text-text-main pr-4">What happens after I join?</span>
             <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron"></i>
           </button>
           <div id="faq-a4" role="region" aria-labelledby="faq-q4" class="faq-answer px-6 text-text-muted leading-relaxed text-sm">
-            You see your result right away, and you're on the waitlist. I'll email you about early access at the address you gave. There's no price yet and nothing to download.
+            You see your result, and you're on the waitlist. I'll email you about early access at the address you gave. No price yet, nothing to download.
           </div>
         </div>
 
@@ -1125,7 +1131,7 @@
             <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron"></i>
           </button>
           <div id="faq-a5" role="region" aria-labelledby="faq-q5" class="faq-answer px-6 text-text-muted leading-relaxed text-sm">
-            No tool can promise that, and I won't. EchoOS helps you get posts out of what you already recorded. What those posts say, and who they reach, is still on you.
+            No tool can promise that, and I won't. EchoOS helps you get posts out of what you already recorded. What they say, and who they reach, is on you.
           </div>
         </div>
 
@@ -1140,13 +1146,13 @@
     <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse at center, rgba(134,85,246,0.12) 0%, transparent 70%);"></div>
 
     <div class="relative z-10 max-w-2xl mx-auto">
-      <h2 class="font-heading text-4xl sm:text-5xl font-bold text-text-main mb-4" data-copy="final-h2">Your next posts are<br class="hidden sm:block" /> <span class="text-purple-gradient">already recorded.</span></h2>
-      <p class="text-text-muted text-lg mb-10 max-w-lg mx-auto leading-relaxed" data-copy="final-sub">Take three questions and see what's stalling your content. Then you're on the waitlist.</p>
+      <h2 class="font-heading text-4xl sm:text-5xl font-bold text-text-main mb-4">Your next posts are<br class="hidden sm:block" /> <span class="text-purple-gradient">already recorded.</span></h2>
+      <p class="text-text-muted text-lg mb-10 max-w-lg mx-auto leading-relaxed">Answer three questions and see what's stalling your content.</p>
 
       <div class="flex flex-wrap gap-4 justify-center">
         <a href="#quiz" data-open-quiz
           class="bg-primary text-white px-10 py-4 rounded-glass font-semibold text-lg hover:bg-primary-hover transition-colors duration-200 cursor-pointer">
-          <span data-cta-label>Join the waitlist</span>
+          <span>Join the waitlist</span>
         </a>
       </div>
 
@@ -1161,7 +1167,7 @@
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="text-center md:text-left">
         <p class="font-heading font-bold text-lg text-text-main">EchoOS</p>
-        <p class="text-text-muted text-sm mt-1">Transcripts, posts in your voice and clips, in one app.</p>
+        <p class="text-text-muted text-sm mt-1">Posts and clips from your videos, in one app.</p>
       </div>
       <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
         <a href="#features" class="text-text-muted hover:text-text-main text-sm transition-colors duration-200">What It Does</a>
@@ -1217,8 +1223,8 @@
             <section class="quiz-step" data-step="q1">
               <h2 class="font-heading text-2xl sm:text-3xl font-bold text-text-main mb-6">I already have clients. With my content, I want to...</h2>
               <div class="flex flex-col gap-3">
-                <button type="button" class="quiz-option" data-q="q1" data-echo="get more out of the videos you already make">Get more out of the videos I already make<span class="quiz-dot"></span></button>
-                <button type="button" class="quiz-option" data-q="q1" data-echo="have the right people reach out to work with you">Have the right people reach out to work with me<span class="quiz-dot"></span></button>
+                <button type="button" class="quiz-option" data-q="q1" data-echo="get more from videos you already make">Get more from videos I already make<span class="quiz-dot"></span></button>
+                <button type="button" class="quiz-option" data-q="q1" data-echo="get the right people reaching out">Get the right people reaching out<span class="quiz-dot"></span></button>
                 <button type="button" class="quiz-option" data-q="q1" data-echo="show up every week without losing client hours">Show up every week without losing client hours<span class="quiz-dot"></span></button>
                 <button type="button" class="quiz-option" data-q="q1" data-echo="post things that sound like you">Post things that sound like me<span class="quiz-dot"></span></button>
               </div>
@@ -1227,13 +1233,13 @@
             <!-- Q2: admission -->
             <section class="quiz-step" data-step="q2">
               <h2 class="font-heading text-2xl sm:text-3xl font-bold text-text-main mb-2">Right now, I'm...</h2>
-              <p class="text-text-muted text-sm mb-6">Pick the one that's most true.</p>
+              <p class="text-text-muted text-sm mb-6">Pick the closest.</p>
               <div class="flex flex-col gap-3">
                 <button type="button" class="quiz-option" data-q="q2" data-echo="you're sitting on videos you never used">Sitting on videos I never used<span class="quiz-dot"></span></button>
-                <button type="button" class="quiz-option" data-q="q2" data-echo="you're spending hours turning one video into a post or two">Spending hours turning one video into a post or two<span class="quiz-dot"></span></button>
+                <button type="button" class="quiz-option" data-q="q2" data-echo="you're losing hours turning videos into posts">Losing hours turning videos into posts<span class="quiz-dot"></span></button>
                 <button type="button" class="quiz-option" data-q="q2" data-echo="you're posting, but it doesn't sound like you">Posting, but it doesn't sound like me<span class="quiz-dot"></span></button>
-                <button type="button" class="quiz-option" data-q="q2" data-echo="you're posting, but it never turns into conversations">Posting, but it never turns into conversations<span class="quiz-dot"></span></button>
-                <button type="button" class="quiz-option" data-q="q2" data-echo="you're barely recording, because you won't have time to use it">Barely recording, because I won't have time to use it<span class="quiz-dot"></span></button>
+                <button type="button" class="quiz-option" data-q="q2" data-echo="you're posting, but nobody reaches out">Posting, but nobody reaches out<span class="quiz-dot"></span></button>
+                <button type="button" class="quiz-option" data-q="q2" data-echo="you're barely recording, because you'd never get to it">Barely recording, because I'd never get to it<span class="quiz-dot"></span></button>
               </div>
               <button type="button" data-quiz-back="q1" class="mt-6 text-sm text-text-muted hover:text-text-main inline-flex items-center gap-1"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
             </section>
@@ -1243,10 +1249,10 @@
               <h2 class="font-heading text-2xl sm:text-3xl font-bold text-text-main mb-2">What I'd like instead is...</h2>
               <p class="text-text-muted text-sm mb-6">This picks your result.</p>
               <div class="flex flex-col gap-3">
-                <button type="button" class="quiz-option" data-q="q3" data-result="A">One place to take a video all the way to the post<span class="quiz-dot"></span></button>
-                <button type="button" class="quiz-option" data-q="q3" data-result="B">Posts that sound like me, built from what I said<span class="quiz-dot"></span></button>
-                <button type="button" class="quiz-option" data-q="q3" data-result="C">Content that starts conversations with people who could hire me<span class="quiz-dot"></span></button>
-                <button type="button" class="quiz-option" data-q="q3" data-result="D">A routine I can keep in a busy client week<span class="quiz-dot"></span></button>
+                <button type="button" class="quiz-option" data-q="q3" data-result="A">One app from video to post<span class="quiz-dot"></span></button>
+                <button type="button" class="quiz-option" data-q="q3" data-result="B">Posts in my own voice<span class="quiz-dot"></span></button>
+                <button type="button" class="quiz-option" data-q="q3" data-result="C">Content that starts client conversations<span class="quiz-dot"></span></button>
+                <button type="button" class="quiz-option" data-q="q3" data-result="D">A routine that survives a busy week<span class="quiz-dot"></span></button>
               </div>
               <button type="button" data-quiz-back="q2" class="mt-6 text-sm text-text-muted hover:text-text-main inline-flex items-center gap-1"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
             </section>
@@ -1300,29 +1306,29 @@
                 <img src="./assets/joshua-headshot.jpg" alt="Joshua Valentin" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border-2 border-primary/40 shadow-[0_0_15px_rgba(134,85,246,0.3)] shrink-0" />
                 <div>
                   <span class="result-label">You're not behind</span>
-                  <p class="text-text-main text-base leading-relaxed mb-3">You told me you want to <span id="echo-q1">get more out of the videos you already make</span>, and right now <span id="echo-q2">you're sitting on videos you never used</span>.</p>
-                  <p class="text-text-muted text-base leading-relaxed">That's common when you serve clients and make your own content. You're doing two jobs, and the second one gets whatever time is left.</p>
+                  <p class="text-text-main text-base leading-relaxed mb-3">You told me you want to <span id="echo-q1">get more from videos you already make</span>, and right now <span id="echo-q2">you're sitting on videos you never used</span>.</p>
+                  <p class="text-text-muted text-base leading-relaxed">Clients come first, so content gets what's left.</p>
                 </div>
               </div>
 
               <div data-result-variant="A" class="hidden">
-                <div class="mb-10"><span class="result-label">The bad news</span><p class="text-text-muted text-base leading-relaxed">The slow part starts after you hit stop. Transcribe it, write the post, cut the clip, file it. Each step waits for a free afternoon, and in a client week the video stays in the folder.</p></div>
-                <div class="mb-10"><span class="result-label">The good news</span><p class="text-text-main text-base leading-relaxed">EchoOS keeps that whole path in one app. Paste a link or drop in a file, and you get a timestamped transcript. Ask for a post and it drafts one in your voice. Ask for clips, pick one of up to five, and it's cut to an MP4, vertical included.</p></div>
+                <div class="mb-10"><span class="result-label">The bad news</span><p class="text-text-muted text-base leading-relaxed">The slow part starts after you hit stop: transcribe it, write the post, cut the clip, file it. So the video waits.</p></div>
+                <div class="mb-10"><span class="result-label">The good news</span><p class="text-text-main text-base leading-relaxed">EchoOS keeps that whole path in one app. Bring a video and get the transcript. Ask for a post draft in your voice and clips, vertical included.</p></div>
               </div>
               <div data-result-variant="B" class="hidden">
-                <div class="mb-10"><span class="result-label">The bad news</span><p class="text-text-muted text-base leading-relaxed">AI writing from a blank prompt has nothing of yours to go on, so it reaches for the most common way to say it. Editing that back into your voice can take as long as writing it yourself.</p></div>
-                <div class="mb-10"><span class="result-label">The good news</span><p class="text-text-main text-base leading-relaxed">EchoOS starts from you. You build a voice profile in setup, and drafts start from the transcript of what you said on camera. It stays a draft until you say it's done. You're the last edit.</p></div>
+                <div class="mb-10"><span class="result-label">The bad news</span><p class="text-text-muted text-base leading-relaxed">AI with a blank prompt has nothing of yours to go on, so it sounds like everyone. Fixing that can take as long as writing it yourself.</p></div>
+                <div class="mb-10"><span class="result-label">The good news</span><p class="text-text-main text-base leading-relaxed">EchoOS starts from you. Drafts come from your voice profile and what you said on camera. You're the last edit.</p></div>
               </div>
               <div data-result-variant="C" class="hidden">
-                <div class="mb-10"><span class="result-label">The bad news</span><p class="text-text-muted text-base leading-relaxed">I build around one rule: each piece of content has one job, to start a conversation with the right person. A post written for everyone gets a like and a scroll. And when one post takes hours, there's no time left to decide its job.</p></div>
-                <div class="mb-10"><span class="result-label">The good news</span><p class="text-text-main text-base leading-relaxed">EchoOS can't pick the job for you, and no tool can promise you clients. It takes the slow part off your plate, so your time goes to what the post says and who it's for.</p></div>
+                <div class="mb-10"><span class="result-label">The bad news</span><p class="text-text-muted text-base leading-relaxed">I build around one rule: each piece of content has one job, to start a conversation with the right person. When each post takes hours, there's no time left to give it one.</p></div>
+                <div class="mb-10"><span class="result-label">The good news</span><p class="text-text-main text-base leading-relaxed">EchoOS can't pick the job, and no tool can promise clients. It takes on the slow part, so your time goes to the job.</p></div>
               </div>
               <div data-result-variant="D" class="hidden">
-                <div class="mb-10"><span class="result-label">The bad news</span><p class="text-text-muted text-base leading-relaxed">A routine with a handful of manual steps breaks the first busy week. Every step that needs you is a place it stops, and starting again feels like starting from zero.</p></div>
-                <div class="mb-10"><span class="result-label">The good news</span><p class="text-text-main text-base leading-relaxed">EchoOS cuts the steps down. Add a folder and new videos show up on their own, transcribed if you want. Search your transcripts by what was said. Ask for clips or a post in one chat. The post comes back as a draft you can revise.</p></div>
+                <div class="mb-10"><span class="result-label">The bad news</span><p class="text-text-muted text-base leading-relaxed">A routine full of manual steps breaks the first busy week. Every step that needs you is a place it stops.</p></div>
+                <div class="mb-10"><span class="result-label">The good news</span><p class="text-text-main text-base leading-relaxed">EchoOS cuts the steps down. Add a folder and new videos show up on their own. Then ask for clips or a post draft in one chat.</p></div>
               </div>
 
-              <!-- Waitlist close (copy-deck-r7 section 6). Shows only after submitLead() reports the lead saved;
+              <!-- Waitlist close (copy-deck-r8 section 3, waitlist confirmation). Shows only after submitLead() reports the lead saved;
                    otherwise the save-failed state shows instead. No button on the confirmation: the contact gate already did the joining. -->
               <div id="waitlist-close" class="hidden stack-highlight p-6 sm:p-8" data-close="saved">
                 <div class="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mb-6 border border-primary/30 shadow-[0_0_20px_rgba(134,85,246,0.3)]">
@@ -1330,7 +1336,7 @@
                 </div>
                 <h3 class="font-heading text-2xl sm:text-3xl font-bold text-text-main mb-3">You're on the waitlist.</h3>
                 <p class="text-text-main text-base leading-relaxed mb-2">I'll email you about early access at the address you gave.</p>
-                <p class="text-text-muted text-base leading-relaxed mb-8">There's no price yet and nothing to download.</p>
+                <p class="text-text-muted text-base leading-relaxed mb-8">No price yet, nothing to download.</p>
                 <div class="border-t border-white/5 pt-6">
                   <span class="result-label">While you wait</span>
                   <p class="text-text-muted text-base leading-relaxed mb-4">Social/Money is where I write about attention, demand, psychology, and the systems underneath it.</p>
