@@ -42,7 +42,7 @@
     const head = document.createElement('div');
     head.style.cssText = 'display:flex;align-items:center;justify-content:space-between;gap:12px';
     const label = document.createElement('span');
-    label.textContent = 'PREVIEW 5 ONLY';
+    label.textContent = 'PREVIEW 6 ONLY';
     label.style.cssText = 'color:#C084FC;font:700 10px Manrope,sans-serif;letter-spacing:.12em';
     const toggle = button('hide', () => {
       const hidden = body.style.display === 'none';
