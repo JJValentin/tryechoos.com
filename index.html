@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="A desktop app that takes one video to a transcript, post drafts in your voice and clips, using your own AI. Book a 15-minute demo." />
+  <meta name="description" content="A desktop app that takes one video to a transcript, post drafts in your voice and clips, using your own AI. Join the waitlist." />
   <meta property="og:title" content="Write posts, cut clips and keep it all in one app" />
   <meta property="og:description" content="A desktop app for people who sell a service and make their own content. Transcripts, post drafts in your voice and clips." />
   <meta property="og:image" content="https://tryechoos.com/og-image.jpg" />
@@ -369,7 +369,7 @@
       object-fit: contain;
     }
     /* ========================================= */
-    /* Quiz funnel (lead magnet -> book a call)  */
+    /* Quiz funnel (lead magnet -> waitlist)     */
     /* ========================================= */
     .quiz-overlay {
       position: fixed; inset: 0; z-index: 70;
@@ -509,7 +509,7 @@
       <div class="hidden lg:flex items-center gap-4">
         <a href="#quiz" data-open-quiz
           class="bg-primary text-white px-5 py-2 rounded-glass font-medium hover:bg-primary-hover transition-colors duration-200 cursor-pointer text-sm">
-          <span data-cta-label>Book a 15-minute demo</span>
+          <span data-cta-label>Join the waitlist</span>
         </a>
       </div>
 
@@ -525,7 +525,7 @@
         <a href="#faq" class="text-text-muted hover:text-text-main text-sm font-medium transition-colors duration-200 py-2 border-b border-white/5">FAQ</a>
          <a href="#quiz" data-open-quiz
            class="bg-primary text-white px-5 py-2.5 rounded-glass font-medium hover:bg-primary-hover transition-colors duration-200 text-sm text-center mt-2">
-           <span data-cta-label>Book a 15-minute demo</span>
+           <span data-cta-label>Join the waitlist</span>
          </a>
       </div>
     </div>
@@ -565,12 +565,12 @@
       <div class="flex flex-col sm:flex-row items-center w-full sm:w-auto gap-4 justify-center mb-6 z-20 px-4 sm:px-0">
         <a href="#quiz" data-open-quiz
           class="btn-magnetic w-full sm:w-auto text-center bg-primary text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-primary-hover shadow-[0_0_30px_rgba(134,85,246,0.4)] transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 group">
-          <span data-cta-label>Book a 15-minute demo</span>
+          <span data-cta-label>Join the waitlist</span>
           <i data-lucide="arrow-right" class="w-4 h-4 sm:group-hover:translate-x-1 transition-transform"></i>
         </a>
       </div>
 
-      <p class="text-[11px] sm:text-xs text-text-muted/60 mb-16 md:mb-20 max-w-md mx-auto px-2 leading-relaxed">Three questions, then pick a time. Worst case, you leave with a transcript, a post draft in your voice and clips from your video.</p>
+      <p class="text-[11px] sm:text-xs text-text-muted/60 mb-16 md:mb-20 max-w-md mx-auto px-2 leading-relaxed">Three questions, then your result. No payment, nothing to download.</p>
 
       <!-- Integrations Logo Cloud -->
       <div class="w-full flex flex-col items-center animate-on-scroll" style="transition-delay: 0.1s;">
@@ -909,7 +909,7 @@
       <div class="flex justify-center mt-16 px-4 sm:px-0">
         <a href="#quiz" data-open-quiz
           class="btn-magnetic w-full sm:w-auto text-center bg-primary text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-primary-hover shadow-[0_0_30px_rgba(134,85,246,0.4)] transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 group">
-          <span data-cta-label>Book a 15-minute demo</span>
+          <span data-cta-label>Join the waitlist</span>
           <i data-lucide="arrow-right" class="w-4 h-4 sm:group-hover:translate-x-1 transition-transform"></i>
         </a>
       </div>
@@ -1111,11 +1111,11 @@
 
         <div class="glass-panel overflow-hidden animate-on-scroll" style="transition-delay: 0.15s;">
           <button type="button" id="faq-q4" aria-expanded="false" aria-controls="faq-a4" class="faq-question w-full text-left flex items-center justify-between p-6 cursor-pointer hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary transition-colors duration-200">
-            <span class="font-heading font-semibold text-text-main pr-4">What happens on the demo?</span>
+            <span class="font-heading font-semibold text-text-main pr-4" data-copy="faq4-q">What happens after I join?</span>
             <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron"></i>
           </button>
           <div id="faq-a4" role="region" aria-labelledby="faq-q4" class="faq-answer px-6 text-text-muted leading-relaxed text-sm">
-            I run EchoOS live on one of your videos for 15 minutes. Worst case, you leave with its transcript, a post draft in your voice and clips. There's no price yet and nothing to download.
+            You see your result right away, and you're on the waitlist. I'll email you about early access at the address you gave. There's no price yet and nothing to download.
           </div>
         </div>
 
@@ -1141,12 +1141,12 @@
 
     <div class="relative z-10 max-w-2xl mx-auto">
       <h2 class="font-heading text-4xl sm:text-5xl font-bold text-text-main mb-4" data-copy="final-h2">Your next posts are<br class="hidden sm:block" /> <span class="text-purple-gradient">already recorded.</span></h2>
-      <p class="text-text-muted text-lg mb-10 max-w-lg mx-auto leading-relaxed" data-copy="final-sub">Fifteen minutes with me, live on your video. Worst case, you leave with its transcript, a post draft in your voice and clips.</p>
+      <p class="text-text-muted text-lg mb-10 max-w-lg mx-auto leading-relaxed" data-copy="final-sub">Take three questions and see what's stalling your content. Then you're on the waitlist.</p>
 
       <div class="flex flex-wrap gap-4 justify-center">
         <a href="#quiz" data-open-quiz
           class="bg-primary text-white px-10 py-4 rounded-glass font-semibold text-lg hover:bg-primary-hover transition-colors duration-200 cursor-pointer">
-          <span data-cta-label>Book a 15-minute demo</span>
+          <span data-cta-label>Join the waitlist</span>
         </a>
       </div>
 
@@ -1180,8 +1180,8 @@
   </footer>
 
   <!-- ============================================================ -->
-  <!-- QUIZ FUNNEL: 3 questions -> contact gate -> personalized result -> book a call -> booked -->
-  <!-- Every CTA with [data-open-quiz] opens this. Every answer leads to the result and the calendar (no scoring, no "not a fit" route). -->
+  <!-- QUIZ FUNNEL: 3 questions -> contact gate (together, the waitlist application) -> personalized result -> waitlist close -->
+  <!-- Every CTA with [data-open-quiz] opens this. Every answer leads to the result and onto the waitlist (no scoring, no "not a fit" route). -->
   <!-- ============================================================ -->
   <div id="quiz" class="quiz-overlay" role="dialog" aria-modal="true" aria-label="EchoOS early access quiz" aria-hidden="true" inert>
     <div class="quiz-scroll">
@@ -1207,7 +1207,7 @@
             <section class="quiz-step active" data-step="entry">
               <span class="text-primary text-sm font-semibold uppercase tracking-wider">Early Access</span>
               <h2 class="font-heading text-3xl sm:text-4xl font-bold text-text-main mt-3 mb-4">Find out what's stalling your content.</h2>
-              <p class="text-text-muted text-base leading-relaxed mb-8">Three questions. Then your result, and a time for your demo if you want one.</p>
+              <p class="text-text-muted text-base leading-relaxed mb-8">Three questions. Then your result, and you're on the waitlist.</p>
               <button type="button" data-quiz-next="q1" class="btn-magnetic w-full sm:w-auto bg-primary text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-primary-hover shadow-[0_0_30px_rgba(134,85,246,0.4)] transition-all duration-300 cursor-pointer inline-flex items-center justify-center gap-2">
                 Start <i data-lucide="arrow-right" class="w-4 h-4"></i>
               </button>
@@ -1288,7 +1288,7 @@
               <button type="button" data-quiz-back="q3" class="mt-6 text-sm text-text-muted hover:text-text-main inline-flex items-center gap-1"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
             </section>
 
-            <!-- Personalized result: empathy -> bad news -> good news -> book the call. Q3 picks the variant. -->
+            <!-- Personalized result: empathy -> bad news -> good news -> waitlist close. Q3 picks the variant. -->
             <section class="quiz-step" data-step="result">
               <div data-result-variant="A" class="hidden"><h2 class="font-heading text-3xl sm:text-4xl font-bold text-text-main mb-8">Your content is stuck between the video and the post.</h2></div>
               <div data-result-variant="B" class="hidden"><h2 class="font-heading text-3xl sm:text-4xl font-bold text-text-main mb-8">Your posts are missing the way you talk.</h2></div>
@@ -1322,45 +1322,28 @@
                 <div class="mb-10"><span class="result-label">The good news</span><p class="text-text-main text-base leading-relaxed">EchoOS cuts the steps down. Add a folder and new videos show up on their own, transcribed if you want. Search your transcripts by what was said. Ask for clips or a post in one chat. The post comes back as a draft you can revise.</p></div>
               </div>
 
-              <!-- Shared booking block -->
-              <div class="stack-highlight p-6 sm:p-8">
-                <span class="result-label">Your next step</span>
-                <h3 class="font-heading text-2xl sm:text-3xl font-bold text-text-main mb-3">Book your 15-minute demo.</h3>
-                <p class="text-text-muted text-base leading-relaxed mb-6">I run EchoOS live on one of your videos. Worst case, you leave with its transcript, a post draft in your voice and clips. There's no price yet and nothing to download.</p>
-                <button type="button" data-quiz-next="booking" class="btn-magnetic w-full sm:w-auto bg-primary text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-primary-hover shadow-[0_0_30px_rgba(134,85,246,0.4)] transition-all duration-300 cursor-pointer inline-flex items-center justify-center gap-2">
-                  Pick a time with Joshua <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              <!-- Waitlist close (copy-deck-r7 section 6). Shows only after submitLead() reports the lead saved;
+                   otherwise the save-failed state shows instead. No button on the confirmation: the contact gate already did the joining. -->
+              <div id="waitlist-close" class="hidden stack-highlight p-6 sm:p-8" data-close="saved">
+                <div class="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mb-6 border border-primary/30 shadow-[0_0_20px_rgba(134,85,246,0.3)]">
+                  <i data-lucide="check" class="w-6 h-6 text-primary"></i>
+                </div>
+                <h3 class="font-heading text-2xl sm:text-3xl font-bold text-text-main mb-3">You're on the waitlist.</h3>
+                <p class="text-text-main text-base leading-relaxed mb-2">I'll email you about early access at the address you gave.</p>
+                <p class="text-text-muted text-base leading-relaxed mb-8">There's no price yet and nothing to download.</p>
+                <div class="border-t border-white/5 pt-6">
+                  <span class="result-label">While you wait</span>
+                  <p class="text-text-muted text-base leading-relaxed mb-4">Social/Money is where I write about attention, demand, psychology, and the systems underneath it.</p>
+                  <a href="https://thejoshuav.substack.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-primary font-semibold hover:text-[#C084FC] transition-colors">Read Social/Money <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                </div>
+              </div>
+              <!-- Save failed: replaces the confirmation when submitLead() does not report saved: true. Try again reopens the contact gate with the fields still filled. -->
+              <div id="waitlist-failed" class="hidden rounded-xl border border-white/10 bg-white/[0.03] p-6 sm:p-8" data-close="failed" role="alert">
+                <h3 class="font-heading text-2xl sm:text-3xl font-bold text-text-main mb-3">Your details didn't save.</h3>
+                <p class="text-text-muted text-base leading-relaxed mb-6">Your result is above, but you're not on the waitlist yet.</p>
+                <button type="button" data-quiz-retry class="btn-magnetic w-full sm:w-auto bg-primary text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-primary-hover shadow-[0_0_30px_rgba(134,85,246,0.4)] transition-all duration-300 cursor-pointer inline-flex items-center justify-center gap-2">
+                  Try again <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
                 </button>
-              </div>
-            </section>
-
-            <!-- Book-a-call step -->
-            <section class="quiz-step" data-step="booking">
-              <h2 class="font-heading text-3xl sm:text-4xl font-bold text-text-main mb-3">Pick a time with Joshua</h2>
-              <p class="text-text-muted text-base leading-relaxed mb-6">Your 15-minute EchoOS demo. Bring a link to one of your videos.</p>
-              <!-- INTEGRATION POINT (calendar): replace this box with the booking embed once Joshua provides the link.
-                   On a confirmed booking, call window.EchoQuiz.showBooked({ when: "<day, date, time and time zone>" }). -->
-              <div id="calendar-slot" class="rounded-xl border-2 border-dashed border-white/15 bg-white/[0.02] min-h-[320px] flex flex-col items-center justify-center gap-3 text-center p-6">
-                <i data-lucide="calendar" class="w-8 h-8 text-text-muted"></i>
-                <p class="font-heading font-bold text-text-main text-lg">Calendar goes here</p>
-              </div>
-              <p id="booking-still-listed" class="hidden text-text-muted text-sm mt-4">Can't find a time? You're still on the early access list.</p>
-              <button type="button" data-quiz-back="result" class="mt-6 text-sm text-text-muted hover:text-text-main inline-flex items-center gap-1"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back to your result</button>
-            </section>
-
-            <!-- Booked confirmation -->
-            <section class="quiz-step" data-step="booked">
-              <div class="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mb-6 border border-primary/30 shadow-[0_0_20px_rgba(134,85,246,0.3)]">
-                <i data-lucide="check" class="w-6 h-6 text-primary"></i>
-              </div>
-              <h2 class="font-heading text-3xl sm:text-4xl font-bold text-text-main mb-4">You're booked.</h2>
-              <p class="text-text-main text-base leading-relaxed mb-2">Your 15-minute EchoOS demo with Joshua is on <span id="booked-when" class="font-semibold">[day, date, time and time zone from the calendar]</span>.</p>
-              <!-- Shown only when the booking integration confirms the calendar tool sent an invite (showBooked({ inviteSent: true })). -->
-              <p id="booked-invite" class="hidden text-text-muted text-base leading-relaxed mb-2">Check your email for the calendar invite.</p>
-              <p class="text-text-muted text-base leading-relaxed mb-8">Keep your video link handy.</p>
-              <div class="border-t border-white/5 pt-6">
-                <span class="result-label">While you wait</span>
-                <p class="text-text-muted text-base leading-relaxed mb-4">Social/Money is where I write about attention, demand, psychology, and the systems underneath it.</p>
-                <a href="https://thejoshuav.substack.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-primary font-semibold hover:text-[#C084FC] transition-colors">Read Social/Money <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
               </div>
             </section>
 
@@ -1428,7 +1411,7 @@
       const progressLabel = document.getElementById('quiz-progress-label');
       const progressBar = document.getElementById('quiz-progress-bar');
       const PROGRESS = { q1: ['1 of 3', 25], q2: ['2 of 3', 50], q3: ['3 of 3', 75], contact: ['Last step', 100] };
-      const WIDE_STEPS = ['result', 'booking', 'booked'];
+      const WIDE_STEPS = ['result'];
       const state = { answers: {}, lead: null, result: null };
       let lastFocus = null;
 
@@ -1437,7 +1420,12 @@
       // Later: POST `payload` to the Social Money Model GHL relay
       // (same shape as the SMM quiz's /api/ghl/smm/quiz-complete) and
       // return { saved: true } only when the relay confirms the save.
-      // Until then the preview keeps the answers in this tab only.
+      // The result page says "You're on the waitlist." only on saved: true;
+      // anything else shows the save-failed state with Try again.
+      // Until wired it keeps the answers in this tab only and reports
+      // saved: false, so an unwired page never claims a signup.
+      // (The tailnet preview build swaps the return line for a stand-in
+      // that resolves saved, with a switcher toggle to simulate a failure.)
       // ==============================================================
       async function submitLead(payload) {
         try { sessionStorage.setItem('echoos_quiz_lead', JSON.stringify(payload)); } catch (e) { /* storage blocked: ignore */ }
@@ -1480,6 +1468,10 @@
         overlay.querySelectorAll('[data-result-variant]').forEach(el => el.classList.toggle('hidden', el.dataset.resultVariant !== v));
         if (state.answers.q1) document.getElementById('echo-q1').textContent = state.answers.q1;
         if (state.answers.q2) document.getElementById('echo-q2').textContent = state.answers.q2;
+        // Waitlist close: the confirmation only when the lead really saved, else the save-failed state.
+        const saved = !!(state.lead && state.lead.saved === true);
+        document.getElementById('waitlist-close').classList.toggle('hidden', !saved);
+        document.getElementById('waitlist-failed').classList.toggle('hidden', saved);
       }
 
       function showResult(variant, answers) {
@@ -1488,14 +1480,6 @@
         renderResult();
         if (!overlay.classList.contains('open')) { lastFocus = document.activeElement; overlay.removeAttribute('inert'); overlay.classList.add('open'); overlay.setAttribute('aria-hidden', 'false'); document.body.classList.add('quiz-locked'); }
         showStep('result');
-      }
-
-      // INTEGRATION POINT (calendar): call on a confirmed booking with the slot text, and inviteSent: true
-      // only if the calendar tool really emails an invite.
-      function showBooked(details) {
-        if (details && details.when) document.getElementById('booked-when').textContent = details.when;
-        document.getElementById('booked-invite').classList.toggle('hidden', !(details && details.inviteSent));
-        showStep('booked');
       }
 
       document.querySelectorAll('[data-open-quiz]').forEach(el => el.addEventListener('click', e => {
@@ -1520,6 +1504,8 @@
       });
       overlay.querySelectorAll('[data-quiz-next]').forEach(el => el.addEventListener('click', () => showStep(el.dataset.quizNext)));
       overlay.querySelectorAll('[data-quiz-back]').forEach(el => el.addEventListener('click', () => showStep(el.dataset.quizBack)));
+      // Save failed: back to the contact gate, fields still filled.
+      overlay.querySelectorAll('[data-quiz-retry]').forEach(el => el.addEventListener('click', () => showStep('contact')));
 
       // One tap per answer, auto-advance.
       const NEXT = { q1: 'q2', q2: 'q3', q3: 'contact' };
@@ -1552,6 +1538,7 @@
           if (!valid) { ok = false; firstBad = firstBad || input; }
         });
         if (!ok) { firstBad.focus(); return; }
+        const submitBtn = form.querySelector('button[type=submit]');
         const payload = {
           source: 'tryechoos.com quiz',
           answers: { q1: state.answers.q1_label, q2: state.answers.q2_label, q3: state.answers.q3_label },
@@ -1562,15 +1549,16 @@
           },
           submittedAt: new Date().toISOString(),
         };
-        const res = await submitLead(payload);
+        submitBtn.disabled = true;
+        let res;
+        try { res = await submitLead(payload); } catch (err) { res = { saved: false }; }
+        submitBtn.disabled = false;
         state.lead = res;
-        // "Still on the early access list" shows only when the contact really saved.
-        document.getElementById('booking-still-listed').classList.toggle('hidden', !(res && res.saved));
         showResult();
       });
       form.querySelectorAll('input').forEach(input => input.addEventListener('input', () => input.closest('.quiz-field').classList.remove('invalid')));
 
-      window.EchoQuiz = { open, close, showStep, showResult, showBooked, state };
+      window.EchoQuiz = { open, close, showStep, showResult, state };
     })();
 
     // Reinitialize icons after dynamic content
