@@ -75,8 +75,8 @@
     failBtn.setAttribute('aria-pressed', 'false');
     body.appendChild(row('Result', resBtns));
     body.appendChild(row('Save', [failBtn]));
-    // Side by side: preview/build-compare.sh serves preview 4 at ./p4/, 3 at ./p3/, 2 at ./p2/ and 1 at ./p1/.
-    const links = [['p4/', 'Open preview 4'], ['p3/', 'preview 3'], ['p2/', 'preview 2'], ['p1/', 'preview 1']].map(([href, text]) => {
+    // Side by side: preview/build-compare.sh serves preview 5 at ./p5/, 4 at ./p4/, 3 at ./p3/, 2 at ./p2/ and 1 at ./p1/.
+    const links = [['p5/', 'Open preview 5'], ['p4/', 'preview 4'], ['p3/', 'preview 3'], ['p2/', 'preview 2'], ['p1/', 'preview 1']].map(([href, text]) => {
       const a = document.createElement('a');
       a.href = href;
       a.textContent = text;
