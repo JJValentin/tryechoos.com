@@ -42,7 +42,7 @@
     const head = document.createElement('div');
     head.style.cssText = 'display:flex;align-items:center;justify-content:space-between;gap:12px';
     const label = document.createElement('span');
-    label.textContent = 'PREVIEW 6 ONLY';
+    label.textContent = 'PREVIEW 7 ONLY';
     label.style.cssText = 'color:#C084FC;font:700 10px Manrope,sans-serif;letter-spacing:.12em';
     const toggle = button('hide', () => {
       const hidden = body.style.display === 'none';
@@ -75,8 +75,8 @@
     failBtn.setAttribute('aria-pressed', 'false');
     body.appendChild(row('Result', resBtns));
     body.appendChild(row('Save', [failBtn]));
-    // Side by side: preview/build-compare.sh serves preview 5 at ./p5/, 4 at ./p4/, 3 at ./p3/, 2 at ./p2/ and 1 at ./p1/.
-    const links = [['p5/', 'Open preview 5'], ['p4/', 'preview 4'], ['p3/', 'preview 3'], ['p2/', 'preview 2'], ['p1/', 'preview 1']].map(([href, text]) => {
+    // Side by side: preview/build-compare.sh serves preview 6 at ./p6/, 5 at ./p5/, 4 at ./p4/, 3 at ./p3/, 2 at ./p2/ and 1 at ./p1/.
+    const links = [['p6/', 'Open preview 6'], ['p5/', 'preview 5'], ['p4/', 'preview 4'], ['p3/', 'preview 3'], ['p2/', 'preview 2'], ['p1/', 'preview 1']].map(([href, text]) => {
       const a = document.createElement('a');
       a.href = href;
       a.textContent = text;
