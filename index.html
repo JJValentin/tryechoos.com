@@ -377,7 +377,7 @@
       object-fit: contain;
     }
     /* ========================================= */
-    /* Quiz funnel (lead magnet -> waitlist)     */
+    /* Waitlist form (name + email -> Whop)      */
     /* ========================================= */
     .quiz-overlay {
       position: fixed; inset: 0; z-index: 70;
@@ -391,19 +391,6 @@
     .quiz-scroll { position: absolute; inset: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; }
     .quiz-step { display: none; animation: fadeInUp 0.4s ease; }
     .quiz-step.active { display: block; }
-    .quiz-option {
-      width: 100%; text-align: left; cursor: pointer;
-      padding: 1rem 1.25rem; border-radius: 12px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: #F4F4F5; font-weight: 600; font-size: 0.95rem; line-height: 1.4;
-      transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
-      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-    }
-    .quiz-option:hover { border-color: rgba(134, 85, 246, 0.5); background: rgba(134, 85, 246, 0.08); }
-    .quiz-option.selected { border-color: #8655F6; background: rgba(134, 85, 246, 0.2); box-shadow: 0 0 20px rgba(134, 85, 246, 0.25); }
-    .quiz-option .quiz-dot { width: 18px; height: 18px; border-radius: 9999px; border: 2px solid rgba(255,255,255,0.2); flex-shrink: 0; }
-    .quiz-option.selected .quiz-dot { border-color: #8655F6; background: #8655F6; box-shadow: inset 0 0 0 3px #18181B; }
     .quiz-field label { display: block; font-size: 0.8rem; font-weight: 600; color: #F4F4F5; margin-bottom: 0.4rem; }
     .quiz-field input {
       width: 100%; padding: 0.8rem 1rem; border-radius: 10px;
@@ -415,7 +402,7 @@
     .quiz-error { display: none; color: #F87171; font-size: 0.75rem; margin-top: 0.35rem; }
     .quiz-field.invalid .quiz-error { display: block; }
     .result-label { font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #8655F6; margin-bottom: 0.6rem; display: block; }
-    /* Whop checkout embed (frames from cdn.whop.com): never wider than the result column. */
+    /* Whop checkout embed (frames from cdn.whop.com): never wider than the join column. */
     .whop-mount { min-width: 0; }
     .whop-mount iframe { max-width: 100%; }
     body.quiz-locked { overflow: hidden; }
@@ -518,7 +505,7 @@
         </a>
       </div>
 
-      <p class="text-[11px] sm:text-xs text-text-muted/60 mb-8 sm:mb-16 md:mb-20 max-w-md mx-auto px-2 leading-relaxed">Three questions, then your result. No payment.</p>
+      <p class="text-[11px] sm:text-xs text-text-muted/60 mb-8 sm:mb-16 md:mb-20 max-w-md mx-auto px-2 leading-relaxed">Just your name and email. No payment.</p>
 
       <!-- Hero product moment (Amendment 10): the sample video loads (its real thumbnail), the transcript is ready, the input flows into an orbit of platform marks (a representation of repurposing, no draft text) and vertical clips fan out. assets/moments.js plays it. -->
       <div class="mt-0 max-w-5xl mx-auto animate-on-scroll relative w-full z-30">
@@ -984,7 +971,7 @@
             <i data-lucide="chevron-down" class="w-5 h-5 text-text-muted flex-shrink-0 faq-chevron"></i>
           </button>
           <div id="faq-a4" role="region" aria-labelledby="faq-q4" class="faq-answer px-6 text-text-muted leading-relaxed text-sm">
-            You see your result, then tap Join waitlist on Whop. Your email is already filled in. I'll email you about early access at the email you joined with. No price yet, nothing to download.
+            Add your name and email, then tap Join waitlist on Whop. Your email is already filled in there. I'll email you about early access at the email you joined with. No price yet, nothing to download.
           </div>
         </div>
 
@@ -1010,7 +997,7 @@
 
     <div class="relative z-10 max-w-2xl mx-auto">
       <h2 class="font-heading text-4xl sm:text-5xl font-bold text-text-main mb-4">Your next posts are<br class="hidden sm:block" /> <span class="text-purple-gradient">already recorded.</span></h2>
-      <p class="text-text-muted text-lg mb-10 max-w-lg mx-auto leading-relaxed">Answer three questions and see what's stalling your content.</p>
+      <p class="text-text-muted text-lg mb-10 max-w-lg mx-auto leading-relaxed">Put your name down and I'll email you about early access.</p>
 
       <div class="flex flex-wrap gap-4 justify-center">
         <a href="#quiz" data-open-quiz
@@ -1049,20 +1036,16 @@
   </footer>
 
   <!-- ============================================================ -->
-  <!-- QUIZ FUNNEL: 3 questions -> contact gate (together, the waitlist application) -> personalized result -> waitlist close -->
-  <!-- Every CTA with [data-open-quiz] opens this. Every answer leads to the result and onto the waitlist (no scoring, no "not a fit" route). -->
+  <!-- WAITLIST FORM: name + email -> Whop "EchoOS Waitlist" checkout (embedded) -> confirmation -->
+  <!-- Every CTA with [data-open-quiz] opens this at the form (Joshua 2026-10-28: quiz removed). -->
   <!-- ============================================================ -->
-  <div id="quiz" class="quiz-overlay" role="dialog" aria-modal="true" aria-label="EchoOS early access quiz" aria-hidden="true" inert>
+  <div id="quiz" class="quiz-overlay" role="dialog" aria-modal="true" aria-label="EchoOS waitlist" aria-hidden="true" inert>
     <div class="quiz-scroll">
       <div class="min-h-full flex items-start sm:items-center justify-center px-4 py-20 sm:py-16">
         <div id="quiz-shell" class="w-full max-w-xl transition-[max-width] duration-300">
 
-          <!-- Top bar: progress + close -->
-          <div class="flex items-center justify-between mb-6">
-            <div id="quiz-progress-wrap" class="flex items-center gap-3 invisible">
-              <span id="quiz-progress-label" class="text-xs font-semibold uppercase tracking-wider text-text-muted">1 of 3</span>
-              <div class="w-24 sm:w-32 h-1 rounded-full bg-white/10 overflow-hidden"><div id="quiz-progress-bar" class="h-full bg-primary rounded-full transition-all duration-300" style="width: 25%;"></div></div>
-            </div>
+          <!-- Top bar: close -->
+          <div class="flex items-center justify-end mb-6">
             <button type="button" data-quiz-close class="p-2 rounded-lg text-text-muted hover:text-text-main hover:bg-white/5 transition-colors" aria-label="Close">
               <i data-lucide="x" class="w-5 h-5"></i>
             </button>
@@ -1072,58 +1055,11 @@
             <div class="absolute top-0 right-0 -mr-24 -mt-24 w-72 h-72 bg-primary/10 rounded-full blur-[90px] pointer-events-none"></div>
             <div class="relative z-10">
 
-            <!-- Entry -->
-            <section class="quiz-step active" data-step="entry">
+            <!-- Waitlist form (name + email; shortform-copy-r3) -->
+            <section class="quiz-step active" data-step="form">
               <span class="text-primary text-sm font-semibold uppercase tracking-wider">Early Access</span>
-              <h2 class="font-heading text-3xl sm:text-4xl font-bold text-text-main mt-3 mb-4">Find out what's stalling your content.</h2>
-              <p class="text-text-muted text-base leading-relaxed mb-8">Three questions. Then your result, and one last step to join the waitlist.</p>
-              <button type="button" data-quiz-next="q1" class="btn-magnetic w-full sm:w-auto bg-primary text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-primary-hover shadow-[0_0_30px_rgba(134,85,246,0.4)] transition-all duration-300 cursor-pointer inline-flex items-center justify-center gap-2">
-                Start <i data-lucide="arrow-right" class="w-4 h-4"></i>
-              </button>
-            </section>
-
-            <!-- Q1: towards -->
-            <section class="quiz-step" data-step="q1">
-              <h2 class="font-heading text-2xl sm:text-3xl font-bold text-text-main mb-6">I already have clients. With my content, I want to...</h2>
-              <div class="flex flex-col gap-3">
-                <button type="button" class="quiz-option" data-q="q1" data-echo="get more from videos you already make">Get more from videos I already make<span class="quiz-dot"></span></button>
-                <button type="button" class="quiz-option" data-q="q1" data-echo="get the right people reaching out">Get the right people reaching out<span class="quiz-dot"></span></button>
-                <button type="button" class="quiz-option" data-q="q1" data-echo="show up every week without losing client hours">Show up every week without losing client hours<span class="quiz-dot"></span></button>
-                <button type="button" class="quiz-option" data-q="q1" data-echo="post things that sound like you">Post things that sound like me<span class="quiz-dot"></span></button>
-              </div>
-            </section>
-
-            <!-- Q2: admission -->
-            <section class="quiz-step" data-step="q2">
-              <h2 class="font-heading text-2xl sm:text-3xl font-bold text-text-main mb-2">Right now, I'm...</h2>
-              <p class="text-text-muted text-sm mb-6">Pick the closest.</p>
-              <div class="flex flex-col gap-3">
-                <button type="button" class="quiz-option" data-q="q2" data-echo="you're sitting on videos you never used">Sitting on videos I never used<span class="quiz-dot"></span></button>
-                <button type="button" class="quiz-option" data-q="q2" data-echo="you're losing hours turning videos into posts">Losing hours turning videos into posts<span class="quiz-dot"></span></button>
-                <button type="button" class="quiz-option" data-q="q2" data-echo="you're posting, but it doesn't sound like you">Posting, but it doesn't sound like me<span class="quiz-dot"></span></button>
-                <button type="button" class="quiz-option" data-q="q2" data-echo="you're posting, but nobody reaches out">Posting, but nobody reaches out<span class="quiz-dot"></span></button>
-                <button type="button" class="quiz-option" data-q="q2" data-echo="you're barely recording, because you'd never get to it">Barely recording, because I'd never get to it<span class="quiz-dot"></span></button>
-              </div>
-              <button type="button" data-quiz-back="q1" class="mt-6 text-sm text-text-muted hover:text-text-main inline-flex items-center gap-1"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
-            </section>
-
-            <!-- Q3: pressure release (picks the result) -->
-            <section class="quiz-step" data-step="q3">
-              <h2 class="font-heading text-2xl sm:text-3xl font-bold text-text-main mb-2">What I'd like instead is...</h2>
-              <p class="text-text-muted text-sm mb-6">This picks your result.</p>
-              <div class="flex flex-col gap-3">
-                <button type="button" class="quiz-option" data-q="q3" data-result="A">One app from video to post<span class="quiz-dot"></span></button>
-                <button type="button" class="quiz-option" data-q="q3" data-result="B">Posts in my own voice<span class="quiz-dot"></span></button>
-                <button type="button" class="quiz-option" data-q="q3" data-result="C">Content that starts client conversations<span class="quiz-dot"></span></button>
-                <button type="button" class="quiz-option" data-q="q3" data-result="D">A routine that survives a busy week<span class="quiz-dot"></span></button>
-              </div>
-              <button type="button" data-quiz-back="q2" class="mt-6 text-sm text-text-muted hover:text-text-main inline-flex items-center gap-1"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
-            </section>
-
-            <!-- Contact gate (fields approved by Joshua 2026-09-28, booking-questions-r1; mobile optional) -->
-            <section class="quiz-step" data-step="contact">
-              <p class="text-primary text-sm font-semibold mb-2">Your result is ready.</p>
-              <h2 class="font-heading text-2xl sm:text-3xl font-bold text-text-main mb-6">Where should we reach you?</h2>
+              <h2 class="font-heading text-2xl sm:text-3xl font-bold text-text-main mt-3 mb-3">Get on the EchoOS waitlist.</h2>
+              <p class="text-text-muted text-base leading-relaxed mb-6">Two fields, then one tap on Whop and you're on the list.</p>
               <form id="quiz-contact" novalidate class="flex flex-col gap-4">
                 <div class="quiz-field" data-field="name">
                   <label for="qf-name">First and last name</label>
@@ -1135,66 +1071,19 @@
                   <input id="qf-email" name="email" type="email" autocomplete="email" required />
                   <p class="quiz-error">Please enter a valid email address.</p>
                 </div>
-                <div class="quiz-field" data-field="phone">
-                  <label for="qf-phone">Mobile number <span class="text-text-muted font-normal">(optional)</span></label>
-                  <input id="qf-phone" name="phone" type="tel" autocomplete="tel" />
-                  <p class="quiz-error">Please enter a valid phone number.</p>
-                </div>
-                <div class="quiz-field" data-field="business">
-                  <label for="qf-business">Business name</label>
-                  <input id="qf-business" name="business" type="text" autocomplete="organization" required />
-                  <p class="quiz-error">Please enter your business name.</p>
-                </div>
-                <div class="quiz-field" data-field="website">
-                  <label for="qf-website">Website or main social profile <span class="text-text-muted font-normal">(optional)</span></label>
-                  <input id="qf-website" name="website" type="text" autocomplete="url" />
-                </div>
-                <!-- Consent line (vmediaventures draft 2026-10-28, pending Joshua). Facts it rests on: contact details and quiz answers
-                     go to Whop (pixel lead on tryechoos.com, checkout metadata); no text messages are sent, so no SMS opt-in. -->
-                <p id="quiz-consent" class="text-text-muted text-xs leading-relaxed">By tapping See my result, you agree that I can email you about EchoOS early access, my Social Money Models newsletter and future offers. Your answers and details go to Whop, which runs the waitlist. You can unsubscribe anytime. See the <a href="privacy.html" target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-text-main">Privacy Policy</a>.</p>
+                <!-- Consent line. Facts it rests on: name and email go to Whop (pixel lead on tryechoos.com; the checkout gets
+                     the email and any UTM tags); nothing is kept in the browser; no text messages are sent, so no SMS opt-in. -->
+                <p id="quiz-consent" class="text-text-muted text-xs leading-relaxed">By tapping Continue, you agree that I can email you about EchoOS early access, my Social Money Models newsletter and future offers. Your details go to Whop, which runs the waitlist. You can unsubscribe anytime. See the <a href="privacy.html" target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-text-main">Privacy Policy</a>.</p>
                 <button type="submit" class="mt-2 btn-magnetic w-full bg-primary text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-primary-hover shadow-[0_0_30px_rgba(134,85,246,0.4)] transition-all duration-300 cursor-pointer inline-flex items-center justify-center gap-2">
-                  See my result <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                  Continue <i data-lucide="arrow-right" class="w-4 h-4"></i>
                 </button>
               </form>
-              <button type="button" data-quiz-back="q3" class="mt-6 text-sm text-text-muted hover:text-text-main inline-flex items-center gap-1"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
             </section>
 
-            <!-- Personalized result: empathy -> bad news -> good news -> waitlist close. Q3 picks the variant. -->
-            <section class="quiz-step" data-step="result">
-              <div data-result-variant="A" class="hidden"><h2 class="font-heading text-3xl sm:text-4xl font-bold text-text-main mb-8">Your content is stuck between the video and the post.</h2></div>
-              <div data-result-variant="B" class="hidden"><h2 class="font-heading text-3xl sm:text-4xl font-bold text-text-main mb-8">Your posts are missing the way you talk.</h2></div>
-              <div data-result-variant="C" class="hidden"><h2 class="font-heading text-3xl sm:text-4xl font-bold text-text-main mb-8">Your posts don't have a job yet.</h2></div>
-              <div data-result-variant="D" class="hidden"><h2 class="font-heading text-3xl sm:text-4xl font-bold text-text-main mb-8">Your content routine runs on free afternoons.</h2></div>
-
-              <!-- Shared empathy block -->
-              <div class="flex flex-col sm:flex-row gap-5 sm:gap-6 items-start mb-10">
-                <img src="./assets/joshua-headshot.jpg" alt="Joshua Valentin" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border-2 border-primary/40 shadow-[0_0_15px_rgba(134,85,246,0.3)] shrink-0" />
-                <div>
-                  <span class="result-label">You're not behind</span>
-                  <p class="text-text-main text-base leading-relaxed mb-3">You told me you want to <span id="echo-q1">get more from videos you already make</span>, and right now <span id="echo-q2">you're sitting on videos you never used</span>.</p>
-                  <p class="text-text-muted text-base leading-relaxed">Clients come first, so content gets what's left.</p>
-                </div>
-              </div>
-
-              <div data-result-variant="A" class="hidden">
-                <div class="mb-10"><span class="result-label">The bad news</span><p class="text-text-muted text-base leading-relaxed">The slow part starts after you hit stop: transcribe it, write the post, cut the clip, file it. So the video waits.</p></div>
-                <div class="mb-10"><span class="result-label">The good news</span><p class="text-text-main text-base leading-relaxed">EchoOS keeps that whole path in one app. Bring a video and get the transcript. Ask for a post draft in your voice and clips, vertical included.</p></div>
-              </div>
-              <div data-result-variant="B" class="hidden">
-                <div class="mb-10"><span class="result-label">The bad news</span><p class="text-text-muted text-base leading-relaxed">AI with a blank prompt has nothing of yours to go on, so it sounds like everyone. Fixing that can take as long as writing it yourself.</p></div>
-                <div class="mb-10"><span class="result-label">The good news</span><p class="text-text-main text-base leading-relaxed">EchoOS starts from you. Drafts come from your voice profile and what you said on camera. You're the last edit.</p></div>
-              </div>
-              <div data-result-variant="C" class="hidden">
-                <div class="mb-10"><span class="result-label">The bad news</span><p class="text-text-muted text-base leading-relaxed">I build around one rule: each piece of content has one job, to start a conversation with the right person. When each post takes hours, there's no time left to give it a job.</p></div>
-                <div class="mb-10"><span class="result-label">The good news</span><p class="text-text-main text-base leading-relaxed">EchoOS can't pick the job, and no tool can promise clients. It takes on the slow part, so your time goes to the job.</p></div>
-              </div>
-              <div data-result-variant="D" class="hidden">
-                <div class="mb-10"><span class="result-label">The bad news</span><p class="text-text-muted text-base leading-relaxed">A routine full of manual steps breaks the first busy week. Every step that needs you is a place it stops.</p></div>
-                <div class="mb-10"><span class="result-label">The good news</span><p class="text-text-main text-base leading-relaxed">EchoOS cuts the steps down. Add a folder and new videos show up on their own. Then ask for clips or a post draft in one chat.</p></div>
-              </div>
-
+            <!-- Join step: the Whop checkout, then the confirmation. -->
+            <section class="quiz-step" data-step="join">
               <!-- Join block (Joshua 2026-10-28, option 1): the Whop "EchoOS Waitlist" checkout, embedded with Whop Elements.
-                   Text comes from QUIZ_COPY in the quiz script (data-copy keys). The fallback shows when the embed fails or
+                   Text comes from QUIZ_COPY in the waitlist script (data-copy keys). The fallback shows when the embed fails or
                    does not render within 10 s: a link to the same plan's hosted Whop checkout, plus Try again. -->
               <div id="waitlist-join" class="hidden stack-highlight p-4 sm:p-8" data-close="join">
                 <h3 class="font-heading text-2xl sm:text-3xl font-bold text-text-main mb-3" data-copy="joinHeading"></h3>
@@ -1286,17 +1175,13 @@
 
 
     // ================================================================
-    // QUIZ FUNNEL
+    // WAITLIST FORM
     // ================================================================
     (function () {
       const overlay = document.getElementById('quiz');
       const shell = document.getElementById('quiz-shell');
-      const progressWrap = document.getElementById('quiz-progress-wrap');
-      const progressLabel = document.getElementById('quiz-progress-label');
-      const progressBar = document.getElementById('quiz-progress-bar');
-      const PROGRESS = { q1: ['1 of 3', 25], q2: ['2 of 3', 50], q3: ['3 of 3', 75], contact: ['Last step', 100] };
-      const WIDE_STEPS = ['result'];
-      const state = { answers: {}, lead: null, result: null };
+      const WIDE_STEPS = ['join'];
+      const state = { lead: null };
       let lastFocus = null;
 
       // ==============================================================
@@ -1321,13 +1206,14 @@
         script: 'https://cdn.whop.com/elements/amber/elements.js',
         renderTimeoutMs: 10000,
         metadataMax: 500, // per-value cap (Whop documents up to 40 string pairs; 500 chars is our own conservative cap)
+        source: 'tryechoos.com waitlist form',
       };
       const joinEl = document.getElementById('waitlist-join');
       const mountEl = document.getElementById('whop-checkout');
       const fallbackEl = document.getElementById('waitlist-join-fallback');
       let whopScript = null, whopInstance = null, whopHandle = null, mountToken = 0, renderTimer = null, lastPayload = null;
 
-      // Loads the Elements script once, on first need (opening the quiz), so visitors who never open it don't pay for it.
+      // Loads the Elements script once, on first need (opening the form), so visitors who never open it don't pay for it.
       function loadWhopElements() {
         if (window.WhopElements) return Promise.resolve(window.WhopElements);
         if (whopScript) return whopScript;
@@ -1345,7 +1231,7 @@
 
       function setJoin(status) {
         state.lead = Object.assign({}, state.lead, { join: status });
-        renderResult();
+        renderJoin();
       }
 
       function joinFailed(reason) {
@@ -1360,7 +1246,7 @@
         if (!c || (c.result !== 'waitlist_entry' && c.result !== 'payment')) return;
         clearTimeout(renderTimer);
         state.lead = Object.assign({}, state.lead, { saved: true, join: 'done', whop: { result: c.result, id: c.entryId || c.paymentId || '', sessionId: c.sessionId || '' } });
-        renderResult();
+        renderJoin();
         const h = document.querySelector('#waitlist-close h3');
         if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); h.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }
       }
@@ -1372,16 +1258,9 @@
         mountEl.replaceChildren();
       }
 
-      function whopMetadata(p) {
-        const m = {
-          quiz_q1: p.answers.q1, quiz_q2: p.answers.q2, quiz_q3: p.answers.q3, quiz_result: p.result,
-          business: p.contact.business, website: p.contact.website, source: p.source,
-        };
-        Object.keys(m).forEach(k => {
-          const v = m[k] == null ? '' : String(m[k]).trim().slice(0, WHOP.metadataMax);
-          if (v) m[k] = v; else delete m[k];
-        });
-        return m;
+      // Checkout metadata: the source only. Name and form details are not sent as notes.
+      function whopMetadata() {
+        return { source: WHOP.source.slice(0, WHOP.metadataMax) };
       }
 
       function whopAttribution() {
@@ -1407,7 +1286,7 @@
           whopInstance = whopInstance || WhopElements({ skipPixel: !window.echoPixel.live });
           const options = {
             plan: WHOP.plan,
-            metadata: whopMetadata(payload),
+            metadata: whopMetadata(),
             appearance: {
               theme: { appearance: 'dark', accentColor: 'violet', grayColor: 'gray' },
               variables: { '--radius': '12px' },
@@ -1422,7 +1301,7 @@
           if (attribution) options.attribution = attribution;
           whopHandle = whopInstance.checkout.create(options);
           whopHandle.create('checkout', {
-            buyerEmail: payload.contact.email,
+            buyerEmail: payload.email,
             onReady: () => { if (token !== mountToken) return; clearTimeout(renderTimer); if (!(state.lead && state.lead.saved)) setJoin('ready'); },
             onError: e => { if (token === mountToken) joinFailed(e); },
           }).mount(mountEl);
@@ -1432,49 +1311,45 @@
       }
 
       // ==============================================================
-      // INTEGRATION POINT: the contact gate's submit lands here.
-      // 1. Keeps the answers in this tab (sessionStorage) as before.
-      // 2. Whop Pixel: "lead" (name, email, phone) and custom "quiz_completed",
-      //    one event_id per submission. Sent only on tryechoos.com; elsewhere a
-      //    console dry run (see echoPixel in <head>).
-      // 3. Mounts the Whop checkout for the free "EchoOS Waitlist" plan with the
-      //    gate email prefilled. The visitor taps Join inside Whop; only Whop's
-      //    onComplete (waitlist_entry or payment) sets saved: true and shows
-      //    "You're on the waitlist.". If the embed fails or does not render in
-      //    10 s, a fallback links to the hosted checkout (new tab).
-      // Returns saved: false: the gate itself never joins anyone.
+      // INTEGRATION POINT: the waitlist form's submit lands here.
+      // 1. Whop Pixel: "lead" (name, email), one event_id per submission.
+      //    Sent only on tryechoos.com; elsewhere a console dry run (see
+      //    echoPixel in <head>). Nothing is kept in the browser.
+      // 2. Then showJoin mounts the Whop checkout for the free "EchoOS
+      //    Waitlist" plan with the form email prefilled. The visitor taps Join
+      //    inside Whop; only Whop's onComplete (waitlist_entry or payment) sets
+      //    saved: true and shows "You're on the waitlist.". If the embed fails
+      //    or does not render in 10 s, a fallback links to the hosted checkout.
       // ==============================================================
-      async function submitLead(payload) {
-        try { sessionStorage.setItem('echoos_quiz_lead', JSON.stringify(payload)); } catch (e) { /* storage blocked: ignore */ }
+      function submitLead(payload) {
         const eventId = 'lead_' + (window.crypto && crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2));
-        const lead = { event_id: eventId, email: payload.contact.email, name: payload.contact.name };
-        if (payload.contact.phone) lead.phone = payload.contact.phone;
-        try { window.echoPixel.track('lead', lead); window.echoPixel.track('quiz_completed', { event_id: eventId }); } catch (e) { /* pixel never blocks the result */ }
-        return { saved: false, join: 'loading', payload };
+        try { window.echoPixel.track('lead', { event_id: eventId, email: payload.email, name: payload.name }); } catch (e) { /* pixel never blocks the join step */ }
       }
 
       function showStep(step) {
         overlay.querySelectorAll('.quiz-step').forEach(el => el.classList.toggle('active', el.dataset.step === step));
-        const p = PROGRESS[step];
-        progressWrap.classList.toggle('invisible', !p);
-        if (p) { progressLabel.textContent = p[0]; progressBar.style.width = p[1] + '%'; }
         shell.classList.toggle('max-w-xl', !WIDE_STEPS.includes(step));
         shell.classList.toggle('max-w-3xl', WIDE_STEPS.includes(step));
         overlay.querySelector('.quiz-scroll').scrollTop = 0;
         const active = overlay.querySelector('.quiz-step.active');
-        const focusTarget = active && [...active.querySelectorAll('h2, input, button')].find(el => el.getClientRects().length > 0);
-        if (focusTarget) { if (!focusTarget.hasAttribute('tabindex') && focusTarget.tagName === 'H2') focusTarget.setAttribute('tabindex', '-1'); focusTarget.focus({ preventScroll: true }); }
+        const focusTarget = active && [...active.querySelectorAll('h2, h3, input, button')].find(el => el.getClientRects().length > 0);
+        if (focusTarget) { if (!focusTarget.hasAttribute('tabindex') && /^H[23]$/.test(focusTarget.tagName)) focusTarget.setAttribute('tabindex', '-1'); focusTarget.focus({ preventScroll: true }); }
         overlay.dataset.current = step;
       }
 
-      function open() {
+      function openOverlay() {
+        if (overlay.classList.contains('open')) return;
         lastFocus = document.activeElement;
         overlay.removeAttribute('inert');
         overlay.classList.add('open');
         overlay.setAttribute('aria-hidden', 'false');
         document.body.classList.add('quiz-locked');
-        showStep('entry');
         loadWhopElements().catch(() => { /* retried at mount; the fallback covers a hard failure */ });
+      }
+
+      function open() {
+        openOverlay();
+        showStep('form');
       }
 
       function close() {
@@ -1485,12 +1360,8 @@
         if (lastFocus && lastFocus.focus) lastFocus.focus();
       }
 
-      function renderResult() {
-        const v = state.result || 'A';
-        overlay.querySelectorAll('[data-result-variant]').forEach(el => el.classList.toggle('hidden', el.dataset.resultVariant !== v));
-        if (state.answers.q1) document.getElementById('echo-q1').textContent = state.answers.q1;
-        if (state.answers.q2) document.getElementById('echo-q2').textContent = state.answers.q2;
-        // Close: the confirmation only after Whop's onComplete; until then the join block (or its fallback).
+      function renderJoin() {
+        // The confirmation only after Whop's onComplete; until then the join block (or its fallback).
         const saved = !!(state.lead && state.lead.saved === true);
         const join = state.lead && state.lead.join;
         document.getElementById('waitlist-close').classList.toggle('hidden', !saved);
@@ -1500,12 +1371,13 @@
         document.getElementById('waitlist-join-line').classList.toggle('hidden', join === 'failed'); // "email is filled in" is false on the fallback
       }
 
-      function showResult(variant, answers) {
-        if (variant) state.result = variant;
-        if (answers) Object.assign(state.answers, answers);
-        renderResult();
-        if (!overlay.classList.contains('open')) { lastFocus = document.activeElement; overlay.removeAttribute('inert'); overlay.classList.add('open'); overlay.setAttribute('aria-hidden', 'false'); document.body.classList.add('quiz-locked'); }
-        showStep('result');
+      // Opens the join step for a { name, email } payload and mounts the Whop checkout.
+      function showJoin(payload) {
+        state.lead = { saved: false, join: 'loading' };
+        openOverlay();
+        renderJoin();
+        showStep('join');
+        mountJoin(payload);
       }
 
       document.querySelectorAll('[data-open-quiz]').forEach(el => el.addEventListener('click', e => {
@@ -1528,32 +1400,16 @@
         else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
         else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
       });
-      overlay.querySelectorAll('[data-quiz-next]').forEach(el => el.addEventListener('click', () => showStep(el.dataset.quizNext)));
-      overlay.querySelectorAll('[data-quiz-back]').forEach(el => el.addEventListener('click', () => showStep(el.dataset.quizBack)));
       // Fallback Try again: a fresh mount for the same submission.
       overlay.querySelectorAll('[data-join-retry]').forEach(el => el.addEventListener('click', () => { if (lastPayload) mountJoin(lastPayload); }));
 
-      // One tap per answer, auto-advance.
-      const NEXT = { q1: 'q2', q2: 'q3', q3: 'contact' };
-      overlay.querySelectorAll('.quiz-option').forEach(btn => btn.addEventListener('click', () => {
-        const q = btn.dataset.q;
-        overlay.querySelectorAll('.quiz-option[data-q="' + q + '"]').forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-        if (q === 'q3') { state.result = btn.dataset.result; state.answers.q3 = btn.childNodes[0].textContent.trim(); }
-        else state.answers[q] = btn.dataset.echo;
-        state.answers[q + '_label'] = btn.childNodes[0].textContent.trim();
-        setTimeout(() => showStep(NEXT[q]), 260);
-      }));
-
-      // Contact gate validation
+      // Waitlist form validation
       const form = document.getElementById('quiz-contact');
       const rules = {
         name: v => v.trim().split(/\s+/).filter(Boolean).length >= 2,
         email: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()),
-        phone: v => v.trim() === '' || (/^[+()\-.\s\d]+$/.test(v.trim()) && v.replace(/\D/g, '').length >= 7 && v.replace(/\D/g, '').length <= 15),
-        business: v => v.trim().length > 0,
       };
-      form.addEventListener('submit', async e => {
+      form.addEventListener('submit', e => {
         e.preventDefault();
         let ok = true, firstBad = null;
         Object.keys(rules).forEach(name => {
@@ -1564,28 +1420,13 @@
           if (!valid) { ok = false; firstBad = firstBad || input; }
         });
         if (!ok) { firstBad.focus(); return; }
-        const submitBtn = form.querySelector('button[type=submit]');
-        const payload = {
-          source: 'tryechoos.com quiz',
-          answers: { q1: state.answers.q1_label, q2: state.answers.q2_label, q3: state.answers.q3_label },
-          result: state.result,
-          contact: {
-            name: form.elements.name.value.trim(), email: form.elements.email.value.trim(), phone: form.elements.phone.value.trim(),
-            business: form.elements.business.value.trim(), website: form.elements.website.value.trim(),
-          },
-          submittedAt: new Date().toISOString(),
-        };
-        submitBtn.disabled = true;
-        let res;
-        try { res = await submitLead(payload); } catch (err) { res = { saved: false, join: 'loading', payload }; }
-        submitBtn.disabled = false;
-        state.lead = res;
-        showResult();
-        mountJoin(payload);
+        const payload = { name: form.elements.name.value.trim(), email: form.elements.email.value.trim() };
+        submitLead(payload);
+        showJoin(payload);
       });
       form.querySelectorAll('input').forEach(input => input.addEventListener('input', () => input.closest('.quiz-field').classList.remove('invalid')));
 
-      window.EchoQuiz = { open, close, showStep, showResult, state };
+      window.EchoQuiz = { open, close, showStep, showJoin, state };
     })();
 
     // Reinitialize icons after dynamic content

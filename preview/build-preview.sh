@@ -22,9 +22,9 @@ s = s.replace('<head>', '<head>\n  <meta name="robots" content="noindex, nofollo
 # Preview hooks for the Whop join step. The real Whop checkout still mounts in the preview (the pixel never sends off
 # tryechoos.com). The switcher can (a) simulate Whop's onComplete with a fake waitlist entry, showing the confirmation
 # without a real join, and (b) simulate a load failure, showing the hosted-checkout fallback.
-hook = "      window.EchoQuiz = { open, close, showStep, showResult, state };"
+hook = "      window.EchoQuiz = { open, close, showStep, showJoin, state };"
 assert s.count(hook) == 1
-s = s.replace(hook, hook + "\n      window.__echoPreviewJoin = { complete: onWhopComplete, fail: joinFailed, mount: mountJoin }; // PREVIEW ONLY")
+s = s.replace(hook, hook + "\n      window.__echoPreviewJoin = { complete: onWhopComplete, fail: joinFailed, mount: mountJoin, retry: () => { if (lastPayload) mountJoin(lastPayload); } }; // PREVIEW ONLY")
 gate = "        setJoin('loading');\n        renderTimer ="
 assert s.count(gate) == 1
 s = s.replace(gate, "        setJoin('loading');\n        if (window.__echoPreviewJoinFails) { joinFailed('PREVIEW: simulated load failure'); return; } // PREVIEW ONLY\n        renderTimer =")
