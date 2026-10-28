@@ -1,4 +1,4 @@
-// Product moments (preview 8, Amendment 8). Each .mo[data-moment] loops a short story through
+// Product moments (preview 8, Amendment 8; preview 10 content per Amendment 10). Each .mo[data-moment] loops a short story through
 // data-s states ("1", "2", "3", "4", "end"); assets/moments.css shows the elements whose data-on
 // lists the current state. The markup ships in its final state ("end"), so without JS, with
 // prefers-reduced-motion, or offscreen, every moment is static and complete. Loops start when a
@@ -21,7 +21,7 @@
   Moment.prototype.reset = function () {
     // Final, complete state: typed text whole, toggles on, no cursor.
     var r = this.root;
-    r.classList.remove('is-out', 'is-typing', 'is-cursor');
+    r.classList.remove('is-out', 'is-typing', 'is-cursor', 'is-live');
     [].forEach.call(r.querySelectorAll('[data-full]'), function (el) { el.textContent = el.getAttribute('data-full'); });
     [].forEach.call(r.querySelectorAll('[data-final-on]'), function (el) { el.classList.add(el.getAttribute('data-final-on')); });
     [].forEach.call(r.querySelectorAll('.is-press,.is-focus'), function (el) { el.classList.remove('is-press', 'is-focus'); });
@@ -64,24 +64,32 @@
     var out = function () { m.root.classList.remove('is-cursor'); m.root.classList.add('is-out'); return wait(450); };
     var begin = function () {
       m.root.classList.remove('is-out', 'is-cursor');
+      m.root.classList.add('is-live'); // the hero orbit turns only while a moment plays
       [].forEach.call(m.root.querySelectorAll('[data-final-on]'), function (el) { el.classList.remove(el.getAttribute('data-final-on')); });
     };
     var S = SCRIPTS[m.name];
     if (!S) return;
-    var loop = function () { begin(); return S(m, { wait: wait, type: type, click: click, moveTo: moveTo, out: out }).then(loop); };
+    var light = function (els, gap) { // light the marks one after another
+      return els.reduce(function (p, el) { return p.then(function () { el.classList.add('lit'); return wait(gap); }); }, Promise.resolve());
+    };
+    var loop = function () { begin(); return S(m, { wait: wait, type: type, click: click, moveTo: moveTo, out: out, light: light }).then(loop); };
     loop().catch(function (e) { if (e !== STOP) throw e; if (m.run === id) m.reset(); });
   }
 
   var SCRIPTS = {
-    // Hero: a pasted video loads, its transcript appears, then a post draft, then a 9:16 clip.
+    // Hero: the video drops in and loads, its transcript is ready, the input travels into the orbit and
+    // lights the four platform marks one by one, then vertical clips fan out.
     hero: function (m, t) {
+      var marks = [].slice.call(m.root.querySelectorAll('.orb-ic'));
       m.set('1');
-      return t.wait(1400).then(function () { m.set('2'); return t.wait(1100); })
-        .then(function () { m.set('3'); return t.wait(1100); })
-        .then(function () { m.set('end'); return t.wait(3000); })
+      return t.wait(1300).then(function () { m.set('2'); return t.wait(1200); })
+        .then(function () { m.set('3'); return t.wait(850); })
+        .then(function () { return t.light(marks, 230); })
+        .then(function () { return t.wait(350); })
+        .then(function () { m.set('end'); return t.wait(3300); })
         .then(t.out);
     },
-    // Block 1: a link is pasted, the Source transcribes it, two timed lines appear.
+    // Block 1: a link is pasted, the Source loads with its thumbnail and transcribes it, the transcript is ready.
     m2: function (m, t) {
       var link = m.q('[data-full]');
       m.set('1'); link.textContent = '';
@@ -103,29 +111,30 @@
         .then(function () { m.root.classList.remove('is-cursor'); m.set('end'); return t.wait(3000); })
         .then(t.out);
     },
-    // Block 3: tick Vertical 9:16, Cut clip, then the cut 9:16 clip appears and Save to folder saves it.
+    // Block 3: tick Vertical 9:16, Cut clip, the frame splits into vertical clips, Save to folder saves them.
     m4: function (m, t) {
       var box = m.q('.box'), cut = m.q('[data-click="cut"]'), save = m.q('[data-click="save"]'), saved = m.q('.c-saved');
       m.set('1');
-      m.cursorAt(m.q('.c-title'), true);
-      return t.wait(300).then(function () { return t.moveTo(box, 600); })
+      m.cursorAt(m.q('.mc-title'), true);
+      return t.wait(400).then(function () { return t.moveTo(box, 600); })
         .then(function () { return t.click(box); })
         .then(function () { box.classList.add('on'); return t.wait(250); })
         .then(function () { return t.moveTo(cut, 550); })
         .then(function () { return t.click(cut); })
         .then(function () { m.set('2'); return t.wait(1100); })
-        .then(function () { m.set('end'); return t.wait(350); })
+        .then(function () { m.set('end'); return t.wait(1000); })
         .then(function () { return t.moveTo(save, 600); })
         .then(function () { return t.click(save); })
         .then(function () { saved.classList.add('on'); m.root.classList.remove('is-cursor'); return t.wait(2300); })
         .then(t.out);
     },
-    // Step 1: connect your AI.
+    // Step 1: pick your ChatGPT or Claude plan; it shows Signed in.
     sw1: function (m, t) {
       var btn = m.q('[data-click]');
       m.set('1'); m.cursorAt(m.q('.s-name'), true);
       return t.wait(600).then(function () { return t.moveTo(btn); })
         .then(function () { return t.click(btn); })
+        .then(function () { btn.classList.add('is-picked'); return t.wait(350); })
         .then(function () { m.root.classList.remove('is-cursor'); m.set('end'); return t.wait(3200); })
         .then(t.out);
     },
