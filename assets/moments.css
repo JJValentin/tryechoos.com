@@ -139,6 +139,8 @@
   .mo-hero { zoom: .88; gap: 18px; }
   .mo-hero .h-src { width: 290px; } .mo-hero .h-draft { width: 246px; } .mo-hero .h-clip { width: 240px; }
   .mo-hero .h-draft::before, .mo-hero .h-clip::before { width: 18px; }
+  /* keep zoomed small text at 12 px or more */
+  .mo-hero .badge, .mo-hero .tl time, .mo-hero .c-time, .mo-hero .d-plat, .mo-hero .d-status, .mo-hero .c-check { font-size: 13.7px; }
 }
 @media (max-width: 767px) {
   .mo-hero { flex-direction: column; align-items: stretch; gap: 0; max-width: 360px; margin: 0 auto; padding: 0; }
