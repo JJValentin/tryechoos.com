@@ -9,6 +9,7 @@
   <meta property="og:image" content="https://tryechoos.com/og-image.jpg" />
   <title>EchoOS | Write posts, cut clips and keep it all in one app</title>
 
+  <script>document.documentElement.classList.add('js');</script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
@@ -85,17 +86,17 @@
       opacity: 0.15;
     }
 
-    .animate-on-scroll {
+    .js .animate-on-scroll {
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
-    .animate-on-scroll.animate-in {
+    .js .animate-on-scroll.animate-in {
       opacity: 1;
       transform: translateY(0);
     }
     @media (prefers-reduced-motion: reduce) {
-      .animate-on-scroll { opacity: 1; transform: none; transition: none; }
+      .js .animate-on-scroll { opacity: 1; transform: none; transition: none; }
     }
 
     .navbar-glass {
@@ -496,12 +497,12 @@
               <div class="mc-head"><span class="mc-title"><svg class="ic ic-blue"><use href="#mi-link"/></svg><span class="stack"><span class="st" data-on="1">Source</span><span class="st" data-on="2 3 end">How I choose clients</span></span></span><span class="stack"><span class="badge b-load st" data-on="1">Loading...</span><span class="badge b-ready st" data-on="2 3 end">Ready</span></span></div>
               <div class="mc-body stack">
                 <div class="st" data-on="1"><p class="mc-status">Downloading the video</p><div class="bar"><i></i></div></div>
-                <ol class="tl st" data-on="2 3 end"><li><time>0:00</time><span>I only take clients I can help.</span></li><li><time>0:06</time><span>The first call is about fit.</span></li></ol>
+                <ol class="tl st" data-on="2 3 end"><li><time>0:06</time><span>The first call is about fit.</span></li></ol>
               </div>
             </div>
             <div class="mc mc-draft h-draft st" data-on="3 end">
               <div class="d-head"><span class="d-plat">LinkedIn post</span><span class="d-status amber">Draft</span></div>
-              <p class="d-text">My first call is about fit, not selling.</p>
+              <p class="d-text">My first call is about fit.</p>
             </div>
             <div class="mc mc-node is-neutral h-clip st" data-on="end">
               <div class="mc-head"><span class="mc-title"><svg class="ic ic-muted"><use href="#mi-scissors"/></svg><span>Clip</span></span></div>
@@ -605,7 +606,7 @@
                     <div class="mc-body stack">
                       <div class="st" data-on="2"><p class="mc-status">Downloading the video</p><div class="bar"><i></i></div></div>
                       <div class="st" data-on="3"><p class="mc-status">Transcribing on this device</p><div class="bar"><i></i></div></div>
-                      <ol class="tl"><li class="st" data-on="end"><time>0:00</time><span>I only take clients I can help.</span></li><li class="st" data-on="end" style="transition-delay:.15s"><time>0:06</time><span>The first call is about fit.</span></li><li class="st" data-on="end" style="transition-delay:.3s"><time>0:12</time><span>Not about selling.</span></li></ol>
+                      <ol class="tl"><li class="st" data-on="end"><time>0:00</time><span>I only take clients I can help.</span></li><li class="st" data-on="end" style="transition-delay:.15s"><time>0:06</time><span>The first call is about fit.</span></li></ol>
                     </div>
                   </div>
                 </div>
@@ -636,7 +637,7 @@
                     <div class="d-head"><span class="d-plat">LinkedIn post</span><span class="d-status amber">Draft</span></div>
                     <div class="stack">
                       <p class="d-text old st" data-on="1 2">I only take on clients I know I can help. My first call is about fit, not selling.</p>
-                      <p class="d-text st" data-on="end">I only take clients I can help.<br>My first call is about fit.<br>What do you ask on a first call?</p>
+                      <p class="d-text st" data-on="end">Only clients I can help.<br>Fit before selling.<br>What do you ask first?</p>
                     </div>
                     <div class="d-form st coll" data-on="1 2"><div>
                         <p class="d-label">Ask for a change</p>
@@ -666,18 +667,18 @@
         <!-- Block 3: Cut and organize (moment: Vertical 9:16, Cut clip, Save to folder) -->
         <div class="feature-row grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center animate-on-scroll">
           <div class="md:col-span-7">
-            <figure id="shot-m4" class="moment-figure m-0" role="img" aria-label="Illustration: a clip card in EchoOS. Vertical 9:16 gets ticked, the clip is cut on this device, then Save to folder saves the MP4.">
+            <figure id="shot-m4" class="moment-figure m-0" role="img" aria-label="Illustration: a clip card in EchoOS. Vertical 9:16 gets ticked, Cut clip cuts it on this device, then the vertical clip is saved with Save to folder.">
               <div class="moment-stage">
                 <div class="mo mo-m4" data-moment="m4" data-s="end" aria-hidden="true">
                   <div class="mc mc-node is-neutral">
                     <div class="mc-head"><span class="mc-title"><svg class="ic ic-muted"><use href="#mi-scissors"/></svg><span>Clip</span></span></div>
                     <div class="mc-body">
-                      <div class="c-row"><div class="c-frame-wrap"><div class="c-frame morph"></div></div><div><p class="c-title">Fit before selling</p><p class="c-time">0:06 - 0:12</p></div></div>
+                      <p class="c-title">Fit before selling</p><p class="c-time">0:06 - 0:12</p>
                       <p class="c-check"><span class="box on" data-final-on="on"><svg class="ic"><use href="#mi-check"/></svg></span><span>Vertical 9:16 <span class="muted">for Shorts, Reels and TikTok</span></span></p>
-                      <div class="c-foot stack">
-                        <div class="row st" data-on="1 2"><span class="btn btn-primary" data-click="cut"><svg class="ic" style="width:15px;height:15px"><use href="#mi-scissors"/></svg>Cut clip</span></div>
-                        <div class="st" data-on="3"><p class="mc-status">Cutting the clip on this device...</p><div class="bar"><i></i></div></div>
-                        <div class="row st" data-on="4 end"><span class="btn btn-line is-accent" data-click="save"><svg class="ic" style="width:15px;height:15px"><use href="#mi-download"/></svg>Save to folder</span><span class="c-saved st" data-on="end">Saved.</span></div>
+                      <div class="c-foot">
+                        <div class="st coll" data-on="1"><div><span class="btn btn-primary" data-click="cut"><svg class="ic" style="width:15px;height:15px"><use href="#mi-scissors"/></svg>Cut clip</span></div></div>
+                        <div class="st coll" data-on="2"><div><p class="mc-status">Cutting the clip on this device...</p><div class="bar"><i></i></div></div></div>
+                        <div class="st coll" data-on="end"><div><div class="c-row"><div class="c-frame"></div><div class="c-save"><span class="btn btn-line is-accent" data-click="save"><svg class="ic" style="width:15px;height:15px"><use href="#mi-download"/></svg>Save to folder</span><span class="c-saved" data-final-on="on">Saved.</span></div></div></div></div>
                       </div>
                     </div>
                   </div>

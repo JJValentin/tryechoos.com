@@ -104,20 +104,21 @@
         .then(function () { m.root.classList.remove('is-cursor'); m.set('end'); return t.wait(4000); })
         .then(t.out);
     },
-    // Block 3: tick Vertical 9:16, Cut clip, then Save to folder.
+    // Block 3: tick Vertical 9:16, Cut clip, then the cut 9:16 clip appears and Save to folder saves it.
     m4: function (m, t) {
-      var box = m.q('.box'), cut = m.q('[data-click="cut"]'), save = m.q('[data-click="save"]');
+      var box = m.q('.box'), cut = m.q('[data-click="cut"]'), save = m.q('[data-click="save"]'), saved = m.q('.c-saved');
       m.set('1');
       m.cursorAt(m.q('.c-title'), true);
       return t.wait(500).then(function () { return t.moveTo(box); })
         .then(function () { return t.click(box); })
-        .then(function () { box.classList.add('on'); m.set('2'); return t.wait(700); })
+        .then(function () { box.classList.add('on'); return t.wait(450); })
         .then(function () { return t.moveTo(cut); })
         .then(function () { return t.click(cut); })
-        .then(function () { m.set('3'); return t.wait(1500); })
-        .then(function () { m.set('4'); return t.moveTo(save); })
+        .then(function () { m.set('2'); return t.wait(1600); })
+        .then(function () { m.set('end'); return t.wait(700); })
+        .then(function () { return t.moveTo(save); })
         .then(function () { return t.click(save); })
-        .then(function () { m.root.classList.remove('is-cursor'); m.set('end'); return t.wait(3400); })
+        .then(function () { saved.classList.add('on'); m.root.classList.remove('is-cursor'); return t.wait(3200); })
         .then(t.out);
     },
     // Step 1: connect your AI.
