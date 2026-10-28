@@ -19,11 +19,15 @@ tag = '  <script src="preview-switcher.js"></script><!-- PREVIEW ONLY -->\n</bod
 assert s.count('</body>') == 1
 s = s.replace('</body>', tag)
 s = s.replace('<head>', '<head>\n  <meta name="robots" content="noindex, nofollow" />', 1)
-# Preview stand-in for the lead integration point (submitLead): still no network call; resolves saved unless the
-# switcher's "Simulate save failure" toggle is on. The production file keeps { saved: false } until wired.
-ret = "        return { saved: false };\n      }"
-assert s.count(ret) == 1
-s = s.replace(ret, "        return { saved: !window.__echoPreviewSaveFails }; // PREVIEW ONLY stand-in\n      }")
+# Preview hooks for the Whop join step. The real Whop checkout still mounts in the preview (the pixel never sends off
+# tryechoos.com). The switcher can (a) simulate Whop's onComplete with a fake waitlist entry, showing the confirmation
+# without a real join, and (b) simulate a load failure, showing the hosted-checkout fallback.
+hook = "      window.EchoQuiz = { open, close, showStep, showResult, state };"
+assert s.count(hook) == 1
+s = s.replace(hook, hook + "\n      window.__echoPreviewJoin = { complete: onWhopComplete, fail: joinFailed, mount: mountJoin }; // PREVIEW ONLY")
+gate = "        setJoin('loading');\n        renderTimer ="
+assert s.count(gate) == 1
+s = s.replace(gate, "        setJoin('loading');\n        if (window.__echoPreviewJoinFails) { joinFailed('PREVIEW: simulated load failure'); return; } // PREVIEW ONLY\n        renderTimer =")
 open(p, 'w', encoding='utf-8').write(s)
 PY
 echo "preview built: $out"

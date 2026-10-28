@@ -2,9 +2,10 @@
 // preview copy. Delete the preview/ folder before or after publishing; nothing depends on it.
 //
 // Preview 5 (copy-deck-r8): the picks are locked (Amendment 5: hero A, "Join the waitlist"), so the
-// hero and CTA switches are gone. What stays: jump straight to each result variant, and simulate a
-// failed save to see the save-failed close (the preview's stand-in for submitLead() resolves saved;
-// preview/build-preview.sh wires it to this toggle).
+// hero and CTA switches are gone. What stays: jump straight to each result variant.
+// Whop join step (2026-10-28): the real Whop checkout mounts here too; "Simulate join success" fakes
+// Whop's onComplete (confirmation, no real join) and "Simulate load failure" shows the hosted-checkout
+// fallback. preview/build-preview.sh exposes the hooks (window.__echoPreviewJoin) these buttons call.
 (function () {
   // Sample Q1/Q2 echo lines per result (r8 option wording).
   const SAMPLE = {
@@ -53,28 +54,49 @@
     head.appendChild(toggle);
     const body = document.createElement('div');
 
-    // Jumping straight to a result shows the close for the current save state (saved unless the failure toggle is on).
+    // Jumping straight to a result runs the same join step a gate submit does, with a sample contact
+    // (preview-test@example.com): the real Whop checkout mounts with that email prefilled.
     const resBtns = ['A', 'B', 'C', 'D'].map(k => button(k, () => {
-      if (!window.EchoQuiz) return;
-      window.EchoQuiz.state.lead = { saved: !window.__echoPreviewSaveFails };
-      window.EchoQuiz.showResult(k, SAMPLE[k]);
+      const q = window.EchoQuiz, j = window.__echoPreviewJoin;
+      if (!q || !j) return;
+      const payload = {
+        source: 'tryechoos.com quiz',
+        answers: { q1: SAMPLE[k].q1, q2: SAMPLE[k].q2, q3: 'preview sample' },
+        result: k,
+        contact: { name: 'Preview Test', email: 'preview-test@example.com', phone: '', business: 'Preview Test Co', website: '' },
+        submittedAt: new Date().toISOString(),
+      };
+      q.state.lead = { saved: false, join: 'loading', payload };
+      q.showResult(k, SAMPLE[k]);
+      j.mount(payload);
     }));
-    // Not persisted: every load starts with saves succeeding.
-    window.__echoPreviewSaveFails = false;
-    const failBtn = button('Simulate save failure: off', () => {
-      window.__echoPreviewSaveFails = !window.__echoPreviewSaveFails;
-      failBtn.textContent = 'Simulate save failure: ' + (window.__echoPreviewSaveFails ? 'on' : 'off');
-      failBtn.style.background = window.__echoPreviewSaveFails ? '#8655F6' : 'rgba(255,255,255,.05)';
-      failBtn.style.borderColor = window.__echoPreviewSaveFails ? '#8655F6' : 'rgba(255,255,255,.15)';
-      failBtn.setAttribute('aria-pressed', String(window.__echoPreviewSaveFails));
-      // If a result is open, redraw its close for the new state.
-      const q = window.EchoQuiz;
-      if (q && document.getElementById('quiz').dataset.current === 'result') { q.state.lead = { saved: !window.__echoPreviewSaveFails }; q.showResult(); }
+    // Simulate Whop's onComplete (a fake ent_ waitlist entry): shows the confirmation. Nothing is sent to Whop.
+    const okBtn = button('Simulate join success', () => {
+      const q = window.EchoQuiz, j = window.__echoPreviewJoin;
+      if (!q || !j || document.getElementById('quiz').dataset.current !== 'result' || !q.state.lead) return;
+      console.info('[preview] simulating Whop onComplete: waitlist_entry ent_PREVIEW (no real join)');
+      j.complete({ result: 'waitlist_entry', entryId: 'ent_PREVIEW', sessionId: 'chs_PREVIEW' });
     });
-    failBtn.id = 'preview-save-fail';
+    okBtn.id = 'preview-join-success';
+    // Not persisted: every load starts with the embed loading for real.
+    window.__echoPreviewJoinFails = false;
+    const failBtn = button('Simulate load failure: off', () => {
+      window.__echoPreviewJoinFails = !window.__echoPreviewJoinFails;
+      const on = window.__echoPreviewJoinFails;
+      failBtn.textContent = 'Simulate load failure: ' + (on ? 'on' : 'off');
+      failBtn.style.background = on ? '#8655F6' : 'rgba(255,255,255,.05)';
+      failBtn.style.borderColor = on ? '#8655F6' : 'rgba(255,255,255,.15)';
+      failBtn.setAttribute('aria-pressed', String(on));
+      // If a join step is open, redraw it for the new state: fallback now, or a fresh real mount.
+      const q = window.EchoQuiz, j = window.__echoPreviewJoin, lead = q && q.state.lead;
+      if (!j || !lead || lead.saved || document.getElementById('quiz').dataset.current !== 'result') return;
+      if (on) j.fail('PREVIEW: simulated load failure');
+      else if (lead.payload) j.mount(lead.payload);
+    });
+    failBtn.id = 'preview-join-fail';
     failBtn.setAttribute('aria-pressed', 'false');
     body.appendChild(row('Result', resBtns));
-    body.appendChild(row('Save', [failBtn]));
+    body.appendChild(row('Join', [okBtn, failBtn]));
     // Side by side: preview/build-compare.sh serves preview 9 at ./p9/, 8 at ./p8/, 7 at ./p7/, 6 at ./p6/, 5 at ./p5/, 4 at ./p4/, 3 at ./p3/, 2 at ./p2/ and 1 at ./p1/.
     const links = [['p9/', 'Open preview 9'], ['p8/', 'preview 8'], ['p7/', 'preview 7'], ['p6/', 'preview 6'], ['p5/', 'preview 5'], ['p4/', 'preview 4'], ['p3/', 'preview 3'], ['p2/', 'preview 2'], ['p1/', 'preview 1']].map(([href, text]) => {
       const a = document.createElement('a');

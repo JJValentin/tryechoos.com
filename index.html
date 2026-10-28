@@ -13,6 +13,26 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
+  <!-- Whop Pixel (docs.whop.com/developer/ads/pixel), account biz_gmeNhWYTguRAqI (Leverage Lab).
+       Loads and sends ONLY on tryechoos.com / www.tryechoos.com. On any other host (tailnet preview, localhost)
+       nothing loads and nothing is sent: echoPixel.track() logs what it would send to the console instead. -->
+  <script>
+    (function () {
+      var live = location.hostname === 'tryechoos.com' || location.hostname === 'www.tryechoos.com';
+      window.echoPixel = {
+        live: live,
+        track: function (name, data) {
+          if (live && window.whop) window.whop.track(name, data || {});
+          else console.info('[whop pixel dry-run] would send', name, data || {});
+        },
+      };
+      if (!live) { console.info('[whop pixel dry-run] not on tryechoos.com: would load https://t.whop.tw/s.js, setScope("biz_gmeNhWYTguRAqI"), track("page")'); return; }
+      !function(w,d,s,u,n,a,b){if(w[n])return;a=w[n]={q:[],t:+new Date,s:[],o:u,track:function(){a.q.push([+new Date].concat([].slice.call(arguments)))},setScope:function(){a.s=[].slice.call(arguments).filter(function(x){return typeof x==="string"});a.q.push([+new Date,"setScope"].concat(a.s))},scope:function(){var c=[].slice.call(arguments);return{track:function(){a.q.push([+new Date].concat([].slice.call(arguments)).concat([{__scope:c}]))}}}};b=d.createElement(s);b.async=1;b.src=u+"/s.js";d.getElementsByTagName(s)[0].parentNode.insertBefore(b,d.getElementsByTagName(s)[0])}(window,document,"script","https://t.whop.tw","whop");
+      whop.setScope("biz_gmeNhWYTguRAqI");
+      whop.track("page");
+    })();
+  </script>
+
   <script>
     tailwind.config = {
       theme: {
@@ -395,6 +415,9 @@
     .quiz-error { display: none; color: #F87171; font-size: 0.75rem; margin-top: 0.35rem; }
     .quiz-field.invalid .quiz-error { display: block; }
     .result-label { font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #8655F6; margin-bottom: 0.6rem; display: block; }
+    /* Whop checkout embed (frames from cdn.whop.com): never wider than the result column. */
+    .whop-mount { min-width: 0; }
+    .whop-mount iframe { max-width: 100%; }
     body.quiz-locked { overflow: hidden; }
 
     /* Product moments: assets/moments.css (Amendment 8). */
@@ -1168,13 +1191,34 @@
                 <div class="mb-10"><span class="result-label">The good news</span><p class="text-text-main text-base leading-relaxed">EchoOS cuts the steps down. Add a folder and new videos show up on their own. Then ask for clips or a post draft in one chat.</p></div>
               </div>
 
-              <!-- Waitlist close (copy-deck-r8 section 3, waitlist confirmation). Shows only after submitLead() reports the lead saved;
-                   otherwise the save-failed state shows instead. No button on the confirmation: the contact gate already did the joining. -->
+              <!-- Join block (Joshua 2026-10-28, option 1): the Whop "EchoOS Waitlist" checkout, embedded with Whop Elements.
+                   Text comes from QUIZ_COPY in the quiz script (data-copy keys). The fallback shows when the embed fails or
+                   does not render within 10 s: a link to the same plan's hosted Whop checkout, plus Try again. -->
+              <div id="waitlist-join" class="hidden stack-highlight p-4 sm:p-8" data-close="join">
+                <h3 class="font-heading text-2xl sm:text-3xl font-bold text-text-main mb-3" data-copy="joinHeading"></h3>
+                <p id="waitlist-join-line" class="text-text-main text-base leading-relaxed mb-2" data-copy="joinLine"></p>
+                <p class="text-text-muted text-sm leading-relaxed mb-6" data-copy="joinNote"></p>
+                <div id="whop-checkout" class="whop-mount -mx-3 sm:mx-0"></div>
+                <div id="waitlist-join-fallback" class="hidden" role="alert">
+                  <p class="text-text-main text-base leading-relaxed mb-4" data-copy="fallbackLine"></p>
+                  <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                    <a id="waitlist-join-hosted" href="https://whop.com/checkout/plan_O9e8OWNGOrmx0" target="_blank" rel="noopener" class="btn-magnetic w-full sm:w-auto bg-primary text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-primary-hover shadow-[0_0_30px_rgba(134,85,246,0.4)] transition-all duration-300 cursor-pointer inline-flex items-center justify-center gap-2">
+                      <span data-copy="fallbackLink"></span> <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </a>
+                    <button type="button" data-join-retry class="text-sm text-text-muted hover:text-text-main inline-flex items-center justify-center gap-1">
+                      <i data-lucide="rotate-ccw" class="w-4 h-4"></i> <span data-copy="retry"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Waitlist close (copy-deck-r8 section 3, waitlist confirmation). Shows only after the Whop checkout's onComplete
+                   reports a waitlist entry (or payment); never otherwise. No button: the Whop join already did the joining. -->
               <div id="waitlist-close" class="hidden stack-highlight p-6 sm:p-8" data-close="saved">
                 <div class="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mb-6 border border-primary/30 shadow-[0_0_20px_rgba(134,85,246,0.3)]">
                   <i data-lucide="check" class="w-6 h-6 text-primary"></i>
                 </div>
-                <h3 class="font-heading text-2xl sm:text-3xl font-bold text-text-main mb-3">You're on the waitlist.</h3>
+                <h3 class="font-heading text-2xl sm:text-3xl font-bold text-text-main mb-3 focus:outline-none">You're on the waitlist.</h3>
                 <p class="text-text-main text-base leading-relaxed mb-2">I'll email you about early access at the address you gave.</p>
                 <p class="text-text-muted text-base leading-relaxed mb-8">No price yet, nothing to download.</p>
                 <div class="border-t border-white/5 pt-6">
@@ -1182,14 +1226,6 @@
                   <p class="text-text-muted text-base leading-relaxed mb-4">Social/Money is where I write about attention, demand, psychology, and the systems underneath it.</p>
                   <a href="https://thejoshuav.substack.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-primary font-semibold hover:text-[#C084FC] transition-colors">Read Social/Money <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
                 </div>
-              </div>
-              <!-- Save failed: replaces the confirmation when submitLead() does not report saved: true. Try again reopens the contact gate with the fields still filled. -->
-              <div id="waitlist-failed" class="hidden rounded-xl border border-white/10 bg-white/[0.03] p-6 sm:p-8" data-close="failed" role="alert">
-                <h3 class="font-heading text-2xl sm:text-3xl font-bold text-text-main mb-3">Your details didn't save.</h3>
-                <p class="text-text-muted text-base leading-relaxed mb-6">Your result is above, but you're not on the waitlist yet.</p>
-                <button type="button" data-quiz-retry class="btn-magnetic w-full sm:w-auto bg-primary text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-primary-hover shadow-[0_0_30px_rgba(134,85,246,0.4)] transition-all duration-300 cursor-pointer inline-flex items-center justify-center gap-2">
-                  Try again <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
-                </button>
               </div>
             </section>
 
@@ -1262,19 +1298,157 @@
       let lastFocus = null;
 
       // ==============================================================
-      // INTEGRATION POINT (lead destination: not wired). No network calls.
-      // Later: POST `payload` to the chosen lead destination and
-      // return { saved: true } only when it confirms the save.
-      // The result page says "You're on the waitlist." only on saved: true;
-      // anything else shows the save-failed state with Try again.
-      // Until wired it keeps the answers in this tab only and reports
-      // saved: false, so an unwired page never claims a signup.
-      // (The tailnet preview build swaps the return line for a stand-in
-      // that resolves saved, with a switcher toggle to simulate a failure.)
+      // QUIZ_COPY: every user-facing string the Whop join step adds.
+      // DRAFT placeholders: Echo is writing the final lines; paste them here only.
+      // Rendered into the [data-copy="<key>"] elements of #waitlist-join.
+      // ==============================================================
+      const QUIZ_COPY = {
+        joinHeading: 'Last step: hold your spot',                               // DRAFT
+        joinLine: 'The waitlist lives on Whop. Your email is filled in, tap Join.', // DRAFT
+        joinNote: 'Have a Whop account? Whop emails you a code to sign in.',    // DRAFT
+        fallbackLine: "The join form didn't load.",                             // DRAFT
+        fallbackLink: 'Join on Whop',                                           // DRAFT
+        retry: 'Try again',                                                     // DRAFT
+      };
+      overlay.querySelectorAll('[data-copy]').forEach(el => { if (QUIZ_COPY[el.dataset.copy] != null) el.textContent = QUIZ_COPY[el.dataset.copy]; });
+
+      // Whop "EchoOS Waitlist" (free, waitlist release). Public IDs; no API key or server is involved.
+      // The fallback's hosted checkout link (https://whop.com/checkout/plan_O9e8OWNGOrmx0) is the href of #waitlist-join-hosted.
+      const WHOP = {
+        plan: 'plan_O9e8OWNGOrmx0',
+        script: 'https://cdn.whop.com/elements/amber/elements.js',
+        renderTimeoutMs: 10000,
+        metadataMax: 500, // per-value cap (Whop documents up to 40 string pairs; 500 chars is our own conservative cap)
+      };
+      const joinEl = document.getElementById('waitlist-join');
+      const mountEl = document.getElementById('whop-checkout');
+      const fallbackEl = document.getElementById('waitlist-join-fallback');
+      let whopScript = null, whopInstance = null, whopHandle = null, mountToken = 0, renderTimer = null, lastPayload = null;
+
+      // Loads the Elements script once, on first need (opening the quiz), so visitors who never open it don't pay for it.
+      function loadWhopElements() {
+        if (window.WhopElements) return Promise.resolve(window.WhopElements);
+        if (whopScript) return whopScript;
+        whopScript = new Promise((resolve, reject) => {
+          const s = document.createElement('script');
+          s.src = WHOP.script;
+          s.async = true;
+          s.setAttribute('data-whop-elements', '');
+          s.onload = () => window.WhopElements ? resolve(window.WhopElements) : reject(new Error('WhopElements global missing after load'));
+          s.onerror = () => { s.remove(); whopScript = null; reject(new Error('Whop Elements script failed to load')); };
+          document.head.appendChild(s);
+        });
+        return whopScript;
+      }
+
+      function setJoin(status) {
+        state.lead = Object.assign({}, state.lead, { join: status });
+        renderResult();
+      }
+
+      function joinFailed(reason) {
+        clearTimeout(renderTimer);
+        if (state.lead && state.lead.saved) return;
+        console.warn('[whop join] showing the hosted-checkout fallback:', reason && (reason.message || reason.code || reason));
+        setJoin('failed');
+      }
+
+      // onComplete is the ONLY path to "You're on the waitlist.": a waitlist entry (ent_) or a payment (pay_).
+      function onWhopComplete(c) {
+        if (!c || (c.result !== 'waitlist_entry' && c.result !== 'payment')) return;
+        clearTimeout(renderTimer);
+        state.lead = Object.assign({}, state.lead, { saved: true, join: 'done', whop: { result: c.result, id: c.entryId || c.paymentId || '', sessionId: c.sessionId || '' } });
+        renderResult();
+        const h = document.querySelector('#waitlist-close h3');
+        if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); h.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }
+      }
+
+      function destroyJoin() {
+        clearTimeout(renderTimer);
+        if (whopHandle) { try { whopHandle.destroy(); } catch (e) { /* already gone */ } }
+        whopHandle = null;
+        mountEl.replaceChildren();
+      }
+
+      function whopMetadata(p) {
+        const m = {
+          quiz_q1: p.answers.q1, quiz_q2: p.answers.q2, quiz_q3: p.answers.q3, quiz_result: p.result,
+          business: p.contact.business, website: p.contact.website, source: p.source,
+        };
+        Object.keys(m).forEach(k => {
+          const v = m[k] == null ? '' : String(m[k]).trim().slice(0, WHOP.metadataMax);
+          if (v) m[k] = v; else delete m[k];
+        });
+        return m;
+      }
+
+      function whopAttribution() {
+        const q = new URLSearchParams(location.search), a = {};
+        [['utm_source', 'utmSource'], ['utm_medium', 'utmMedium'], ['utm_campaign', 'utmCampaign'], ['utm_term', 'utmTerm'], ['utm_content', 'utmContent']].forEach(([from, to]) => {
+          const v = (q.get(from) || '').trim().slice(0, WHOP.metadataMax);
+          if (v) a[to] = v;
+        });
+        return Object.keys(a).length ? a : undefined;
+      }
+
+      // Mounts a fresh Whop checkout for this submission (Whop sets every option at create, so a new email means a new mount).
+      async function mountJoin(payload) {
+        const token = ++mountToken;
+        lastPayload = payload;
+        destroyJoin();
+        setJoin('loading');
+        renderTimer = setTimeout(() => { if (token === mountToken && state.lead && state.lead.join === 'loading') joinFailed('not rendered within ' + WHOP.renderTimeoutMs / 1000 + ' s'); }, WHOP.renderTimeoutMs);
+        try {
+          const WhopElements = await loadWhopElements();
+          if (token !== mountToken) return;
+          // skipPixel off tryechoos.com: Elements otherwise loads the Whop pixel (t.whop.tw) itself.
+          whopInstance = whopInstance || WhopElements({ skipPixel: !window.echoPixel.live });
+          const options = {
+            plan: WHOP.plan,
+            metadata: whopMetadata(payload),
+            appearance: {
+              theme: { appearance: 'dark', accentColor: 'violet', grayColor: 'gray' },
+              variables: { '--radius': '12px' },
+              classes: {
+                'whop-CheckoutPayButton': { backgroundColor: '#8655F6', color: '#FFFFFF', fontWeight: '700' },
+                'whop-CheckoutCollection': { backgroundColor: 'transparent' },
+              },
+            },
+            onComplete: onWhopComplete,
+          };
+          const attribution = whopAttribution();
+          if (attribution) options.attribution = attribution;
+          whopHandle = whopInstance.checkout.create(options);
+          whopHandle.create('checkout', {
+            buyerEmail: payload.contact.email,
+            onReady: () => { if (token !== mountToken) return; clearTimeout(renderTimer); if (!(state.lead && state.lead.saved)) setJoin('ready'); },
+            onError: e => { if (token === mountToken) joinFailed(e); },
+          }).mount(mountEl);
+        } catch (err) {
+          if (token === mountToken) joinFailed(err);
+        }
+      }
+
+      // ==============================================================
+      // INTEGRATION POINT: the contact gate's submit lands here.
+      // 1. Keeps the answers in this tab (sessionStorage) as before.
+      // 2. Whop Pixel: "lead" (name, email, phone) and custom "quiz_completed",
+      //    one event_id per submission. Sent only on tryechoos.com; elsewhere a
+      //    console dry run (see echoPixel in <head>).
+      // 3. Mounts the Whop checkout for the free "EchoOS Waitlist" plan with the
+      //    gate email prefilled. The visitor taps Join inside Whop; only Whop's
+      //    onComplete (waitlist_entry or payment) sets saved: true and shows
+      //    "You're on the waitlist.". If the embed fails or does not render in
+      //    10 s, a fallback links to the hosted checkout (new tab).
+      // Returns saved: false: the gate itself never joins anyone.
       // ==============================================================
       async function submitLead(payload) {
         try { sessionStorage.setItem('echoos_quiz_lead', JSON.stringify(payload)); } catch (e) { /* storage blocked: ignore */ }
-        return { saved: false };
+        const eventId = 'lead_' + (window.crypto && crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2));
+        const lead = { event_id: eventId, email: payload.contact.email, name: payload.contact.name };
+        if (payload.contact.phone) lead.phone = payload.contact.phone;
+        try { window.echoPixel.track('lead', lead); window.echoPixel.track('quiz_completed', { event_id: eventId }); } catch (e) { /* pixel never blocks the result */ }
+        return { saved: false, join: 'loading', payload };
       }
 
       function showStep(step) {
@@ -1298,6 +1472,7 @@
         overlay.setAttribute('aria-hidden', 'false');
         document.body.classList.add('quiz-locked');
         showStep('entry');
+        loadWhopElements().catch(() => { /* retried at mount; the fallback covers a hard failure */ });
       }
 
       function close() {
@@ -1313,10 +1488,14 @@
         overlay.querySelectorAll('[data-result-variant]').forEach(el => el.classList.toggle('hidden', el.dataset.resultVariant !== v));
         if (state.answers.q1) document.getElementById('echo-q1').textContent = state.answers.q1;
         if (state.answers.q2) document.getElementById('echo-q2').textContent = state.answers.q2;
-        // Waitlist close: the confirmation only when the lead really saved, else the save-failed state.
+        // Close: the confirmation only after Whop's onComplete; until then the join block (or its fallback).
         const saved = !!(state.lead && state.lead.saved === true);
+        const join = state.lead && state.lead.join;
         document.getElementById('waitlist-close').classList.toggle('hidden', !saved);
-        document.getElementById('waitlist-failed').classList.toggle('hidden', saved);
+        joinEl.classList.toggle('hidden', saved || !join);
+        mountEl.classList.toggle('hidden', join === 'failed');
+        fallbackEl.classList.toggle('hidden', join !== 'failed');
+        document.getElementById('waitlist-join-line').classList.toggle('hidden', join === 'failed'); // "email is filled in" is false on the fallback
       }
 
       function showResult(variant, answers) {
@@ -1340,7 +1519,7 @@
         if (e.key === 'Escape') { close(); return; }
         if (e.key !== 'Tab') return;
         // Keep focus inside the open dialog.
-        const focusables = [...overlay.querySelectorAll('button, a[href], input, [tabindex]:not([tabindex="-1"])')].filter(el => !el.disabled && el.getClientRects().length > 0);
+        const focusables = [...overlay.querySelectorAll('button, a[href], input, iframe, [tabindex]:not([tabindex="-1"])')].filter(el => !el.disabled && el.getClientRects().length > 0);
         if (!focusables.length) return;
         const first = focusables[0], last = focusables[focusables.length - 1];
         if (!overlay.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
@@ -1349,8 +1528,8 @@
       });
       overlay.querySelectorAll('[data-quiz-next]').forEach(el => el.addEventListener('click', () => showStep(el.dataset.quizNext)));
       overlay.querySelectorAll('[data-quiz-back]').forEach(el => el.addEventListener('click', () => showStep(el.dataset.quizBack)));
-      // Save failed: back to the contact gate, fields still filled.
-      overlay.querySelectorAll('[data-quiz-retry]').forEach(el => el.addEventListener('click', () => showStep('contact')));
+      // Fallback Try again: a fresh mount for the same submission.
+      overlay.querySelectorAll('[data-join-retry]').forEach(el => el.addEventListener('click', () => { if (lastPayload) mountJoin(lastPayload); }));
 
       // One tap per answer, auto-advance.
       const NEXT = { q1: 'q2', q2: 'q3', q3: 'contact' };
@@ -1396,10 +1575,11 @@
         };
         submitBtn.disabled = true;
         let res;
-        try { res = await submitLead(payload); } catch (err) { res = { saved: false }; }
+        try { res = await submitLead(payload); } catch (err) { res = { saved: false, join: 'loading', payload }; }
         submitBtn.disabled = false;
         state.lead = res;
         showResult();
+        mountJoin(payload);
       });
       form.querySelectorAll('input').forEach(input => input.addEventListener('input', () => input.closest('.quiz-field').classList.remove('invalid')));
 
