@@ -153,7 +153,8 @@
 }
 
 /* ---------- Feature moments ---------- */
-.moment-stage { position: relative; display: flex; align-items: center; justify-content: center; min-height: 344px; padding: 28px 8px; }
+/* Fixed stage heights: the tallest state fits, and a fold/unfold mid-transition overflows the stage instead of moving the page. */
+.moment-stage { position: relative; display: flex; align-items: center; justify-content: center; height: 380px; padding: 28px 8px; }
 .moment-stage::before { content: ""; position: absolute; inset: 10% 15%; background: radial-gradient(closest-side, rgba(134,85,246,.16), transparent); filter: blur(10px); pointer-events: none; }
 .mo-m2 { width: 336px; display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
 .mo-m2 .mc { width: 100%; }
@@ -166,9 +167,10 @@
 .mo .c-saved { opacity: 0; transition: opacity .3s ease; }
 .mo .c-saved.on { opacity: 1; }
 @media (max-width: 639px) {
-  .moment-stage { min-height: 0; padding: 12px 0; }
-  #shot-m3 .moment-stage { min-height: 290px; }
-  #shot-m4 .moment-stage { min-height: 312px; } /* the clip card is tallest once the 9:16 clip is cut */ /* the draft card is tallest while asking for a change */
+  .moment-stage { height: auto; padding: 12px 0; }
+  #shot-m2 .moment-stage { height: 226px; }
+  #shot-m3 .moment-stage { height: 314px; } /* the draft card is tallest while asking for a change */
+  #shot-m4 .moment-stage { height: 336px; } /* the clip card is tallest once the 9:16 clip is cut */
   .mo-m2, .mo-m3, .mo-m4 { width: 100%; max-width: 340px; }
 }
 
