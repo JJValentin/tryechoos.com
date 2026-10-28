@@ -60,7 +60,7 @@
       m.cursor.classList.add('is-press'); el.classList.add('is-press');
       return wait(170).then(function () { m.cursor.classList.remove('is-press'); el.classList.remove('is-press'); });
     };
-    var moveTo = function (el) { m.root.classList.add('is-cursor'); m.cursorAt(el); return wait(800); };
+    var moveTo = function (el, ms) { ms = ms || 700; m.root.classList.add('is-cursor'); m.ensureCursor().style.transitionDuration = (ms - 50) + 'ms, 300ms'; m.cursorAt(el); return wait(ms); };
     var out = function () { m.root.classList.remove('is-cursor'); m.root.classList.add('is-out'); return wait(450); };
     var begin = function () {
       m.root.classList.remove('is-out', 'is-cursor');
@@ -76,20 +76,19 @@
     // Hero: a pasted video loads, its transcript appears, then a post draft, then a 9:16 clip.
     hero: function (m, t) {
       m.set('1');
-      return t.wait(1700).then(function () { m.set('2'); return t.wait(1300); })
-        .then(function () { m.set('3'); return t.wait(1300); })
-        .then(function () { m.set('end'); return t.wait(3800); })
+      return t.wait(1400).then(function () { m.set('2'); return t.wait(1100); })
+        .then(function () { m.set('3'); return t.wait(1100); })
+        .then(function () { m.set('end'); return t.wait(3000); })
         .then(t.out);
     },
-    // Block 1: a link is pasted, the Source downloads and transcribes, three timed lines appear.
+    // Block 1: a link is pasted, the Source transcribes it, two timed lines appear.
     m2: function (m, t) {
       var link = m.q('[data-full]');
       m.set('1'); link.textContent = '';
-      return t.wait(350).then(function () { return t.type(link, link.getAttribute('data-full'), 1300); })
-        .then(function () { return t.wait(450); })
-        .then(function () { m.set('2'); return t.wait(1250); })
-        .then(function () { m.set('3'); return t.wait(1400); })
-        .then(function () { m.set('end'); return t.wait(3600); })
+      return t.wait(300).then(function () { return t.type(link, link.getAttribute('data-full'), 1200); })
+        .then(function () { return t.wait(300); })
+        .then(function () { m.set('2'); return t.wait(1400); })
+        .then(function () { m.set('end'); return t.wait(3200); })
         .then(t.out);
     },
     // Block 2: ask for a change, click Rewrite, the draft comes back shorter with Copy text and Approve.
@@ -97,11 +96,11 @@
       var field = m.q('.d-field'), text = m.q('[data-full]'), btn = m.q('[data-click="rewrite"]');
       m.set('1'); text.textContent = '';
       m.cursorAt(m.q('.d-label'), true);
-      return t.wait(500).then(function () { field.classList.add('is-focus'); return t.type(text, text.getAttribute('data-full'), 1500); })
-        .then(function () { return t.moveTo(btn); })
+      return t.wait(400).then(function () { field.classList.add('is-focus'); return t.type(text, text.getAttribute('data-full'), 1300); })
+        .then(function () { return t.moveTo(btn, 650); })
         .then(function () { return t.click(btn); })
-        .then(function () { field.classList.remove('is-focus'); m.set('2'); return t.wait(1200); })
-        .then(function () { m.root.classList.remove('is-cursor'); m.set('end'); return t.wait(4000); })
+        .then(function () { field.classList.remove('is-focus'); m.set('2'); return t.wait(1000); })
+        .then(function () { m.root.classList.remove('is-cursor'); m.set('end'); return t.wait(3000); })
         .then(t.out);
     },
     // Block 3: tick Vertical 9:16, Cut clip, then the cut 9:16 clip appears and Save to folder saves it.
@@ -109,16 +108,16 @@
       var box = m.q('.box'), cut = m.q('[data-click="cut"]'), save = m.q('[data-click="save"]'), saved = m.q('.c-saved');
       m.set('1');
       m.cursorAt(m.q('.c-title'), true);
-      return t.wait(500).then(function () { return t.moveTo(box); })
+      return t.wait(300).then(function () { return t.moveTo(box, 600); })
         .then(function () { return t.click(box); })
-        .then(function () { box.classList.add('on'); return t.wait(450); })
-        .then(function () { return t.moveTo(cut); })
+        .then(function () { box.classList.add('on'); return t.wait(250); })
+        .then(function () { return t.moveTo(cut, 550); })
         .then(function () { return t.click(cut); })
-        .then(function () { m.set('2'); return t.wait(1600); })
-        .then(function () { m.set('end'); return t.wait(700); })
-        .then(function () { return t.moveTo(save); })
+        .then(function () { m.set('2'); return t.wait(1100); })
+        .then(function () { m.set('end'); return t.wait(350); })
+        .then(function () { return t.moveTo(save, 600); })
         .then(function () { return t.click(save); })
-        .then(function () { saved.classList.add('on'); m.root.classList.remove('is-cursor'); return t.wait(3200); })
+        .then(function () { saved.classList.add('on'); m.root.classList.remove('is-cursor'); return t.wait(2300); })
         .then(t.out);
     },
     // Step 1: connect your AI.

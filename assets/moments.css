@@ -11,7 +11,7 @@
   -webkit-font-smoothing: antialiased; text-align: left; line-height: 1.4;
 }
 .mo *, .mo *::before, .mo *::after { box-sizing: border-box; }
-.mo p, .mo ol { margin: 0; padding: 0; list-style: none; }
+:where(.mo) p, :where(.mo) ol { margin: 0; padding: 0; list-style: none; }
 
 /* State machine: an element with class .st shows only while the moment's data-s is one of
    the words in its data-on list. data-s="end" is the final state (static default). */
@@ -81,12 +81,14 @@
 .green { color: #4ade80; }
 .d-text { font-size: 15.5px; line-height: 1.5; }
 .d-text.old { color: var(--m-muted); }
-.d-form > div { border-top: 1px solid var(--m-border); margin-top: 16px; padding-top: 14px; }
+/* spacing lives inside .coll parts, so a folded part takes no height */
+.d-form .d-label { border-top: 1px solid var(--m-border); margin-top: 16px; padding-top: 14px; }
 .d-label { font-size: 14px; font-weight: 500; margin-bottom: 8px; }
 .d-field { min-height: 42px; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--m-border); background: rgba(0,0,0,.3); font-size: 15px; }
 .mo .d-field.is-focus { border-color: var(--m-primary); }
 .d-row { display: flex; justify-content: flex-end; margin-top: 10px; }
-.d-actions > div { display: flex; align-items: center; gap: 8px; padding-top: 18px; }
+.d-actions > div { display: flex; align-items: center; gap: 8px; }
+.d-actions .btn { margin-top: 18px; }
 
 /* Buttons: the moment's one action wears the app's primary purple */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 8px 15px; border-radius: 8px; font-size: 14.5px; font-weight: 600; white-space: nowrap; transition: transform .12s ease, background-color .2s ease, box-shadow .2s ease; }
@@ -151,22 +153,22 @@
 }
 
 /* ---------- Feature moments ---------- */
-.moment-stage { position: relative; display: flex; align-items: center; justify-content: center; min-height: 372px; padding: 28px 8px; }
+.moment-stage { position: relative; display: flex; align-items: center; justify-content: center; min-height: 344px; padding: 28px 8px; }
 .moment-stage::before { content: ""; position: absolute; inset: 10% 15%; background: radial-gradient(closest-side, rgba(134,85,246,.16), transparent); filter: blur(10px); pointer-events: none; }
 .mo-m2 { width: 336px; display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
 .mo-m2 .mc { width: 100%; }
 .mo-m2 .mc-body { min-height: 84px; }
 .mo-m3 { width: 340px; }
 .mo-m4 { width: 330px; }
-.mo-m4 .c-foot .coll > div { padding-top: 14px; }
+.mo-m4 .c-foot .coll > div > :first-child { margin-top: 14px; }
 .mo-m4 .c-frame { width: 72px; height: 128px; }
 .c-save { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
 .mo .c-saved { opacity: 0; transition: opacity .3s ease; }
 .mo .c-saved.on { opacity: 1; }
 @media (max-width: 639px) {
   .moment-stage { min-height: 0; padding: 12px 0; }
-  #shot-m3 .moment-stage { min-height: 320px; }
-  #shot-m4 .moment-stage { min-height: 336px; } /* the clip card is tallest once the 9:16 clip is cut */ /* the draft card is tallest while asking for a change */
+  #shot-m3 .moment-stage { min-height: 290px; }
+  #shot-m4 .moment-stage { min-height: 312px; } /* the clip card is tallest once the 9:16 clip is cut */ /* the draft card is tallest while asking for a change */
   .mo-m2, .mo-m3, .mo-m4 { width: 100%; max-width: 340px; }
 }
 
@@ -185,7 +187,7 @@
 .mo-step .s-name { font: 600 15px 'Space Grotesk', sans-serif; }
 .mo-step .s-state { font-size: 13px; color: var(--m-muted); }
 .mo-step .btn { width: 100%; font-size: 13.5px; padding: 7px 10px; }
-.mo-step .coll > div { padding-top: 10px; }
+.mo-step .coll .btn { margin-top: 10px; }
 .mo-step .s-text { margin-top: 6px; font-size: 14px; }
 .mo-step .mc-pill { padding: 9px 13px; font-size: 14px; margin-bottom: 10px; }
 .mo-step .mc-head { padding: 0; border: 0; }
