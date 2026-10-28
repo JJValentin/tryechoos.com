@@ -8,7 +8,7 @@ out=${1:?usage: preview/build-preview.sh <output-dir>}
 mkdir -p "$out"
 rsync -a --delete \
   --exclude '.git' --exclude '.antigravity' --exclude 'research' --exclude 'design-system' \
-  --exclude 'preview' --exclude '*.md' --exclude 'agent_help.txt' --exclude 'CNAME' --exclude '/p1' --exclude '/p2' --exclude '/p3' --exclude '/p4' --exclude '/p5' --exclude '/p6' \
+  --exclude 'preview' --exclude '*.md' --exclude 'agent_help.txt' --exclude 'CNAME' --exclude '/p1' --exclude '/p2' --exclude '/p3' --exclude '/p4' --exclude '/p5' --exclude '/p6' --exclude '/p7' \
   "$root"/ "$out"/
 cp "$root/preview/preview-switcher.js" "$out/preview-switcher.js"
 python3 - "$out/index.html" <<'PY'
