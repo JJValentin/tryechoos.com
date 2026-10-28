@@ -1203,7 +1203,7 @@
                   <p class="text-text-main text-base leading-relaxed mb-4" data-copy="fallbackLine"></p>
                   <div class="flex flex-col sm:flex-row sm:items-center gap-4">
                     <a id="waitlist-join-hosted" href="https://whop.com/checkout/plan_O9e8OWNGOrmx0" target="_blank" rel="noopener" class="btn-magnetic w-full sm:w-auto bg-primary text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-primary-hover shadow-[0_0_30px_rgba(134,85,246,0.4)] transition-all duration-300 cursor-pointer inline-flex items-center justify-center gap-2">
-                      <span data-copy="fallbackLink"></span> <i data-lucide="external-link" class="w-4 h-4"></i>
+                      <span data-copy="fallbackLink"></span><span class="sr-only"> (opens in a new tab)</span> <i data-lucide="external-link" class="w-4 h-4" aria-hidden="true"></i>
                     </a>
                     <button type="button" data-join-retry class="text-sm text-text-muted hover:text-text-main inline-flex items-center justify-center gap-1">
                       <i data-lucide="rotate-ccw" class="w-4 h-4"></i> <span data-copy="retry"></span>
@@ -1219,7 +1219,7 @@
                   <i data-lucide="check" class="w-6 h-6 text-primary"></i>
                 </div>
                 <h3 class="font-heading text-2xl sm:text-3xl font-bold text-text-main mb-3 focus:outline-none">You're on the waitlist.</h3>
-                <p class="text-text-main text-base leading-relaxed mb-2">I'll email you about early access at the address you gave.</p>
+                <p class="text-text-main text-base leading-relaxed mb-2">I'll email you about early access at the email you joined with.</p>
                 <p class="text-text-muted text-base leading-relaxed mb-8">No price yet, nothing to download.</p>
                 <div class="border-t border-white/5 pt-6">
                   <span class="result-label">While you wait</span>
@@ -1299,16 +1299,16 @@
 
       // ==============================================================
       // QUIZ_COPY: every user-facing string the Whop join step adds.
-      // DRAFT placeholders: Echo is writing the final lines; paste them here only.
-      // Rendered into the [data-copy="<key>"] elements of #waitlist-join.
+      // Echo r1 recommended lines (research/tryechoos-site-2026-10-25/whop-waitlist-copy-r1.md),
+      // pending Joshua's approval. Rendered into the [data-copy="<key>"] elements of #waitlist-join.
       // ==============================================================
       const QUIZ_COPY = {
-        joinHeading: 'Last step: hold your spot',                               // DRAFT
-        joinLine: 'The waitlist lives on Whop. Your email is filled in, tap Join.', // DRAFT
-        joinNote: 'Have a Whop account? Whop emails you a code to sign in.',    // DRAFT
-        fallbackLine: "The join form didn't load.",                             // DRAFT
-        fallbackLink: 'Join on Whop',                                           // DRAFT
-        retry: 'Try again',                                                     // DRAFT
+        joinHeading: 'Last step: join the waitlist.',
+        joinLine: 'The waitlist lives on Whop, and your email is already filled in. Free to join, no card.',
+        joinNote: 'Already have a Whop account? Whop will email you a sign-in code first.',
+        fallbackLine: "The join form didn't load here.",
+        fallbackLink: 'Join on Whop instead',
+        retry: 'Try again',
       };
       overlay.querySelectorAll('[data-copy]').forEach(el => { if (QUIZ_COPY[el.dataset.copy] != null) el.textContent = QUIZ_COPY[el.dataset.copy]; });
 
