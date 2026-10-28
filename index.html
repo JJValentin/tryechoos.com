@@ -37,6 +37,7 @@
     }
   </script>
 
+  <link rel="stylesheet" href="./assets/moments.css" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
 
@@ -197,20 +198,6 @@
       flex-shrink: 0;
     }
 
-    /* Hero product visual */
-    .hero-device-frame {
-      perspective: 1000px;
-    }
-    .hero-device-frame img {
-      border-radius: 12px;
-      box-shadow: 0 25px 60px rgba(134, 85, 246, 0.2), 0 10px 30px rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transform: rotateX(2deg) rotateY(-1deg);
-      transition: transform 0.4s ease;
-    }
-    .hero-device-frame:hover img {
-      transform: rotateX(0) rotateY(0);
-    }
 
     /* Product showcase tabs */
     .showcase-tab {
@@ -409,24 +396,17 @@
     .result-label { font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #8655F6; margin-bottom: 0.6rem; display: block; }
     body.quiz-locked { overflow: hidden; }
 
-    /* Feature blocks: real app screenshot in the hero's glass frame */
-    .shot-frame {
-      position: relative; padding: 6px; border-radius: 18px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03) 50%, rgba(255,255,255,0));
-      border: 1px solid rgba(255,255,255,0.10);
-      box-shadow: 0 25px 60px rgba(0,0,0,0.6), 0 0 40px rgba(134,85,246,0.15);
-    }
-    .shot-frame img { display: block; border: 1px solid rgba(255,255,255,0.06); }
-
-    /* Product images (Amendment 7): the real EchoOS UI (the app's own CSS, fonts and component markup)
-       holding short mock content. Phones and the 768 to 1023 two-column layout get a narrower view of
-       the same screen, so the words stay readable; nothing is drawn over the app UI. */
-    .grab { display: block; width: 100%; height: auto; }
-    .shot-frame .grab { border: 0; }
-    .grab-screen { position: relative; overflow: hidden; border-radius: 12px; background: #141414; border: 1px solid rgba(255,255,255,0.06); }
+    /* Product moments: assets/moments.css (Amendment 8). */
   </style>
 </head>
 <body class="bg-bg text-text-main font-body overflow-x-hidden">
+  <!-- Icons for the product moments: lucide-react nodes as shipped in the EchoOS app (link-2, scissors, download, check). -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="mi-link" viewBox="0 0 24 24"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></symbol>
+    <symbol id="mi-scissors" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><path d="M8.12 8.12 12 12"/><path d="M20 4 8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/></symbol>
+    <symbol id="mi-download" viewBox="0 0 24 24"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></symbol>
+    <symbol id="mi-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  </svg>
 
   <!-- ============================================================ -->
   <!-- NAVBAR -->
@@ -506,22 +486,26 @@
         </a>
       </div>
 
-      <p class="text-[11px] sm:text-xs text-text-muted/60 mb-10 sm:mb-16 md:mb-20 max-w-md mx-auto px-2 leading-relaxed">Three questions, then your result. No payment.</p>
+      <p class="text-[11px] sm:text-xs text-text-muted/60 mb-8 sm:mb-16 md:mb-20 max-w-md mx-auto px-2 leading-relaxed">Three questions, then your result. No payment.</p>
 
-      <!-- Hero product visual (Amendment 7): the real board UI with mock content. A video's transcript connected to its vertical clip, one Drafts card on top (desktop); phones get the transcript and the clip. -->
-      <div class="hero-device-frame mt-0 max-w-5xl mx-auto animate-on-scroll relative w-full z-30 perspective-[2000px]">
-        <div class="absolute inset-0 bg-gradient-to-b from-primary/30 via-purple-600/10 to-transparent rounded-[32px] blur-2xl sm:blur-3xl opacity-50 scale-105"></div>
-        <figure id="shot-hero" class="m-0">
-          <div class="relative rounded-2xl sm:rounded-[32px] p-1.5 sm:p-2 bg-gradient-to-br from-white/10 via-white/5 to-white/0 border border-white/10 shadow-[0_30px_100px_rgba(0,0,0,0.8),0_0_40px_rgba(134,85,246,0.2)]" style="transform: rotateX(2deg) scale(0.98); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
-            <div class="rounded-xl sm:rounded-[24px] overflow-hidden bg-[#141414] relative">
-              <picture>
-                <source media="(max-width: 767px)" type="image/avif" srcset="./assets/product/p7-hero-narrow-680.avif 680w, ./assets/product/p7-hero-narrow-1020.avif 1020w" sizes="calc(100vw - 46px)" width="1272" height="1254" />
-                <source media="(max-width: 767px)" type="image/webp" srcset="./assets/product/p7-hero-narrow-680.webp 680w, ./assets/product/p7-hero-narrow-1020.webp 1020w" sizes="calc(100vw - 46px)" width="1272" height="1254" />
-                <source media="(max-width: 767px)" type="image/jpeg" srcset="./assets/product/p7-hero-narrow-680.jpg 680w, ./assets/product/p7-hero-narrow-1020.jpg 1020w" sizes="calc(100vw - 46px)" width="1272" height="1254" />
-                <source type="image/avif" srcset="./assets/product/p7-hero-wide-1000.avif 1000w, ./assets/product/p7-hero-wide-1500.avif 1500w, ./assets/product/p7-hero-wide-2088.avif 2088w" sizes="(min-width: 1056px) 976px, calc(100vw - 64px)" width="2088" height="1620" />
-                <source type="image/webp" srcset="./assets/product/p7-hero-wide-1000.webp 1000w, ./assets/product/p7-hero-wide-1500.webp 1500w, ./assets/product/p7-hero-wide-2088.webp 2088w" sizes="(min-width: 1056px) 976px, calc(100vw - 64px)" width="2088" height="1620" />
-                <img src="./assets/product/p7-hero-wide-1000.jpg" srcset="./assets/product/p7-hero-wide-1000.jpg 1000w, ./assets/product/p7-hero-wide-1500.jpg 1500w, ./assets/product/p7-hero-wide-2088.jpg 2088w" sizes="(min-width: 1056px) 976px, calc(100vw - 64px)" width="2088" height="1620" alt="EchoOS app with sample content: a board where a video&#39;s timestamped transcript is connected to a clip cut to vertical 9:16, with a LinkedIn post draft from that clip" class="grab" fetchpriority="high" decoding="async" />
-              </picture>
+      <!-- Hero product moment (Amendment 8): a pasted video loads, its transcript appears, then a post draft and a 9:16 clip. Inline HTML in the app's look; assets/moments.js plays it. -->
+      <div class="mt-0 max-w-5xl mx-auto animate-on-scroll relative w-full z-30">
+        <figure id="shot-hero" class="moment-figure m-0" role="img" aria-label="Illustration: a pasted video loads in EchoOS, its timestamped transcript appears, then a LinkedIn post draft and a vertical 9:16 clip made from it.">
+          <div class="mo mo-hero" data-moment="hero" data-s="end" aria-hidden="true">
+            <div class="mc mc-node is-source h-src">
+              <div class="mc-head"><span class="mc-title"><svg class="ic ic-blue"><use href="#mi-link"/></svg><span class="stack"><span class="st" data-on="1">Source</span><span class="st" data-on="2 3 end">How I choose clients</span></span></span><span class="stack"><span class="badge b-load st" data-on="1">Loading...</span><span class="badge b-ready st" data-on="2 3 end">Ready</span></span></div>
+              <div class="mc-body stack">
+                <div class="st" data-on="1"><p class="mc-status">Downloading the video</p><div class="bar"><i></i></div></div>
+                <ol class="tl st" data-on="2 3 end"><li><time>0:00</time><span>I only take clients I can help.</span></li><li><time>0:06</time><span>The first call is about fit.</span></li></ol>
+              </div>
+            </div>
+            <div class="mc mc-draft h-draft st" data-on="3 end">
+              <div class="d-head"><span class="d-plat">LinkedIn post</span><span class="d-status amber">Draft</span></div>
+              <p class="d-text">My first call is about fit, not selling.</p>
+            </div>
+            <div class="mc mc-node is-neutral h-clip st" data-on="end">
+              <div class="mc-head"><span class="mc-title"><svg class="ic ic-muted"><use href="#mi-scissors"/></svg><span>Clip</span></span></div>
+              <div class="mc-body"><div class="c-row"><div class="c-frame"></div><div><p class="c-title">Fit before selling</p><p class="c-time">0:06 - 0:12</p><p class="c-check"><span class="box on"><svg class="ic"><use href="#mi-check"/></svg></span><span>Vertical 9:16</span></p></div></div></div>
             </div>
           </div>
         </figure>
@@ -609,19 +593,22 @@
 
       <div class="flex flex-col gap-20 md:gap-28">
 
-        <!-- Block 1: Bring a video (grab: a source and its transcript on a board) -->
+        <!-- Block 1: Bring a video (moment: a pasted link becomes a timed transcript) -->
         <div class="feature-row grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center animate-on-scroll">
           <div class="md:col-span-7">
-            <figure id="shot-m2" class="shot-frame m-0">
-              <div class="grab-screen">
-                <picture>
-                  <source media="(max-width: 639px), (min-width: 768px) and (max-width: 1023px)" type="image/avif" srcset="./assets/product/p7-m2-narrow-690.avif 690w, ./assets/product/p7-m2-narrow-1030.avif 1030w" sizes="(max-width: 639px) calc(100vw - 48px), 52vw" width="1320" height="1068" />
-                  <source media="(max-width: 639px), (min-width: 768px) and (max-width: 1023px)" type="image/webp" srcset="./assets/product/p7-m2-narrow-690.webp 690w, ./assets/product/p7-m2-narrow-1030.webp 1030w" sizes="(max-width: 639px) calc(100vw - 48px), 52vw" width="1320" height="1068" />
-                  <source media="(max-width: 639px), (min-width: 768px) and (max-width: 1023px)" type="image/jpeg" srcset="./assets/product/p7-m2-narrow-690.jpg 690w, ./assets/product/p7-m2-narrow-1030.jpg 1030w" sizes="(max-width: 639px) calc(100vw - 48px), 52vw" width="1320" height="1068" />
-                  <source type="image/avif" srcset="./assets/product/p7-m2-wide-660.avif 660w, ./assets/product/p7-m2-wide-1300.avif 1300w" sizes="(min-width: 1184px) 638px, (min-width: 1024px) 55vw, calc(100vw - 48px)" width="1350" height="900" />
-                  <source type="image/webp" srcset="./assets/product/p7-m2-wide-660.webp 660w, ./assets/product/p7-m2-wide-1300.webp 1300w" sizes="(min-width: 1184px) 638px, (min-width: 1024px) 55vw, calc(100vw - 48px)" width="1350" height="900" />
-                  <img src="./assets/product/p7-m2-wide-660.jpg" srcset="./assets/product/p7-m2-wide-660.jpg 660w, ./assets/product/p7-m2-wide-1300.jpg 1300w" sizes="(min-width: 1184px) 638px, (min-width: 1024px) 55vw, calc(100vw - 48px)" width="1350" height="900" alt="EchoOS app with sample content: an empty Source card (Choose a video, or drop a video, or paste a YouTube, TikTok or Instagram link) above a video&#39;s three timestamped transcript lines" class="grab" loading="lazy" decoding="async" />
-                </picture>
+            <figure id="shot-m2" class="moment-figure m-0" role="img" aria-label="Illustration: a YouTube link is pasted onto the board, EchoOS downloads and transcribes it, and the video's timestamped transcript lines appear.">
+              <div class="moment-stage">
+                <div class="mo mo-m2" data-moment="m2" data-s="end" aria-hidden="true">
+                  <div class="mc-pill"><svg class="ic"><use href="#mi-link"/></svg><span data-full="youtu.be/your-video">youtu.be/your-video</span><span class="caret"></span></div>
+                  <div class="mc mc-node is-source st" data-on="2 3 end">
+                    <div class="mc-head"><span class="mc-title"><svg class="ic ic-blue"><use href="#mi-link"/></svg><span class="stack"><span class="st" data-on="2 3">Source</span><span class="st" data-on="end">How I choose clients</span></span></span><span class="stack"><span class="badge b-load st" data-on="2 3">Loading...</span><span class="badge b-ready st" data-on="end">Ready</span></span></div>
+                    <div class="mc-body stack">
+                      <div class="st" data-on="2"><p class="mc-status">Downloading the video</p><div class="bar"><i></i></div></div>
+                      <div class="st" data-on="3"><p class="mc-status">Transcribing on this device</p><div class="bar"><i></i></div></div>
+                      <ol class="tl"><li class="st" data-on="end"><time>0:00</time><span>I only take clients I can help.</span></li><li class="st" data-on="end" style="transition-delay:.15s"><time>0:06</time><span>The first call is about fit.</span></li><li class="st" data-on="end" style="transition-delay:.3s"><time>0:12</time><span>Not about selling.</span></li></ol>
+                    </div>
+                  </div>
+                </div>
               </div>
             </figure>
           </div>
@@ -639,19 +626,26 @@
           </div>
         </div>
 
-        <!-- Block 2: Write (grab: the open draft on the Drafts page) -->
+        <!-- Block 2: Write (moment: ask for a change, Rewrite, Copy text / Approve) -->
         <div class="feature-row grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center animate-on-scroll">
           <div class="md:col-span-7 md:order-2">
-            <figure id="shot-m3" class="shot-frame m-0">
-              <div class="grab-screen">
-                <picture>
-                  <source media="(max-width: 639px), (min-width: 768px) and (max-width: 1023px)" type="image/avif" srcset="./assets/product/p7-m3-narrow-690.avif 690w, ./assets/product/p7-m3-narrow-1030.avif 1030w" sizes="(max-width: 639px) calc(100vw - 48px), 52vw" width="1272" height="1443" />
-                  <source media="(max-width: 639px), (min-width: 768px) and (max-width: 1023px)" type="image/webp" srcset="./assets/product/p7-m3-narrow-690.webp 690w, ./assets/product/p7-m3-narrow-1030.webp 1030w" sizes="(max-width: 639px) calc(100vw - 48px), 52vw" width="1272" height="1443" />
-                  <source media="(max-width: 639px), (min-width: 768px) and (max-width: 1023px)" type="image/jpeg" srcset="./assets/product/p7-m3-narrow-690.jpg 690w, ./assets/product/p7-m3-narrow-1030.jpg 1030w" sizes="(max-width: 639px) calc(100vw - 48px), 52vw" width="1272" height="1443" />
-                  <source type="image/avif" srcset="./assets/product/p7-m3-wide-660.avif 660w, ./assets/product/p7-m3-wide-1300.avif 1300w" sizes="(min-width: 1184px) 638px, (min-width: 1024px) 55vw, calc(100vw - 48px)" width="1350" height="1154" />
-                  <source type="image/webp" srcset="./assets/product/p7-m3-wide-660.webp 660w, ./assets/product/p7-m3-wide-1300.webp 1300w" sizes="(min-width: 1184px) 638px, (min-width: 1024px) 55vw, calc(100vw - 48px)" width="1350" height="1154" />
-                  <img src="./assets/product/p7-m3-wide-660.jpg" srcset="./assets/product/p7-m3-wide-660.jpg 660w, ./assets/product/p7-m3-wide-1300.jpg 1300w" sizes="(min-width: 1184px) 638px, (min-width: 1024px) 55vw, calc(100vw - 48px)" width="1350" height="1154" alt="EchoOS app with sample content: an open LinkedIn post draft with Copy text, Approve, an Ask for a change box and Rewrite" class="grab" loading="lazy" decoding="async" />
-                </picture>
+            <figure id="shot-m3" class="moment-figure m-0" role="img" aria-label="Illustration: a LinkedIn post draft in EchoOS. You ask for a change, shorter and ending with a question, click Rewrite, and the shorter draft comes back with Copy text and Approve.">
+              <div class="moment-stage">
+                <div class="mo mo-m3" data-moment="m3" data-s="end" aria-hidden="true">
+                  <div class="mc mc-draft">
+                    <div class="d-head"><span class="d-plat">LinkedIn post</span><span class="d-status amber">Draft</span></div>
+                    <div class="stack">
+                      <p class="d-text old st" data-on="1 2">I only take on clients I know I can help. My first call is about fit, not selling.</p>
+                      <p class="d-text st" data-on="end">I only take clients I can help.<br>My first call is about fit.<br>What do you ask on a first call?</p>
+                    </div>
+                    <div class="d-form st coll" data-on="1 2"><div>
+                        <p class="d-label">Ask for a change</p>
+                        <div class="d-field"><span data-full="Shorter, end with a question">Shorter, end with a question</span><span class="caret"></span></div>
+                        <div class="d-row"><span class="btn btn-primary stack" data-click="rewrite"><span class="st" data-on="1">Rewrite</span><span class="st" data-on="2">Rewriting...</span></span></div>
+                      </div></div>
+                    <div class="d-actions st coll" data-on="end"><div><span class="btn btn-primary">Copy text</span><span class="btn btn-quiet">Approve</span></div></div>
+                  </div>
+                </div>
               </div>
             </figure>
           </div>
@@ -669,19 +663,25 @@
           </div>
         </div>
 
-        <!-- Block 3: Cut and organize (grab: Library search and the cut 9:16 clip) -->
+        <!-- Block 3: Cut and organize (moment: Vertical 9:16, Cut clip, Save to folder) -->
         <div class="feature-row grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center animate-on-scroll">
           <div class="md:col-span-7">
-            <figure id="shot-m4" class="shot-frame m-0">
-              <div class="grab-screen">
-                <picture>
-                  <source media="(max-width: 639px), (min-width: 768px) and (max-width: 1023px)" type="image/avif" srcset="./assets/product/p7-m4-narrow-690.avif 690w, ./assets/product/p7-m4-narrow-1030.avif 1030w" sizes="(max-width: 639px) calc(100vw - 48px), 52vw" width="1272" height="2379" />
-                  <source media="(max-width: 639px), (min-width: 768px) and (max-width: 1023px)" type="image/webp" srcset="./assets/product/p7-m4-narrow-690.webp 690w, ./assets/product/p7-m4-narrow-1030.webp 1030w" sizes="(max-width: 639px) calc(100vw - 48px), 52vw" width="1272" height="2379" />
-                  <source media="(max-width: 639px), (min-width: 768px) and (max-width: 1023px)" type="image/jpeg" srcset="./assets/product/p7-m4-narrow-690.jpg 690w, ./assets/product/p7-m4-narrow-1030.jpg 1030w" sizes="(max-width: 639px) calc(100vw - 48px), 52vw" width="1272" height="2379" />
-                  <source type="image/avif" srcset="./assets/product/p7-m4-wide-740.avif 740w, ./assets/product/p7-m4-wide-1300.avif 1300w" sizes="(min-width: 1184px) 638px, (min-width: 1024px) 55vw, calc(100vw - 48px)" width="1656" height="1566" />
-                  <source type="image/webp" srcset="./assets/product/p7-m4-wide-740.webp 740w, ./assets/product/p7-m4-wide-1300.webp 1300w" sizes="(min-width: 1184px) 638px, (min-width: 1024px) 55vw, calc(100vw - 48px)" width="1656" height="1566" />
-                  <img src="./assets/product/p7-m4-wide-740.jpg" srcset="./assets/product/p7-m4-wide-740.jpg 740w, ./assets/product/p7-m4-wide-1300.jpg 1300w" sizes="(min-width: 1184px) 638px, (min-width: 1024px) 55vw, calc(100vw - 48px)" width="1656" height="1566" alt="EchoOS app with sample content: a clip cut to vertical 9:16 with Save to folder, and the Library searched for first call with three matching lines" class="grab" loading="lazy" decoding="async" />
-                </picture>
+            <figure id="shot-m4" class="moment-figure m-0" role="img" aria-label="Illustration: a clip card in EchoOS. Vertical 9:16 gets ticked, the clip is cut on this device, then Save to folder saves the MP4.">
+              <div class="moment-stage">
+                <div class="mo mo-m4" data-moment="m4" data-s="end" aria-hidden="true">
+                  <div class="mc mc-node is-neutral">
+                    <div class="mc-head"><span class="mc-title"><svg class="ic ic-muted"><use href="#mi-scissors"/></svg><span>Clip</span></span></div>
+                    <div class="mc-body">
+                      <div class="c-row"><div class="c-frame-wrap"><div class="c-frame morph"></div></div><div><p class="c-title">Fit before selling</p><p class="c-time">0:06 - 0:12</p></div></div>
+                      <p class="c-check"><span class="box on" data-final-on="on"><svg class="ic"><use href="#mi-check"/></svg></span><span>Vertical 9:16 <span class="muted">for Shorts, Reels and TikTok</span></span></p>
+                      <div class="c-foot stack">
+                        <div class="row st" data-on="1 2"><span class="btn btn-primary" data-click="cut"><svg class="ic" style="width:15px;height:15px"><use href="#mi-scissors"/></svg>Cut clip</span></div>
+                        <div class="st" data-on="3"><p class="mc-status">Cutting the clip on this device...</p><div class="bar"><i></i></div></div>
+                        <div class="row st" data-on="4 end"><span class="btn btn-line is-accent" data-click="save"><svg class="ic" style="width:15px;height:15px"><use href="#mi-download"/></svg>Save to folder</span><span class="c-saved st" data-on="end">Saved.</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </figure>
           </div>
@@ -714,49 +714,30 @@
         <h2 class="font-heading text-4xl md:text-5xl font-bold text-text-main mt-4">Your first video in <span class="text-purple-gradient">three steps.</span></h2>
       </div>
 
-      <div class="relative max-w-4xl mx-auto">
-        <div class="absolute left-6 top-8 bottom-8 w-[2px] bg-gradient-to-b from-primary via-purple-500 to-transparent md:left-1/2 md:-ml-[1px]"></div>
-
-        <div class="flex flex-col gap-12 relative z-10">
-
-          <!-- Step 1 -->
-          <div class="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-16 w-full group">
-            <div class="md:w-5/12 text-left md:text-right order-2 md:order-1 ml-16 md:ml-0">
-              <h3 class="font-heading text-2xl font-bold text-text-main mb-2">1. Set up once</h3>
-              <p class="text-text-muted text-base leading-relaxed">Connect your own AI and set up your voice. Skip either and come back later.</p>
-            </div>
-            <div class="w-12 h-12 rounded-full bg-surface border-4 border-bg flex items-center justify-center shrink-0 order-1 md:order-2 shadow-[0_0_15px_rgba(134,85,246,0.6)] relative z-20">
-              <i data-lucide="settings" class="w-5 h-5 text-primary"></i>
-            </div>
-            <div class="md:w-5/12 order-3 hidden md:block"></div>
-          </div>
-
-          <!-- Step 2 -->
-          <div class="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-16 w-full group">
-            <div class="md:w-5/12 order-3 md:order-1 hidden md:block"></div>
-            <div class="w-12 h-12 rounded-full bg-surface border-4 border-bg flex items-center justify-center shrink-0 order-1 md:order-2 shadow-[0_0_15px_rgba(134,85,246,0.6)] relative z-20">
-              <i data-lucide="link" class="w-5 h-5 text-purple-400"></i>
-            </div>
-            <div class="md:w-5/12 text-left order-2 md:order-3 ml-16 md:ml-0">
-              <h3 class="font-heading text-2xl font-bold text-text-main mb-2">2. Bring a video</h3>
-              <p class="text-text-muted text-base leading-relaxed">Paste a YouTube, TikTok or Instagram link, or drop in a file.</p>
-            </div>
-          </div>
-
-          <!-- Step 3 -->
-          <div class="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-16 w-full group">
-            <div class="md:w-5/12 text-left md:text-right order-2 md:order-1 ml-16 md:ml-0">
-              <h3 class="font-heading text-2xl font-bold text-text-main mb-2">3. Ask, then approve</h3>
-              <p class="text-text-muted text-base leading-relaxed">Ask for posts and clips in one chat. Approve what you'll use.</p>
-            </div>
-            <div class="w-12 h-12 rounded-full bg-surface border-4 border-bg flex items-center justify-center shrink-0 order-1 md:order-2 shadow-[0_0_15px_rgba(134,85,246,0.6)] relative z-20">
-              <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
-            </div>
-            <div class="md:w-5/12 order-3 hidden md:block"></div>
-          </div>
-
-        </div>
-      </div>
+      <ol class="steps mx-auto">
+        <li class="step animate-on-scroll">
+          <div class="step-top"><figure class="m-0" role="img" aria-label="Illustration: in Settings, OpenRouter goes from Not connected to Connected."><div class="mo mo-step" data-moment="sw1" data-s="end" aria-hidden="true"><div class="mc">
+                <div class="s-row"><span class="s-name">OpenRouter</span><span class="stack"><span class="s-state st" data-on="1" style="justify-self:end">Not connected</span><span class="s-state st" data-on="end" style="justify-self:end">Connected</span></span></div>
+                <div class="st coll" data-on="1"><div><span class="btn btn-primary" data-click="connect">Connect OpenRouter</span></div></div>
+              </div></div></figure></div>
+          <div class="step-bot"><h3 class="font-heading text-2xl font-bold text-text-main mb-2">Set up once</h3><p class="text-text-muted text-base leading-relaxed">Connect your own AI and set up your voice. Skip either and come back later.</p></div>
+        </li>
+        <li class="step animate-on-scroll" style="transition-delay: 0.1s;">
+          <div class="step-top"><figure class="m-0" role="img" aria-label="Illustration: a pasted link becomes a Source that loads, then shows Ready."><div class="mo mo-step" data-moment="sw2" data-s="end" aria-hidden="true">
+                <div class="mc-pill"><svg class="ic"><use href="#mi-link"/></svg><span data-full="youtu.be/your-video">youtu.be/your-video</span><span class="caret"></span></div>
+                <div class="mc mc-node is-source st" data-on="2 end"><div class="mc-head"><span class="mc-title"><svg class="ic ic-blue"><use href="#mi-link"/></svg><span class="stack"><span class="st" data-on="2">Source</span><span class="st" data-on="end">How I choose clients</span></span></span><span class="stack"><span class="badge b-load st" data-on="2">Loading...</span><span class="badge b-ready st" data-on="end">Ready</span></span></div></div>
+              </div></figure></div>
+          <div class="step-bot"><h3 class="font-heading text-2xl font-bold text-text-main mb-2">Bring a video</h3><p class="text-text-muted text-base leading-relaxed">Paste a YouTube, TikTok or Instagram link, or drop in a file.</p></div>
+        </li>
+        <li class="step animate-on-scroll" style="transition-delay: 0.2s;">
+          <div class="step-top"><figure class="m-0" role="img" aria-label="Illustration: a LinkedIn post draft goes from Draft to Approved."><div class="mo mo-step" data-moment="sw3" data-s="end" aria-hidden="true"><div class="mc mc-draft">
+                <div class="s-row"><span class="d-plat">LinkedIn post</span><span class="stack"><span class="d-status amber st" data-on="1">Draft</span><span class="d-status green st" data-on="end">Approved</span></span></div>
+                <p class="s-text">My first call is about fit.</p>
+                <div class="st coll" data-on="1"><div><span class="btn btn-primary" data-click="approve">Approve</span></div></div>
+              </div></div></figure></div>
+          <div class="step-bot"><h3 class="font-heading text-2xl font-bold text-text-main mb-2">Ask, then approve</h3><p class="text-text-muted text-base leading-relaxed">Ask for posts and clips in one chat. Approve what you'll use.</p></div>
+        </li>
+      </ol>
 
       <div class="flex justify-center mt-16 px-4 sm:px-0">
         <a href="#quiz" data-open-quiz
@@ -1441,5 +1422,6 @@
 
   </script>
 
+  <script src="./assets/moments.js" defer></script>
 </body>
 </html>
