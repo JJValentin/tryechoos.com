@@ -298,17 +298,22 @@
 /* Preview 10: the loop's fade-out covers every part (beats the per-state visibility rules). */
 .mo.is-out[data-s] .mc, .mo.is-out[data-s] .mc-pill, .mo.is-out[data-s] .orbit, .mo.is-out[data-s] .h-link, .mo.is-out[data-s] .h-clips { opacity: 0; transition: opacity .35s ease; }
 
-/* Amendment 11: block 2's first draft is a full template (two lists and two closing lines).
-   The draft and the rewrite each fold, so the card visibly shrinks to the 3-line rewrite. */
+/* Block 2 (Amendments 11, 12): raw notes fold into the full LinkedIn post (a template with two lists
+   and two closing lines). The stage holds the tallest state (notes + ask, 440 / 430 px). */
 #shot-m3 .d-text { font-size: 14px; line-height: 1.45; text-wrap: pretty; }
 #shot-m3 .d-text p + p { margin-top: 8px; }
-#shot-m3 .moment-stage { height: 520px; }
+#shot-m3 .moment-stage { height: 440px; }
 @media (max-width: 639px) {
   #shot-m3 .d-text { font-size: 13px; }
   #shot-m3 .mc-draft { padding: 16px 16px 18px; }
-  #shot-m3 .moment-stage { height: 480px; }
+  #shot-m3 .moment-stage { height: 430px; }
 }
-/* Step 3 shows the same rewrite (4 lines once it wraps), so every step card's top grows to hold it with Approve */
+/* Amendment 12: the raw notes read as a jotted note (grey, behind a thin rule), not as the post.
+   One line per note at 13 px (no wrap at 390 and up); at 320 a long note wraps under a hanging indent, so it still reads as one line. */
+#shot-m3 .d-note { color: var(--m-muted); border-left: 2px solid var(--m-border); padding-left: 12px; font-size: 13px; }
+#shot-m3 .d-note p { padding-left: 1em; text-indent: -1em; }
+#shot-m3 .d-note p + p { margin-top: 0; }
+/* Step 3 shows the 3-line post (4 lines once it wraps), so every step card's top grows to hold it with Approve */
 .mo-step .s-text { font-size: 13px; line-height: 1.45; text-wrap: pretty; }
 .step-top { height: 208px; }
 

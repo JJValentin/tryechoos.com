@@ -99,7 +99,7 @@
         .then(function () { m.set('end'); return t.wait(3200); })
         .then(t.out);
     },
-    // Block 2: ask for a change, click Rewrite, the draft comes back shorter with Copy text and Approve.
+    // Block 2: raw notes, ask for a change (Turn this into a LinkedIn post), click Rewrite, the LinkedIn post comes back with Copy text and Approve.
     m3: function (m, t) {
       var field = m.q('.d-field'), text = m.q('[data-full]'), btn = m.q('[data-click="rewrite"]');
       m.set('1'); text.textContent = '';
