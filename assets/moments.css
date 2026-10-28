@@ -248,7 +248,7 @@
   #shot-m4 .moment-stage { height: 370px; }
   .mo-m2, .mo-m3, .mo-m4 { width: 100%; max-width: 340px; }
 }
-@media (max-width: 359px) { .split { --h: 130px; } }
+@media (max-width: 359px) { .split { --h: 130px; } #shot-m3 .moment-stage { height: 360px; } /* Write B's first draft wraps to one more line below 326 px */ }
 
 /* ---------- Three steps (Format Finder style step cards) ---------- */
 .steps { display: grid; gap: 20px; grid-template-columns: 1fr; counter-reset: step; list-style: none; margin: 0; padding: 0; }
