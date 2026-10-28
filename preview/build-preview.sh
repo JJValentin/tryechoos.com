@@ -30,4 +30,8 @@ assert s.count(gate) == 1
 s = s.replace(gate, "        setJoin('loading');\n        if (window.__echoPreviewJoinFails) { joinFailed('PREVIEW: simulated load failure'); return; } // PREVIEW ONLY\n        renderTimer =")
 open(p, 'w', encoding='utf-8').write(s)
 PY
+# Legal pages (privacy.html, terms.html) are copied by the rsync above; keep them out of search in the preview too.
+for page in privacy.html terms.html; do
+  [ -f "$out/$page" ] && sed -i '0,/<head>/s//<head>\n  <meta name="robots" content="noindex, nofollow" \/>/' "$out/$page"
+done
 echo "preview built: $out"
