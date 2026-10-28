@@ -153,6 +153,8 @@
 .orbit::before { content: ""; position: absolute; inset: 8%; border-radius: 50%; background: radial-gradient(closest-side, rgba(134,85,246,.22), transparent); pointer-events: none; }
 .orb-path, .orb-wave { position: absolute; left: 50%; top: 50%; width: calc(var(--r) * 2); height: calc(var(--r) * 2); margin: calc(var(--r) * -1) 0 0 calc(var(--r) * -1); border-radius: 50%; }
 .orb-path { border: 1.5px dashed rgba(134,85,246,.35); }
+/* phone: the card sits above the orbit, so a short vertical edge carries the input down into it */
+.orb-in { display: none; }
 .orb-wave { border: 2px solid rgba(183,148,255,.7); opacity: 0; pointer-events: none; }
 .mo[data-s="3"] .orb-wave { animation: orb-wave 1.1s .75s ease-out both; }
 @keyframes orb-wave { 0% { transform: scale(.45); opacity: .8; } 100% { transform: scale(1.12); opacity: 0; } }
@@ -200,6 +202,14 @@
   .orbit { --r: 58px; --core: 54px; --mark: 34px; --glyph: 15px; width: 150px; height: 150px; }
   .orb-core picture { border-radius: 12px; }
   .h-clips { --cw: 60px; --ch: 107px; --fan: 44px; width: 156px; height: 132px; }
+  .orb-in { display: block; position: absolute; left: 50%; top: -9px; height: calc(50% - var(--core) / 2 + 9px); margin-left: -.75px; border-left: 1.5px dashed rgba(134,85,246,.55); }
+  .orb-in::after { content: ""; position: absolute; left: -4.75px; top: 0; width: 8px; height: 8px; border-radius: 50%; background: #b794ff; box-shadow: 0 0 10px #8655f6; opacity: 0; }
+  .mo[data-s="3"] .orb-in::after { animation: h-drop .8s .1s ease-in both; }
+}
+@keyframes h-drop { 0% { top: 0; opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { top: calc(100% - 8px); opacity: 0; } }
+@media (max-width: 359px) {
+  .orbit { --r: 52px; --core: 48px; --mark: 30px; --glyph: 14px; width: 136px; height: 136px; }
+  .h-clips { --cw: 54px; --ch: 96px; --fan: 38px; width: 140px; height: 120px; }
 }
 
 /* ---------- Feature moments ---------- */
@@ -278,7 +288,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .mo .st, .mc, .mc-pill, .mo-cursor, .btn, .cf, .sf, .split-full, .orb-g, .s-choice, .mo .tx .tx-bars i { transition: none !important; }
-  .bar > i, .orb-ring, .orb-g, .h-dot, .orb-wave { animation: none !important; }
+  .bar > i, .orb-ring, .orb-g, .h-dot, .orb-wave, .orb-in::after { animation: none !important; }
 }
 
 /* Preview 9: quiet credit for the sample video under the hero moment. */
